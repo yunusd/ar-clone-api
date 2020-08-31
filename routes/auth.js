@@ -6,4 +6,8 @@ router.get('/', function(req, res, next) {
   res.send('auth');
 });
 
+router.send('/', function(req, res, next) {
+  res.send('auth');
+});
+
 module.exports = router;

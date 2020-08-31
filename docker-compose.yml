@@ -1,0 +1,36 @@
+version: '3'
+
+services: 
+  api:
+    container_name: api
+    image: yunusdp/ar-clone-api
+    build:
+      context: .
+      args:
+        NODE_ENV: development
+    command: npm run start
+    restart: always
+    depends_on:
+      - postgres
+    ports:
+      - 8080:8080
+    env_file: .env
+    environment:
+      - POSTGRES_USERNAME=$POSTGRES_USERNAME
+      - POSTGRES_PASSWORD=$POSTGRES_PASSWORD
+      - POSTGRES_HOSTNAME=$POSTGRES_HOSTNAME
+      - POSTGRES_PORT=$POSTGRES_PORT
+      - POSTGRES_DB=$POSTGRES_DB
+  postgres:
+    image: postgres
+    restart: always
+    env_file: .env
+    environment:
+      POSTGRES_USERNAME: $POSTGRES_USERNAME
+      POSTGRES_PASSWORD: $POSTGRES_PASSWORD
+    volumes:
+      - dbdata:/data/db
+    ports:
+      - 5432:5432 
+volumes:
+  dbdata:
