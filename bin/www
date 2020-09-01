@@ -3,12 +3,25 @@
 /**
  * Module dependencies.
  */
-const sequelize = require('../config/db')
+const {sequelize} = require('../db/models')
 var app = require('../app');
 var debug = require('debug')('ar-clone-api:server');
 var http = require('http');
+const {
+  POSTGRES_USERNAME,
+  POSTGRES_PASSWORD,
+  POSTGRES_HOSTNAME,
+  POSTGRES_PORT,
+  POSTGRES_DB,
+} = require('../config/index')
+/**
+ * Authenticate db connection
+ */
 
-sequelize.authenticate().then(res => console.log('Connection has been established successfully.'))
+sequelize.authenticate().then(res => {
+  sequelize.sync({ force: true}).then(res => console.log('Tables deleted successfully.'))
+  console.log('Connection has been established successfully.')
+})
 .catch(err => console.error('Unable to connect to the database:', err))
 
 /**
