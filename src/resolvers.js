@@ -1,32 +1,47 @@
+const { Op } = require("sequelize");
 const resolvers = {
   Query: {
-    async user(root, { id }, { models }) {
-      return models.User.findById(id);
+    async getUser(
+      root,
+      { id, firstName, lastName, phoneNumber, email },
+      { models }
+    ) {
+      return models.User.findAll({
+        where: {
+          [Op.or]: [
+            { id: id },
+            { firstName: firstName },
+            { lastName: lastName },
+            { phoneNumber: phoneNumber },
+            { email: email },
+          ],
+        },
+      });
     },
-    async allUser(root, args, { models }) {
-      return models.User.findAll();
+
+    async getCatalog(root, { id, name }, { models }) {
+      return models.Catalog.findAll({
+        where: {
+          [Op.or]: [{ id: id }, { name: name }],
+        },
+      });
     },
-    async catalog(root, { id }, { models }) {
-      return models.Catalog.findById(id);
-    },
-    async allCatalog(root, args, { models }) {
-      return models.Catalog.findAll();
-    },
-    async category(root, { id }, { models }) {
-      return models.Category.findById(id);
-    },
-    async allCategory(root, args, { models }) {
+
+    async getCategory(
+      root,
+      { id, name, isPriceRange, price, catalogId, minPrice, maxPrice },
+      { models }
+    ) {
       return models.Category.findAll({
         where: {
           [Op.or]: [
-            { id: args.id },
-            { name: args.name },
-            { minPrice: args.minPrice },
-            { maxPrice: args.maxPrice },
-            { isPriceRange: args.isPriceRange },
-            { price: args.price },
-            { catalogId: args.catalogId },
+            { id: id },
+            { name: name },
+            { isPriceRange: isPriceRange },
+            { price: price },
+            { catalogId: catalogId },
           ],
+          [Op.and]: [{ minPrice: minPrice }, { maxPrice: maxPrice }],
         },
       });
     },
@@ -39,27 +54,31 @@ const resolvers = {
         },
       });
     },
-    async allOffer(root, args, { models }) {
+    async allOffer(root, { id, price, userId, serviceId }, { models }) {
       return models.Offer.findAll({
         where: {
           [Op.or]: [
-            { id: args.id },
-            { price: args.price },
-            { userId: args.userId },
-            { serviceId: args.serviceId },
+            { id: id },
+            { price: price },
+            { userId: userId },
+            { serviceId: serviceId },
           ],
         },
       });
     },
-    async allService(root, args, { models }) {
+    async allService(
+      root,
+      { id, name, price, categoryId, userId },
+      { models }
+    ) {
       return models.Service.findAll({
         where: {
           [Op.or]: [
-            { id: args.id },
-            { name: args.name },
-            { price: args.price },
-            { categoryId: args.categoryId },
-            { userId: args.userId },
+            { id: id },
+            { name: name },
+            { price: price },
+            { categoryId: categoryId },
+            { userId: userId },
           ],
         },
       });
@@ -75,7 +94,7 @@ const resolvers = {
     },
     async createCatalog(root, { name }, { models }) {
       return models.Catalog.create({
-        name
+        name,
       });
     },
     async createCategory(
@@ -93,14 +112,18 @@ const resolvers = {
       });
     },
 
-    async createOffer(root, { price,userId,serviceId }, { models }) {
+    async createOffer(root, { price, userId, serviceId }, { models }) {
       return models.Offer.create({
         price,
         userId,
-        serviceId
+        serviceId,
       });
     },
-    async createService(root, { name,posterPath,price,categoryId,userId }, { models }) {
+    async createService(
+      root,
+      { name, posterPath, price, categoryId, userId },
+      { models }
+    ) {
       return models.Service.create({
         name,
         posterPath,
@@ -109,7 +132,6 @@ const resolvers = {
         userId,
       });
     },
-
   },
 };
 
