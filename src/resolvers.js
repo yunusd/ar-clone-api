@@ -45,16 +45,8 @@ const resolvers = {
         },
       });
     },
-    async allCategoryByCatalogId(root, { id }, { models }) {
-      return models.Category.findAll({
-        where: {
-          catalogId: {
-            [Op.eq]: id,
-          },
-        },
-      });
-    },
-    async allOffer(root, { id, price, userId, serviceId }, { models }) {
+
+    async getOffer(root, { id, price, userId, serviceId }, { models }) {
       return models.Offer.findAll({
         where: {
           [Op.or]: [
@@ -66,7 +58,7 @@ const resolvers = {
         },
       });
     },
-    async allService(
+    async getService(
       root,
       { id, name, price, categoryId, userId },
       { models }
@@ -83,8 +75,44 @@ const resolvers = {
         },
       });
     },
+    async getQuestion(root, { id, categoryId }, { models }) {
+      return models.Question.findAll({
+        include: {
+          model: QuestionOption,
+          required: true,
+        },
+        where: {
+          [Op.or]: [{ id: id }, { categoryId: categoryId }],
+        },
+      });
+    },
   },
   Mutation: {
+    async createQuestion(
+      root,
+      { question, description, questionType, categoryId, questionOptions },
+      { models }
+    ) {
+      return models.Question.create({
+        question,
+        description,
+        questionType,
+        categoryId,
+        questionOptions,
+      });
+    },
+    async createQuestionOption(
+      root,
+      { optionText, maxPrice, minPrice, questionId },
+      { models }
+    ) {
+      return models.QuestionOption.create({
+        optionText,
+        maxPrice,
+        minPrice,
+        questionId,
+      });
+    },
     async createUser(root, { firstName, lastName, email }, { models }) {
       return models.User.create({
         firstName,

@@ -39,6 +39,22 @@ const typeDefs = gql`
     categoryId: Int!
     userId: Int!
   }
+  type Question {
+    id: Int!
+    question: String!
+    description: String!
+    questionType: Int!
+    categoryId: Int!
+    questionOptions: [QuestionOption!]!
+  }
+
+  type QuestionOption {
+    id: Int!
+    optionText: String!
+    maxPrice: Float!
+    minPrice: Float!
+    questionId: Int!
+  }
 
   type Query {
     getUser(
@@ -62,17 +78,21 @@ const typeDefs = gql`
       catalogId: Int
     ): [Category!]!
 
-    allCategoryByCatalogId(id: Int!): [Category!]!
+    getOffer(id: Int, price: Float, userId: Int, serviceId: Int): [Offer!]!
 
-    allOffer(id: Int, price: Float, userId: Int, serviceId: Int): [Offer!]!
-
-    allService(
+    getService(
       id: Int
       name: String
       price: Float
       categoryId: Int
       userId: Int
     ): [Service!]!
+
+    getQuestion(
+      id: Int
+      categoryId: Int
+    )
+    
   }
 
   type Mutation {
@@ -98,6 +118,21 @@ const typeDefs = gql`
       categoryId: Int!
       userId: Int!
     ): Service!
+
+    createQuestion(
+      question: String!
+      description: String!
+      questionType: Int!
+      categoryId: Int!
+      questionOptions: [QuestionOption!]!
+    ): Question!
+
+    createQuestionOption(
+      optionText: String!
+      maxPrice: Float!
+      minPrice: Float!
+      questionId: Int!
+    ): QuestionOption!
   }
 `;
 
