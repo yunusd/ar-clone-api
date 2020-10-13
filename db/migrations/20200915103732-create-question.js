@@ -8,8 +8,8 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      categoryId: {
-        type: Sequelize.INTEGER.UNSIGNED,
+      CategoryId: {
+        type: Sequelize.INTEGER,
         allowNull: false,
         references: {
           model: 'Categories', 
@@ -23,7 +23,7 @@ module.exports = {
         type: Sequelize.STRING,
       },
       questionType: {
-        type: DataTypes.ENUM({
+        type: Sequelize.ENUM({
           values: ["trueFalse", "singleChoice"],
         }),
       },

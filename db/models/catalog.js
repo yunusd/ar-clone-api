@@ -2,9 +2,8 @@
 const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Catalog extends Model {
- 
     static associate(models) {
-      Catalog.hasMany(models.Category);
+      Catalog.hasMany(models.Category, { as: "categories" });
     }
   }
 

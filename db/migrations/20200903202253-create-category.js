@@ -8,8 +8,8 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      catalogId: {
-        type: Sequelize.INTEGER.UNSIGNED,
+      CatalogId: {
+        type: Sequelize.INTEGER,
         allowNull: false,
         references: {
           model: 'Catalogs', 

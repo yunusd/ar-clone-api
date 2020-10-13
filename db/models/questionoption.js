@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      questionOption.belongsTo(models.Question, { foreignKey: "questionId" });
+      questionOption.belongsTo(models.Question, { foreignKey: "QuestionId",as : 'questionId' });
     }
   }
   questionOption.init(
@@ -16,10 +16,6 @@ module.exports = (sequelize, DataTypes) => {
       optionText: DataTypes.STRING,
       minPrice: DataTypes.FLOAT,
       maxPrice: DataTypes.FLOAT,
-      questionId: {
-        type: DataTypes.INTEGER.UNSIGNED,
-        allowNull: false,
-      },
     },
     {
       sequelize,

@@ -13,23 +13,25 @@ const typeDefs = gql`
   type Catalog {
     id: Int!
     name: String!
-    categories: [Category!]!
+    categories: [Category]
   }
   type Category {
-    id: Int!
-    name: String!
-    minPrice: Float!
-    maxPrice: Float!
-    isPriceRange: Boolean!
-    price: Float!
-    catalogId: String!
-    services: [Service!]!
+    id: Int
+    name: String
+    minPrice: Float
+    maxPrice: Float
+    isPriceRange: Boolean
+    price: Float
+    catalogId: Int
+    services: [Service]
   }
   type Offer {
     id: Int!
     price: Float!
     serviceId: Int!
     userId: Int!
+    user: User!
+    service: Service!
   }
   type Service {
     id: Int!
@@ -57,48 +59,37 @@ const typeDefs = gql`
   }
 
   type Query {
-    getUser(
-      id: Int
-      firstName: String
-      lastName: String
-      userName: String
-      phoneNumber: String
-      email: String
-    ): [User!]!
-
-    getCatalog(id: Int, name: String): [Catalog!]!
-
-    getCategory(
-      id: Int
-      name: String
-      minPrice: Float
-      maxPrice: Float
-      isPriceRange: Boolean
-      price: Float
-      catalogId: Int
-    ): [Category!]!
-
-    getOffer(id: Int, price: Float, userId: Int, serviceId: Int): [Offer!]!
-
-    getService(
-      id: Int
-      name: String
-      price: Float
-      categoryId: Int
-      userId: Int
-    ): [Service!]!
-
-    getQuestion(
-      id: Int
-      categoryId: Int
-    )
+    getAllUser: [User!]!
     
+    getUser: User!
+
+    getCatalog(id: Int, name: String): Catalog!
+
+    getAllCatalog: [Catalog!]!
+
+    getCategory(id: Int!): Category
+
+    getAllCategory: [Category!]!
+
+    getOffer(id: Int!): Offer!
+
+    getOfferByServiceId(serviceId: Int!): [Offer!]!
+
+    getService(id: Int!): Service!
+
+    getServiceByCategoryId(categoryId: Int!): [Service!]!
+
+    getQuestion(id: Int!): Question!
+
+    getQuestionByCategoryId(categoryId: Int!): [Question!]!
   }
 
   type Mutation {
     createUser(firstName: String!, lastName: String!, email: String!): User!
 
     createCatalog(name: String!): Catalog!
+
+    updateCatalog(name: String, id: Int!): Catalog!
 
     createCategory(
       name: String!
@@ -109,7 +100,19 @@ const typeDefs = gql`
       catalogId: Int!
     ): Category!
 
+    updateCategory(
+      id: Int!
+      name: String
+      minPrice: Float
+      maxPrice: Float
+      isPriceRange: Boolean
+      price: Float
+      catalogId: Int
+    ): Category!
+
     createOffer(price: Float!, userId: Int!, serviceId: Int!): Offer!
+
+    updateOffer(id: Int!, price: Float, userId: Int, serviceId: Int): Offer!
 
     createService(
       name: String!
@@ -119,12 +122,28 @@ const typeDefs = gql`
       userId: Int!
     ): Service!
 
+    updateService(
+      id: Int!
+      name: String
+      posterPath: String
+      price: Float
+      categoryId: Int
+      userId: Int!
+    ): Service!
+
+    updateQuestion(
+      id: Int!
+      question: String
+      description: String
+      questionType: Int
+      categoryId: Int
+    ): Question!
+
     createQuestion(
       question: String!
       description: String!
       questionType: Int!
       categoryId: Int!
-      questionOptions: [QuestionOption!]!
     ): Question!
 
     createQuestionOption(
@@ -132,6 +151,14 @@ const typeDefs = gql`
       maxPrice: Float!
       minPrice: Float!
       questionId: Int!
+    ): QuestionOption!
+
+    updateQuestionOption(
+      id: Int!
+      optionText: String
+      maxPrice: Float
+      minPrice: Float
+      questionId: Int
     ): QuestionOption!
   }
 `;

@@ -5,8 +5,11 @@ const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Service extends Model {
     static associate(models) {
-      Service.belongsTo(models.Category, { foreignKey: "categoryId" }),
-        Service.belongsTo(models.User, { foreignKey: "userId" }),
+      Service.belongsTo(models.Category, {
+        as: "categoryId",
+        foreignKey: "CategoryId",
+      }),
+        Service.belongsTo(models.User, { foreignKey: "UserId", as: "userId" }),
         Service.hasMany(models.Offer);
     }
   }
@@ -15,14 +18,6 @@ module.exports = (sequelize, DataTypes) => {
       name: DataTypes.STRING,
       posterPath: DataTypes.STRING,
       price: DataTypes.FLOAT,
-      categoryId: {
-        type: DataTypes.INTEGER.UNSIGNED,
-        allowNull: false,
-      },
-      userId: {
-        type: DataTypes.INTEGER.UNSIGNED,
-        allowNull: false,
-      },
     },
     {
       sequelize,

@@ -9,8 +9,10 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       Question.hasMany(models.questionOption);
-      Question.belongsTo(models.Category, { foreignKey: "categoryId" });
-
+      Question.belongsTo(models.Category, {
+        foreignKey: "CategoryId",
+        as: "categoryId",
+      });
     }
   }
   Question.init(
@@ -20,10 +22,6 @@ module.exports = (sequelize, DataTypes) => {
       questionType: DataTypes.ENUM({
         values: ["trueFalse", "singleChoice"],
       }),
-      categoryId: {
-        type: DataTypes.INTEGER.UNSIGNED,
-        allowNull: false,
-      },
     },
     {
       sequelize,

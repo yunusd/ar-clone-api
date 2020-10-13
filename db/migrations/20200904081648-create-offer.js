@@ -11,16 +11,16 @@ module.exports = {
       price: {
         type: Sequelize.FLOAT
       },
-      userId: {
-        type: Sequelize.INTEGER.UNSIGNED,
+      UserId: {
+        type: Sequelize.INTEGER,
         allowNull: false,
         references: {
           model: 'Users', 
           key: 'id', 
        }
       },
-      serviceId: {
-        type: Sequelize.INTEGER.UNSIGNED,
+      ServiceId: {
+        type: Sequelize.INTEGER,
         allowNull: false,
         references: {
           model: 'Services', 
