@@ -137,7 +137,7 @@ const typeDefs = gql`
       userId: Int!
     ): Service!
 
-    deleteOffer(id: Int!): Boolean!
+    deleteService(id: Int!): Boolean!
 
     updateQuestion(
       id: Int!
