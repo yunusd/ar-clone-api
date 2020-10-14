@@ -105,6 +105,19 @@ const resolvers = {
       });
     },
 
+    async deleteQuestion(root, { id }, { models }) {
+      if (
+        await models.Question.destroy({
+          where: {
+            id: id,
+          },
+        })
+      ) {
+        return true;
+      }
+      return false;
+    },
+
     async createQuestionOption(
       root,
       { optionText, maxPrice, minPrice, questionId },
@@ -133,6 +146,19 @@ const resolvers = {
       return getQuestionOption;
     },
 
+    async deleteQuestionOption(root, { id }, { models }) {
+      if (
+        await models.QuestionOption.destroy({
+          where: {
+            id: id,
+          },
+        })
+      ) {
+        return true;
+      }
+      return false;
+    },
+
     async createUser(root, { firstName, lastName, email }, { models }) {
       return await models.User.create({
         firstName,
@@ -155,6 +181,19 @@ const resolvers = {
       return getCatalog;
     },
 
+    async deleteCatalog(root, { id }, { models }) {
+      if (
+        await models.Catalog.destroy({
+          where: {
+            id: id,
+          },
+        })
+      ) {
+        return true;
+      }
+      return false;
+    },
+
     async createCategory(
       root,
       { name, minPrice, maxPrice, isPriceRange, price, catalogId },
@@ -169,6 +208,7 @@ const resolvers = {
         CatalogId: catalogId,
       });
     },
+
     async updateCategory(
       root,
       { name, minPrice, maxPrice, isPriceRange, price, catalogId, id },
@@ -186,6 +226,19 @@ const resolvers = {
       if (catalogId != null) getCategory.CatalogId = catalogId;
       await getCategory.save();
       return getCategory;
+    },
+
+    async deleteCategory(root, { id }, { models }) {
+      if (
+        await models.Category.destroy({
+          where: {
+            id: id,
+          },
+        })
+      ) {
+        return true;
+      }
+      return false;
     },
 
     async createOffer(root, { price, userId, serviceId }, { models }) {
@@ -206,6 +259,19 @@ const resolvers = {
       return getOffer;
     },
 
+    async deleteOffer(root, { id }, { models }) {
+      if (
+        await models.Offer.destroy({
+          where: {
+            id: id,
+          },
+        })
+      ) {
+        return true;
+      }
+      return false;
+    },
+
     async createService(
       root,
       { name, posterPath, price, categoryId, userId },
@@ -219,6 +285,7 @@ const resolvers = {
         UserId: userId,
       });
     },
+
     async updateService(
       root,
       { name, posterPath, price, categoryId, userId, id },
@@ -232,6 +299,19 @@ const resolvers = {
       if (categoryId != null) getService.CategoryId = categoryId;
       await getService.save();
       return getService;
+    },
+
+    async deleteService(root, { id }, { models }) {
+      if (
+        await models.Service.destroy({
+          where: {
+            id: id,
+          },
+        })
+      ) {
+        return true;
+      }
+      return false;
     },
   },
 };

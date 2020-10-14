@@ -60,7 +60,7 @@ const typeDefs = gql`
 
   type Query {
     getAllUser: [User!]!
-    
+
     getUser: User!
 
     getCatalog(id: Int, name: String): Catalog!
@@ -91,6 +91,8 @@ const typeDefs = gql`
 
     updateCatalog(name: String, id: Int!): Catalog!
 
+    deleteCatalog(id: Int!): Boolean!
+
     createCategory(
       name: String!
       minPrice: Float!
@@ -110,9 +112,13 @@ const typeDefs = gql`
       catalogId: Int
     ): Category!
 
+    deleteCategory(id: Int!): Boolean!
+
     createOffer(price: Float!, userId: Int!, serviceId: Int!): Offer!
 
     updateOffer(id: Int!, price: Float, userId: Int, serviceId: Int): Offer!
+
+    deleteOffer(id: Int!): Boolean!
 
     createService(
       name: String!
@@ -131,6 +137,8 @@ const typeDefs = gql`
       userId: Int!
     ): Service!
 
+    deleteOffer(id: Int!): Boolean!
+
     updateQuestion(
       id: Int!
       question: String
@@ -146,6 +154,8 @@ const typeDefs = gql`
       categoryId: Int!
     ): Question!
 
+    deleteQuestion(id: Int!): Boolean!
+
     createQuestionOption(
       optionText: String!
       maxPrice: Float!
@@ -160,6 +170,8 @@ const typeDefs = gql`
       minPrice: Float
       questionId: Int
     ): QuestionOption!
+
+    deleteQuestionOption(id: Int!): Boolean!
   }
 `;
 

@@ -19,6 +19,8 @@ module.exports = (sequelize, DataTypes) => {
     },
     {
       sequelize,
+      timestamps: true,
+      paranoid: true,
       modelName: "Offer",
     }
   );
