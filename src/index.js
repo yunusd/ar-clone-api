@@ -1,4 +1,4 @@
-const { ApolloServer } = require('apollo-server')
+const { ApolloServer } = require('apollo-server-express')
 const typeDefs = require('./schema')
 const resolvers = require('./resolvers')
 const models = require('../db/models')
@@ -9,6 +9,4 @@ const server = new ApolloServer({
   context: { models }
 })
 
-server
-  .listen()
-  .then(({ url }) => console.log('Server is running on localhost:4000'))
+module.exports = server;

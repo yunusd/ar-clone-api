@@ -13,5 +13,7 @@ RUN if [ "$NODE_ENV" = "development" ]; \
 	else npm install --only=production; \
 	fi
 
+RUN npm install -g sequelize-cli
+
 # Bundle app source
 COPY . .

@@ -7,6 +7,8 @@ const {sequelize} = require('../db/models')
 var app = require('../app');
 var debug = require('debug')('ar-clone-api:server');
 var http = require('http');
+const apolloServer = require('../src/index');
+
 const {
   POSTGRES_USERNAME,
   POSTGRES_PASSWORD,
@@ -30,6 +32,12 @@ sequelize.authenticate().then(res => {
 
 var port = normalizePort(process.env.PORT || '8080');
 app.set('port', port);
+
+/**
+ * Apollo
+ */
+
+apolloServer.applyMiddleware({app, path: '/api'})
 
 /**
  * Create HTTP server.
