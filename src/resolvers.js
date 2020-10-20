@@ -94,15 +94,40 @@ const resolvers = {
 
     async createQuestion(
       root,
-      { question, description, questionType, categoryId },
+      { question, description, questionType, categoryId, questionOptions },
       { models }
     ) {
-      return await models.Question.create({
+      const newQuestion = await models.Question.create({
         question,
         description,
         questionType,
         CategoryId: categoryId,
+        questionOptions,
       });
+      newQuestion.categoryId = newQuestion.CategoryId;            
+      newQuestion.questionOptions = [];
+      
+      for (let index = 0; index < questionOptions.length; index++) {
+        const options = questionOptions[index];
+
+        const testOption = {
+          optionText: options.optionText,
+          maxPrice: options.maxPrice,
+          minPrice: options.minPrice,
+          questionId: newQuestion.id,
+        };
+
+        const newOption = await models.QuestionOption.create({
+          optionText: options.optionText,
+          maxPrice: options.maxPrice,
+          minPrice: options.minPrice,
+          questionId: newQuestion.id,
+        });
+
+        newQuestion.questionOptions.push(newOption);
+      }
+
+      return newQuestion;
     },
 
     async deleteQuestion(root, { id }, { models }) {
@@ -116,19 +141,6 @@ const resolvers = {
         return true;
       }
       return false;
-    },
-
-    async createQuestionOption(
-      root,
-      { optionText, maxPrice, minPrice, questionId },
-      { models }
-    ) {
-      return await models.QuestionOption.create({
-        optionText,
-        maxPrice,
-        minPrice,
-        QuestionId: questionId,
-      });
     },
 
     async updateQuestionOption(

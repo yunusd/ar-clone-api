@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      Question.hasMany(models.questionOption);
+      Question.hasMany(models.QuestionOption);
       Question.belongsTo(models.Category, {
         foreignKey: "CategoryId",
         as: "categoryId",
@@ -19,9 +19,7 @@ module.exports = (sequelize, DataTypes) => {
     {
       question: DataTypes.STRING,
       description: DataTypes.STRING,
-      questionType: DataTypes.ENUM({
-        values: ["trueFalse", "singleChoice"],
-      }),
+      questionType: DataTypes.ENUM("trueFalse", "singleChoice"),
     },
     {
       sequelize,

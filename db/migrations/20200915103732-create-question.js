@@ -23,9 +23,9 @@ module.exports = {
         type: Sequelize.STRING,
       },
       questionType: {
-        type: Sequelize.ENUM({
-          values: ["trueFalse", "singleChoice"],
-        }),
+        type: Sequelize.ENUM(
+          'trueFalse', 'singleChoice'
+        ),
       },
       createdAt: {
         allowNull: false,

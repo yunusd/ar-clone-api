@@ -45,17 +45,23 @@ const typeDefs = gql`
     id: Int!
     question: String!
     description: String!
-    questionType: Int!
+    questionType: String!
     categoryId: Int!
-    questionOptions: [QuestionOption!]!
+    questionOptions: [QuestionOption]
   }
+
+  input inputQuestionOptions{
+    optionText: String!
+    maxPrice: Float!
+    minPrice: Float!
+  }
+  
 
   type QuestionOption {
     id: Int!
     optionText: String!
     maxPrice: Float!
     minPrice: Float!
-    questionId: Int!
   }
 
   type Query {
@@ -150,8 +156,9 @@ const typeDefs = gql`
     createQuestion(
       question: String!
       description: String!
-      questionType: Int!
+      questionType: String!
       categoryId: Int!
+      questionOptions: [inputQuestionOptions]
     ): Question!
 
     deleteQuestion(id: Int!): Boolean!
