@@ -106,7 +106,7 @@ const resolvers = {
       });
       newQuestion.categoryId = newQuestion.CategoryId;            
       newQuestion.questionOptions = [];
-      
+
       for (let index = 0; index < questionOptions.length; index++) {
         const options = questionOptions[index];
 
@@ -208,7 +208,7 @@ const resolvers = {
 
     async createCategory(
       root,
-      { name, minPrice, maxPrice, isPriceRange, price, catalogId },
+      { name, minPrice, maxPrice, isPriceRange,  catalogId },
       { models }
     ) {
       return await models.Category.create({
@@ -216,14 +216,13 @@ const resolvers = {
         minPrice,
         maxPrice,
         isPriceRange,
-        price,
         CatalogId: catalogId,
       });
     },
 
     async updateCategory(
       root,
-      { name, minPrice, maxPrice, isPriceRange, price, catalogId, id },
+      { name, minPrice, maxPrice, isPriceRange,  catalogId, id },
       { models }
     ) {
       let getCategory = await models.Category.findByPk(id);
@@ -234,7 +233,6 @@ const resolvers = {
       if (minPrice != null) getCategory.minPrice = minPrice;
       if (maxPrice != null) getCategory.maxPrice = maxPrice;
       if (isPriceRange != null) getCategory.isPriceRange = isPriceRange;
-      if (price != null) getCategory.price = price;
       if (catalogId != null) getCategory.CatalogId = catalogId;
       await getCategory.save();
       return getCategory;

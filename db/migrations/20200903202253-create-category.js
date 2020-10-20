@@ -28,9 +28,6 @@ module.exports = {
       isPriceRange: {
         type: Sequelize.BOOLEAN,
       },
-      price: {
-        type: Sequelize.FLOAT,
-      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,

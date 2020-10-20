@@ -21,7 +21,6 @@ const typeDefs = gql`
     minPrice: Float
     maxPrice: Float
     isPriceRange: Boolean
-    price: Float
     catalogId: Int
     services: [Service]
   }
@@ -104,7 +103,6 @@ const typeDefs = gql`
       minPrice: Float!
       maxPrice: Float!
       isPriceRange: Boolean!
-      price: Float!
       catalogId: Int!
     ): Category!
 
@@ -114,7 +112,6 @@ const typeDefs = gql`
       minPrice: Float
       maxPrice: Float
       isPriceRange: Boolean
-      price: Float
       catalogId: Int
     ): Category!
 

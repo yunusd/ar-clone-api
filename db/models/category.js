@@ -18,7 +18,6 @@ module.exports = (sequelize, DataTypes) => {
       minPrice: DataTypes.FLOAT,
       maxPrice: DataTypes.FLOAT,
       isPriceRange: DataTypes.BOOLEAN,
-      price: DataTypes.FLOAT,
     },
     {
       sequelize,
