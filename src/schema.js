@@ -49,12 +49,11 @@ const typeDefs = gql`
     questionOptions: [QuestionOption]
   }
 
-  input inputQuestionOptions{
+  input inputQuestionOptions {
     optionText: String!
     maxPrice: Float!
     minPrice: Float!
   }
-  
 
   type QuestionOption {
     id: Int!
@@ -85,6 +84,8 @@ const typeDefs = gql`
     getServiceByCategoryId(categoryId: Int!): [Service!]!
 
     getQuestion(id: Int!): Question!
+
+    getAllQuestion: [Question]
 
     getQuestionByCategoryId(categoryId: Int!): [Question!]!
   }

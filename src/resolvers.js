@@ -68,6 +68,9 @@ const resolvers = {
     async getQuestion(root, { id }, { models }) {
       return await models.Question.findByPk(id);
     },
+    async getAllQuestion(root, args, { models }) {
+      return await models.Question.findAll();
+    },
 
     async getQuestionByCategoryId(root, { categoryId }, { models }) {
       return await models.Question.findAll({
