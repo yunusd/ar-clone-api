@@ -1,6 +1,6 @@
 
 const { EmptyResultError } = require('sequelize');
-const {editCatalogValidation} = require('validation/catalog')
+const {editCatalogValidation} = require('../../validation/catalog')
 
 module.exports = async (_, args, context) => {
   await editCatalogValidation.validateAsync(args, {abortEarly: false});

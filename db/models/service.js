@@ -5,11 +5,11 @@ const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Service extends Model {
     static associate(models) {
-      Service.belongsTo(models.Category, {
-        as: "categoryId",
+      Service.belongsTo(models.Category, {        
         foreignKey: "CategoryId",
+        as : 'categoryId'
       }),
-        Service.belongsTo(models.User, { foreignKey: "UserId", as: "userId" }),
+        Service.belongsTo(models.User, { foreignKey: "UserId" , as: 'userId' }),
         Service.hasMany(models.Offer);
     }
   }

@@ -10,7 +10,7 @@ module.exports = async (_, args, context) => {
         id: args.id,
       }
     });
-    return deletedOffer ? offer : new EmptyResultError("Offer not found!");;
+    return deletedOffer ? offer : new EmptyResultError("Offer not found!");
   } catch (error) {
     throw new Error(error);
   }

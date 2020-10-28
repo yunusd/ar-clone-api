@@ -9,7 +9,7 @@ module.exports = {
         description:
           "Evi detaylı temizleyip düzenliyoruz. Yer ve cam silme, toz alma, bulaşık yıkama, yatak toplama, çöp boşaltılması dahil. İsteğe bağlı duvar silme, ütü ve yemek yapma ekleyebilirsin.",
         type: "singleChoice",
-        CategoryId: 10001,
+        categoryId: 10001,
         createdAt: new Date(),
         updatedAt: new Date(),
       },
@@ -19,7 +19,7 @@ module.exports = {
         description:
           "Banyolar da tertemiz olsun: Küvet, tuvalet, tezgah, lavabo, ayna ve cam silme, yer silme, toz alma, havluların asılması ve çöp boşaltılması dahil aklına gelen her şey.",
         type: "singleChoice",
-        CategoryId: 10001,
+        categoryId: 10001,
         createdAt: new Date(),
         updatedAt: new Date(),
       },
@@ -29,7 +29,7 @@ module.exports = {
         description:
           "Temizliği bu sürede bitirmeyi hedefleyeceğiz. Extra temizlik, ütü veya yemek istersen, süreyi uzat. Teknolojimiz ve büyüklüğümüz sayesinde hizmetimiz %30-60 oranında daha uygun fiyatlı.",
         type: "singleChoice",
-        CategoryId: 10001,
+        categoryId: 10001,
         createdAt: new Date(),
         updatedAt: new Date(),
       },
@@ -37,7 +37,7 @@ module.exports = {
         id: 10004,
         name: "Evde köpek veya kedi var mı?",
         description: "",
-        CategoryId: 10001,
+        categoryId: 10001,
         createdAt: new Date(),
         updatedAt: new Date(),
       },

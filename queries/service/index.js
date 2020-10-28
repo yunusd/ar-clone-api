@@ -1,9 +1,9 @@
-const getOffer = require('./getOffer');
-const getOfferByServiceId = require('./getOfferByServiceId');
+const getService = require('./getService');
+const getServiceByCategoryId = require('./getServiceByCategoryId');
 
 module.exports = {
   Query: {
-    getOffer,
-    getOfferByServiceId,
+    getService,
+    getServiceByCategoryId,
   },
 };

@@ -1,4 +1,4 @@
-const {registerUserValidation} = require('validation/user')
+const {registerUserValidation} = require('../../validation/user')
 
 module.exports = async (_, args, context) => {
   await registerUserValidation.validateAsync(args, {abortEarly: false});

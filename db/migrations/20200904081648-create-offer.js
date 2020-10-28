@@ -17,6 +17,7 @@ module.exports = {
         references: {
           model: 'Users', 
           key: 'id', 
+          as: 'userId'
        }
       },
       ServiceId: {
@@ -25,6 +26,7 @@ module.exports = {
         references: {
           model: 'Services', 
           key: 'id', 
+          as: 'serviceId'
        }
       },
       createdAt: {

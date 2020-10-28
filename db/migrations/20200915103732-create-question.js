@@ -14,6 +14,7 @@ module.exports = {
         references: {
           model: 'Categories', 
           key: 'id', 
+          as: 'categoryId'
        }
       },
       question: {

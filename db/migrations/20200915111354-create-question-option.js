@@ -23,6 +23,7 @@ module.exports = {
         references: {
           model: "Questions",
           key: "id",
+          as: 'questionId'
         },
       },
       createdAt: {

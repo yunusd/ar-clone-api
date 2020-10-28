@@ -1,12 +1,10 @@
 
-const db = require("db/models");
-
 module.exports = async (...args) => {
   const [, params, context, ] = args;
   const offer = await context.models.Offer.findByPk(params.id, {
     include: [
-      { model: db.Service, as: "services" },
-      { model: db.User, as: "user" },
+      { model: context.models.Service, as: "services" },
+      { model: context.models.User, as: "user" },
     ],
   });
   return offer;
