@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
   }
   QuestionOption.init(
     {
-      optionText: DataTypes.STRING,
+      text: DataTypes.STRING,
       minPrice: DataTypes.FLOAT,
       maxPrice: DataTypes.FLOAT,
     },

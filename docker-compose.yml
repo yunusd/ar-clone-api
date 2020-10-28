@@ -1,6 +1,6 @@
-version: '3'
+version: "3"
 
-services: 
+services:
   api:
     container_name: api
     image: yunusdp/ar-clone-api
@@ -13,7 +13,7 @@ services:
     depends_on:
       - postgres
     ports:
-      - 8080:8080
+      - 4000:8080
     env_file: .env
     environment:
       - POSTGRES_USERNAME=$POSTGRES_USERNAME
@@ -31,6 +31,6 @@ services:
     volumes:
       - dbdata:/data/db
     ports:
-      - 5432:5432 
+      - 5432:5432
 volumes:
   dbdata:
