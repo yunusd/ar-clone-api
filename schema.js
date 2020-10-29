@@ -9,6 +9,10 @@ const Offer = require('./types/Offer');
 const Question = require('./types/Question');
 const Service = require('./types/Service');
 const Faq = require('./types/Faq');
+const Adress = require('./types/Adress');
+const City = require('./types/City');
+const Country = require('./types/Country');
+const State = require('./types/State');
 
 // Queries
 const userQueries = require('./queries/user');
@@ -18,6 +22,10 @@ const offerQueries = require('./queries/offer');
 const questionQueries = require('./queries/question');
 const serviceQueries = require('./queries/service');
 const faqQueries = require('./queries/faq');
+const adressQueries = require('./queries/adress');
+const cityQueries = require('./queries/city');
+const countryQueries = require('./queries/country');
+const stateQueries = require('./queries/state');
 
 // Mutations
 const userMutation = require('./mutations/user');
@@ -27,6 +35,10 @@ const offerMutation = require('./mutations/offer');
 const questionMutation = require('./mutations/question');
 const serviceMutation = require('./mutations/service');
 const faqMutation = require('./mutations/faq');
+const adressMutation = require('./mutations/adress');
+const cityMutation = require('./mutations/city');
+const stateMutation = require('./mutations/state');
+const countryMutation = require('./mutations/country');
 
 const Root = `
   type Query {
@@ -55,6 +67,10 @@ const resolvers = merge(
   questionQueries,
   serviceQueries,
   faqQueries,
+  adressQueries,
+  cityQueries,
+  stateQueries,
+  countryQueries,
   
   // mutations
   userMutation,
@@ -64,6 +80,10 @@ const resolvers = merge(
   questionMutation,
   serviceMutation,
   faqMutation,
+  adressMutation,
+  cityMutation,
+  stateMutation,
+  countryMutation,
 );
 
 const schema = makeExecutableSchema({
@@ -76,6 +96,10 @@ const schema = makeExecutableSchema({
     Question,
     Service,
     Faq,
+    Adress,
+    City,
+    State,
+    Country,
   ],
   resolvers,
 });

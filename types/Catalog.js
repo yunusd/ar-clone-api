@@ -6,7 +6,7 @@ const Catalog = `
   }
   
   extend type Query {
-    getCatalog(id: Int, name: String): Catalog!
+    getCatalog(id: Int!): Catalog!
     getCatalogs: [Catalog!]!
   }
 

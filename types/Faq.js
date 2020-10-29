@@ -6,8 +6,8 @@ const Faq = `
   }
   
   extend type Query {
-    getFaq(id: Int, question: String, answer: String,categoryId: Int): Faq!
-    getFaqs: [Faq!]!
+    getFaq(id: Int!): Faq!
+    getFaqsByCategoryId: [Faq!]!
   }
 
   extend type Mutation {

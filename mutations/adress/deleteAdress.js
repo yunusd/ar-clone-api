@@ -2,14 +2,14 @@ const { EmptyResultError } = require('sequelize');
 
 module.exports = async (_, args, context) => {
   try {
-    const faq = await context.models.Faq.findByPk(args.id);
+    const adress = await context.models.Adress.findByPk(args.id);
 
-    const deletedFaq = await context.models.Faq.destroy({
+    const deletedAdress = await context.models.Adress.destroy({
       where: {
         id: args.id,
       }
     });
-    return deletedFaq ? faq : new EmptyResultError("Faq not found!");;
+    return deletedAdress ? adress : new EmptyResultError("Adress not found!");;
   } catch (error) {
     throw new Error(error);
   }

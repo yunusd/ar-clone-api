@@ -7,6 +7,7 @@ const Category = `
     isPriceRange: Boolean
     catalogId: Int
     services: [Service]
+    faqs: [Faq]
   }
   
   extend type Query {
