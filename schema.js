@@ -8,6 +8,7 @@ const Category = require('./types/Category');
 const Offer = require('./types/Offer');
 const Question = require('./types/Question');
 const Service = require('./types/Service');
+const Faq = require('./types/Faq');
 
 // Queries
 const userQueries = require('./queries/user');
@@ -16,6 +17,7 @@ const categoryQueries = require('./queries/category');
 const offerQueries = require('./queries/offer');
 const questionQueries = require('./queries/question');
 const serviceQueries = require('./queries/service');
+const faqQueries = require('./queries/faq');
 
 // Mutations
 const userMutation = require('./mutations/user');
@@ -24,6 +26,7 @@ const categoryMutation = require('./mutations/category');
 const offerMutation = require('./mutations/offer');
 const questionMutation = require('./mutations/question');
 const serviceMutation = require('./mutations/service');
+const faqMutation = require('./mutations/faq');
 
 const Root = `
   type Query {
@@ -51,6 +54,7 @@ const resolvers = merge(
   offerQueries,
   questionQueries,
   serviceQueries,
+  faqQueries,
   
   // mutations
   userMutation,
@@ -59,6 +63,7 @@ const resolvers = merge(
   offerMutation,
   questionMutation,
   serviceMutation,
+  faqMutation,
 );
 
 const schema = makeExecutableSchema({
@@ -70,6 +75,7 @@ const schema = makeExecutableSchema({
     Offer,
     Question,
     Service,
+    Faq,
   ],
   resolvers,
 });
