@@ -6,9 +6,9 @@ module.exports = (sequelize, DataTypes) => {
   class Adress extends Model {
 
     static associate(models) {
-      Adress.hasOne(models.City, { as: "city" });
-      Adress.hasOne(models.State, { as: "state" });
-      Adress.hasOne(models.Country, { as: "country" });
+      Adress.belongsTo(models.City,{ as : 'city'});
+      Adress.belongsTo(models.State,{ as : 'state'});
+      Adress.belongsTo(models.Country,{ as : 'country'});
     }
   };
   Adress.init({

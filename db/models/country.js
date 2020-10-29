@@ -6,7 +6,6 @@ module.exports = (sequelize, DataTypes) => {
   class Country extends Model {
 
     static associate(models) {
-      Country.belongsTo(models.Adress)
       Country.hasMany(models.City, { as: "cities" })
       Country.hasMany(models.State, { as: "states" })
     }

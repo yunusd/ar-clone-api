@@ -7,7 +7,6 @@ module.exports = (sequelize, DataTypes) => {
 
     static associate(models) 
     {
-      City.belongsTo(models.Adress),
       City.belongsTo(models.Country, {
         foreignKey: "CountryId", as : 'countryId'
       }),

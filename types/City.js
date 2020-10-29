@@ -1,6 +1,6 @@
 const City = `
   type City {
-    id: Int!s
+    id: Int!
     name: String!
     stateId: Int
     countryId: Int!

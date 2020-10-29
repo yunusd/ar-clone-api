@@ -20,6 +20,15 @@ module.exports = {
           as: 'countryId'
        }
       },
+      AdressId: {
+        type: Sequelize.INTEGER,
+        allowNull: true,
+        references: {
+          model: 'Adresses', 
+          key: 'id', 
+          as: 'adressId'
+       }
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

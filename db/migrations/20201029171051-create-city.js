@@ -11,6 +11,15 @@ module.exports = {
       name: {
         type: Sequelize.STRING
       },
+      AdressId: {
+        type: Sequelize.INTEGER,
+        allowNull: true,
+        references: {
+          model: 'Adresses', 
+          key: 'id', 
+          as: 'adressId'
+       }
+      },
       CountryId: {
         type: Sequelize.INTEGER,
         allowNull: false,

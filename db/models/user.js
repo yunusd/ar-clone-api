@@ -11,6 +11,7 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       User.hasMany(models.Service);
       User.hasMany(models.Offer);
+      User.belongsTo(models.Adress,{ as : 'adress'});
     }
   }
   User.init(

@@ -1,14 +1,13 @@
-
-
 module.exports = async (...args) => {
   const [, params, context, ] = args;
-  const offers = await context.models.Offer.findAll({
-    where: { serviceId: params.serviceId },
-    include: [
-      { model: context.models.Service, as: "service" },
-      ,
-      { model: context.models.User, as: "user" },
-    ],
+  const questions = await context.models.Question.findAll({
+    where: {
+      categoryId: params.categoryId
+    },
+    include: [{
+      model: context.models.QuestionOption,
+      as: "options"
+    }],
   });
   return offers;
 };
