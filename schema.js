@@ -13,6 +13,7 @@ const Adress = require('./types/Adress');
 const City = require('./types/City');
 const Country = require('./types/Country');
 const State = require('./types/State');
+const User_Category = require('./types/User_Category');
 
 // Queries
 const userQueries = require('./queries/user');
@@ -26,6 +27,7 @@ const adressQueries = require('./queries/adress');
 const cityQueries = require('./queries/city');
 const countryQueries = require('./queries/country');
 const stateQueries = require('./queries/state');
+const user_categoryQueries = require('./queries/user_category');
 
 // Mutations
 const userMutation = require('./mutations/user');
@@ -39,6 +41,7 @@ const adressMutation = require('./mutations/adress');
 const cityMutation = require('./mutations/city');
 const stateMutation = require('./mutations/state');
 const countryMutation = require('./mutations/country');
+const user_categoryMutation = require('./mutations/user_category');
 
 const Root = `
   type Query {
@@ -71,6 +74,7 @@ const resolvers = merge(
   cityQueries,
   stateQueries,
   countryQueries,
+  user_categoryQueries,
   
   // mutations
   userMutation,
@@ -84,6 +88,7 @@ const resolvers = merge(
   cityMutation,
   stateMutation,
   countryMutation,
+  user_categoryMutation,
 );
 
 const schema = makeExecutableSchema({
@@ -100,6 +105,7 @@ const schema = makeExecutableSchema({
     City,
     State,
     Country,
+    User_Category,
   ],
   resolvers,
 });

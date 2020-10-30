@@ -11,15 +11,17 @@ const User = `
     adress: Adress
     services: [Service]
     offers: [Offer]
+    catalogId: Int
+    userServiceCatalog: [Catalog]
   }
   
   extend type Query {
-    getUser(id: ID!): User
+    getUser(id: Int!): User
     getUsers: [User!]!
   }
 
   extend type Mutation {
-    registerUser( firstName: String, lastName: String, email: String, userName: String, phoneNumber: String! , adressId : Int, type: String!): User!
+    registerUser( firstName: String, lastName: String, email: String, userName: String, phoneNumber: String! , adressId : Int, type: String!,catalogId: Int): User!
   }
 `
 

@@ -12,6 +12,7 @@ module.exports = (sequelize, DataTypes) => {
       User.hasMany(models.Service ,{as: 'services'});
       User.hasMany(models.Offer,{as: 'offers'});
       User.belongsTo(models.Adress,{ as : 'adress'});
+      User.belongsTo(models.Catalog,{as: 'userServiceCatalog'});
     }
   }
   User.init(

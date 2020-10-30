@@ -5,6 +5,10 @@ module.exports = async (...args) => {
       model: context.models.Adress,
       as: "adress"
     },
+    include: {
+      model: context.models.Catalog,
+      as: "userServiceCatalog"
+    },
   });
   return users;
 };
