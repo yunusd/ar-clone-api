@@ -23,6 +23,11 @@ module.exports = {
       phoneNumber: {
         type: Sequelize.STRING
       },
+      userType: {
+        type: Sequelize.ENUM(
+          'admin', 'serviceProvider','receivingService'
+        ),
+      },
       AdressId: {
         type: Sequelize.INTEGER,
         allowNull: true,

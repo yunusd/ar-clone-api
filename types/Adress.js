@@ -5,6 +5,9 @@ const Adress = `
     zipCode: String!
     deliveryPhoneNumber: String!
     addressDirections: String!
+    cityId:Int!
+    stateId: Int
+    countryId: Int!
     city: City
     state: State
     country: Country

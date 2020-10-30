@@ -9,8 +9,9 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: "CategoryId",
         as : 'categoryId'
       }),
+        Service.belongsTo(models.Adress,{ as : 'adress'});
         Service.belongsTo(models.User, { foreignKey: "UserId" , as: 'userId' }),
-        Service.hasMany(models.Offer);
+        Service.hasMany(models.Offer,{as:'offers'});
     }
   }
   Service.init(

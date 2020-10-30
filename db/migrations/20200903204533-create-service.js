@@ -26,6 +26,15 @@ module.exports = {
           as: 'categoryId'
        }
       },
+      AdressId: {
+        type: Sequelize.INTEGER,
+        allowNull: true,
+        references: {
+          model: 'Adresses', 
+          key: 'id', 
+          as: 'adressId'
+       }
+      }, 
       UserId: {
         type: Sequelize.INTEGER,
         allowNull: false,

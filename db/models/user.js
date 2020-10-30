@@ -9,8 +9,8 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      User.hasMany(models.Service);
-      User.hasMany(models.Offer);
+      User.hasMany(models.Service ,{as: 'services'});
+      User.hasMany(models.Offer,{as: 'offers'});
       User.belongsTo(models.Adress,{ as : 'adress'});
     }
   }
@@ -21,6 +21,7 @@ module.exports = (sequelize, DataTypes) => {
       userName: DataTypes.STRING,
       phoneNumber: DataTypes.STRING,
       email: DataTypes.STRING,
+      type: DataTypes.ENUM('admin', 'serviceProvider','receivingService'),
     },
     {
       sequelize,

@@ -23,7 +23,7 @@ module.exports = {
       description: {
         type: Sequelize.STRING,
       },
-      questionType: {
+      type: {
         type: Sequelize.ENUM(
           'trueFalse', 'singleChoice'
         ),

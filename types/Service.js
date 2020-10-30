@@ -6,6 +6,9 @@ const Service = `
     price: Float!
     categoryId: Int!
     userId: Int!
+    adressId: Int
+    adress: Adress
+    offers: [Offer]
   }
   
   extend type Query {
@@ -20,6 +23,7 @@ const Service = `
       price: Float!
       categoryId: Int!
       userId: Int!
+      adressId : Int
     ): Service!
 
     editService(
@@ -29,6 +33,7 @@ const Service = `
       price: Float
       categoryId: Int
       userId: Int!
+      adressId : Int
     ): Service!
 
     deleteService(id: Int!): Service!
