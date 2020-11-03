@@ -9,7 +9,7 @@ module.exports = async (_, args, context) => {
         id: args.id,
       }
     });
-    return deletedUser_category ? user_category : new EmptyResultError("State not found!");;
+    return deletedUser_category ? user_category : new EmptyResultError("User_Category not found!");;
   } catch (error) {
     throw new Error(error);
   }

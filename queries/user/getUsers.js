@@ -9,6 +9,10 @@ module.exports = async (...args) => {
       model: context.models.Catalog,
       as: "userServiceCatalog"
     },
+    include: {
+      model: context.models.User_Category,
+      as: "userServiceCategories"
+    },
   });
   return users;
 };

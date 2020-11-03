@@ -13,6 +13,7 @@ const User = `
     offers: [Offer]
     catalogId: Int
     userServiceCatalog: [Catalog]
+    userServiceCategories: [User_Category]
   }
   
   extend type Query {
