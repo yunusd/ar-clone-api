@@ -16,6 +16,7 @@ module.exports = (sequelize, DataTypes) => {
       Question.belongsTo(models.Category, {
         foreignKey: "categoryId",
         allowNull: false,
+        as: 'category'
       });
     }
   }

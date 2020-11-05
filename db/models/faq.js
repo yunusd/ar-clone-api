@@ -13,6 +13,7 @@ module.exports = (sequelize, DataTypes) => {
       Faq.belongsTo(models.Category, {
         foreignKey: "categoryId",
         allowNull: false,
+        as: 'category'
       });
     }
   };

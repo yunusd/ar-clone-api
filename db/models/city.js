@@ -8,10 +8,10 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) 
     {
       City.belongsTo(models.Country, {
-        foreignKey: "countryId",allowNull: false
+        foreignKey: "countryId",allowNull: false, as :'country'
       }),
       City.belongsTo(models.State, {
-        foreignKey: "stateId", allowNull:true
+        foreignKey: "stateId", allowNull:true, as:'state'
       })
     }
   };
