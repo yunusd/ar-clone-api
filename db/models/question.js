@@ -10,12 +10,12 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      Question.hasMany(models.QuestionOption, {
+      Question.hasMany(models.QuestionOption, {foreignKey:'questionId',
         as: 'options'
       });
       Question.belongsTo(models.Category, {
-        foreignKey: "CategoryId",
-        as: "categoryId",
+        foreignKey: "categoryId",
+        allowNull: false,
       });
     }
   }

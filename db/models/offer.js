@@ -5,10 +5,10 @@ const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Offer extends Model {
     static associate(models) {
-      Offer.belongsTo(models.User, { foreignKey: "UserId", as: "userId" }),
+      Offer.belongsTo(models.User, { foreignKey: "userId",allowNull:false }),
         Offer.belongsTo(models.Service, {
-          foreignKey: "ServiceId",
-          as: "serviceId",
+          foreignKey: "serviceId",
+          allowNull:false,
         });
     }
   }

@@ -17,15 +17,6 @@ module.exports = {
       maxPrice: {
         type: Sequelize.FLOAT,
       },
-      QuestionId: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        references: {
-          model: "Questions",
-          key: "id",
-          as: 'questionId'
-        },
-      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,

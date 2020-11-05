@@ -11,24 +11,6 @@ module.exports = {
       price: {
         type: Sequelize.FLOAT
       },
-      UserId: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        references: {
-          model: 'Users', 
-          key: 'id', 
-          as: 'userId'
-       }
-      },
-      ServiceId: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        references: {
-          model: 'Services', 
-          key: 'id', 
-          as: 'serviceId'
-       }
-      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

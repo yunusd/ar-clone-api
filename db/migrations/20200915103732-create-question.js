@@ -8,15 +8,6 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      CategoryId: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        references: {
-          model: 'Categories', 
-          key: 'id', 
-          as: 'categoryId'
-       }
-      },
       question: {
         type: Sequelize.STRING,
       },

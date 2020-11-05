@@ -11,8 +11,8 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       Faq.belongsTo(models.Category, {
-        foreignKey: "CategoryId",
-        as: "categoryId",
+        foreignKey: "categoryId",
+        allowNull: false,
       });
     }
   };

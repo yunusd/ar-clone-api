@@ -17,33 +17,6 @@ module.exports = {
       price: {
         type: Sequelize.FLOAT,
       },
-      CategoryId: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        references: {
-          model: 'Categories', 
-          key: 'id', 
-          as: 'categoryId'
-       }
-      },
-      AdressId: {
-        type: Sequelize.INTEGER,
-        allowNull: true,
-        references: {
-          model: 'Adresses', 
-          key: 'id', 
-          as: 'adressId'
-       }
-      }, 
-      UserId: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        references: {
-          model: 'Users', 
-          key: 'id', 
-          as: 'userId'
-       }
-      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,

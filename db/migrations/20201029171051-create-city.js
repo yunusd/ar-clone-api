@@ -11,33 +11,6 @@ module.exports = {
       name: {
         type: Sequelize.STRING
       },
-      AdressId: {
-        type: Sequelize.INTEGER,
-        allowNull: true,
-        references: {
-          model: 'Adresses', 
-          key: 'id', 
-          as: 'adressId'
-       }
-      },
-      CountryId: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        references: {
-          model: 'Countries', 
-          key: 'id', 
-          as: 'countryId'
-       }
-      },
-      StateId: {
-        type: Sequelize.INTEGER,
-        allowNull: true,
-        references: {
-          model: 'States', 
-          key: 'id', 
-          as: 'stateId'
-       }
-      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

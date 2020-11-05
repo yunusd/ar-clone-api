@@ -14,15 +14,6 @@ module.exports = {
       answer: {
         type: Sequelize.STRING
       },
-      CategoryId: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        references: {
-          model: 'Categories', 
-          key: 'id', 
-          as: 'categoryId'
-       }
-      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

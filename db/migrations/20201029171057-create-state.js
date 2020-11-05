@@ -11,24 +11,6 @@ module.exports = {
       name: {
         type: Sequelize.STRING
       },
-      CountryId: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        references: {
-          model: 'Countries', 
-          key: 'id', 
-          as: 'countryId'
-       }
-      },
-      AdressId: {
-        type: Sequelize.INTEGER,
-        allowNull: true,
-        references: {
-          model: 'Adresses', 
-          key: 'id', 
-          as: 'adressId'
-       }
-      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

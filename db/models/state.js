@@ -12,9 +12,9 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) 
     {
       State.belongsTo(models.Country, {
-        foreignKey: "CountryId", as : 'countryId'
+        foreignKey: "countryId", allowNull:false
       }),
-      State.hasMany(models.City, { as: "cities" })
+      State.hasMany(models.City, {foreignKey:'countryId' , as: "cities" })
     }
   };
   State.init({

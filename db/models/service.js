@@ -6,12 +6,12 @@ module.exports = (sequelize, DataTypes) => {
   class Service extends Model {
     static associate(models) {
       Service.belongsTo(models.Category, {        
-        foreignKey: "CategoryId",
-        as : 'categoryId'
+        foreignKey: "categoryId",
+        allowNull : false
       }),
-        Service.belongsTo(models.Adress,{ as : 'adress'});
-        Service.belongsTo(models.User, { foreignKey: "UserId" , as: 'userId' }),
-        Service.hasMany(models.Offer,{as:'offers'});
+        Service.belongsTo(models.Adress,{foreignKey:'serviceId', as : 'adress'});
+        Service.belongsTo(models.User, { foreignKey: "userId" , allowNull:false }),
+        Service.hasMany(models.Offer,{foreignKey: 'serviceId', as:'offers'});
     }
   }
   Service.init(
