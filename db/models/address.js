@@ -3,15 +3,15 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class Adress extends Model {
+  class Address extends Model {
 
     static associate(models) {
-      Adress.belongsTo(models.City,{ as : 'city'});
-      Adress.belongsTo(models.State,{ as : 'state'});
-      Adress.belongsTo(models.Country,{ as : 'country'});
+      Address.belongsTo(models.City,{ as : 'city'});
+      Address.belongsTo(models.State,{ as : 'state'});
+      Address.belongsTo(models.Country,{ as : 'country'});
     }
   };
-  Adress.init({
+  Address.init({
     street: DataTypes.STRING,
     zipCode: DataTypes.STRING,
     deliveryPhoneNumber: DataTypes.STRING,
@@ -20,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
     timestamps: true,
     paranoid: true,
-    modelName: 'Adress',
+    modelName: 'Address',
   });
-  return Adress;
+  return Address;
 };

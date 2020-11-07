@@ -6,7 +6,7 @@ module.exports = (sequelize, DataTypes) => {
       User.hasMany(models.Service ,{foreignKey:'userId', as: 'services'});
       User.hasMany(models.Offer,{foreignKey:'userId', as: 'offers'});
       User.hasMany(models.User_Category,{foreignKey:'userId', as: 'userServiceCategories'});
-      User.belongsTo(models.Adress,{ foreignKey:'addressId', allowNull: true, as:'adress'});
+      User.belongsTo(models.Address,{ foreignKey:'addressId', allowNull: true, as:'address'});
       User.belongsTo(models.Catalog,{foreignKey:'catalogId', allowNull: true, as:'userServiceCatalog'});
     }
   }

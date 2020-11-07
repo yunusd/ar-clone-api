@@ -1,7 +1,9 @@
 
 const { EmptyResultError } = require('sequelize');
+const {editAdressValidation} = require('../../validation/adress')
 
 module.exports = async (_, args, context) => {
+  await editAdressValidation.validateAsync(args, {abortEarly: false});
   try {
     const adress = await context.models.Adress.update({ ...args }, {
       where: {

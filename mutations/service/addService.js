@@ -1,6 +1,11 @@
+const {
+  addServiceValidation
+} = require('../../validation/service')
 
 module.exports = async (_, args, context) => {
-  // add joi validation
+  await addServiceValidation.validateAsync(args, {
+    abortEarly: false
+  });
   const service = await context.models.Service.create({
     ...args
   });

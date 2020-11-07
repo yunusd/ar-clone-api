@@ -1,6 +1,7 @@
+const {editCategoryValidation} = require('../../validation/category')
 
 module.exports = async (_, args, context) => {
-  // add joi validation
+  await editCategoryValidation.validateAsync(args, {abortEarly: false});
   try {
     const category = await context.models.Category.update({ ...args }, {
       where: {

@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: "categoryId",
         allowNull : false
       }),
-        Service.belongsTo(models.Adress,{foreignKey:'serviceId', as : 'adress'});
+        Service.belongsTo(models.Address,{foreignKey:'addressId', as : 'address'});
         Service.belongsTo(models.User, { foreignKey: "userId" , allowNull:false, as:'user' }),
         Service.hasMany(models.Offer,{foreignKey: 'serviceId', as:'offers'});
     }

@@ -1,10 +1,22 @@
+const {addQuestionValidation} = require('../../validation/question')
+const {addQuestionOptionValidation} = require('../../validation/questionOption')
 
 module.exports = async (_, args, context) => {
-  // add joi validation
+  await addQuestionValidation.validateAsync(args, {
+    abortEarly: false
+  });
   const question = await context.models.Question.create({
     ...args
   });
   aggregatedOptions = args.options.map((option) => ({...option, questionId: question.id}))
+
+  //TODO:buradaki validation kontrol edilmeli.
+  aggregatedOptions.forEach(option => {
+    await addQuestionOptionValidation.validateAsync(option, {
+      abortEarly: false
+    });
+  });
+
   await context.models.QuestionOption.bulkCreate(args.options, { returning: true})
   return question
 };

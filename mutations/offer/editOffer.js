@@ -1,6 +1,7 @@
+const {editOfferValidation} = require('../../validation/offer')
 
 module.exports = async (_, args, context) => {
-  // add joi validation
+  await editOfferValidation.validateAsync(args, {abortEarly: false});
   try {
     const offer = await context.models.Offer.update({ ...args }, {
       where: {

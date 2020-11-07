@@ -5,8 +5,8 @@ module.exports = async (...args) => {
       CategoryId: params.categoryId
     },
     include: {
-      model: context.models.Adress,
-      as: "adress"
+      model: context.models.Address,
+      as: "address"
     },
     include: {
       model: context.models.Offer,

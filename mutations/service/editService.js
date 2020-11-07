@@ -1,6 +1,7 @@
+const {editServiceValidation} = require('../../validation/service')
 
 module.exports = async (_, args, context) => {
-  // add joi validation
+  await editServiceValidation.validateAsync(args, {abortEarly: false});
   try {
     const service = await context.models.Service.update({ ...args }, {
       where: {

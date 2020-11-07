@@ -1,6 +1,7 @@
+const {editUser_RoleValidation} = require('../../validation/user_role')
 
 module.exports = async (_, args, context) => {
-    // add joi validation
+  await editUser_RoleValidation.validateAsync(args, {abortEarly: false});
     try {
       const user_role = await context.models.User_Role.update({ ...args }, {
         where: {

@@ -3,7 +3,7 @@ module.exports = async (...args) => {
   const users = await context.models.User.findAll({
     include: {
       model: context.models.Adress,
-      as: "adress"
+      as: "address"
     },
     include: {
       model: context.models.Catalog,

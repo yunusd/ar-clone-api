@@ -1,6 +1,7 @@
+const {editQuestionValidation} = require('../../validation/question')
 
 module.exports = async (_, args, context) => {
-  // add joi validation
+  await editQuestionValidation.validateAsync(args, {abortEarly: false});
   try {
     const question = await context.models.Question.update({ ...args }, {
       where: {
