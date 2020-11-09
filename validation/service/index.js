@@ -6,7 +6,7 @@ module.exports.addServiceValidation = Joi.object().keys({
     userId: Joi.number().integer().min(1).required(),
     name: Joi.string().alphanum().min(3).max(50).required(),
     posterPath: Joi.string().alphanum().min(3).required(),
-    price: Joi.integer(),
+    price: Joi.number().integer(),
 });
 
 module.exports.editServiceValidation = Joi.object().keys({
@@ -16,5 +16,5 @@ module.exports.editServiceValidation = Joi.object().keys({
   userId: Joi.number().integer().min(1).required(),
   name: Joi.string().alphanum().min(3).max(50).required(),
   posterPath: Joi.string().alphanum().min(3).required(),
-  price: Joi.integer(),
+  price: Joi.number().integer(),
 });

@@ -6,8 +6,8 @@ const Service = `
     price: Float!
     categoryId: Int!
     userId: Int!
-    adressId: Int
-    adress: Adress
+    addressId: Int
+    address: Address
     offers: [Offer]
   }
   
@@ -23,7 +23,7 @@ const Service = `
       price: Float!
       categoryId: Int!
       userId: Int!
-      adressId : Int
+      addressId : Int
     ): Service!
 
     editService(
@@ -33,7 +33,7 @@ const Service = `
       price: Float
       categoryId: Int
       userId: Int!
-      adressId : Int
+      addressId : Int
     ): Service!
 
     deleteService(id: Int!): Service!

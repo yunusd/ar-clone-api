@@ -11,11 +11,11 @@ module.exports = async (_, args, context) => {
   aggregatedOptions = args.options.map((option) => ({...option, questionId: question.id}))
 
   //TODO:buradaki validation kontrol edilmeli.
-  aggregatedOptions.forEach(option => {
-    await addQuestionOptionValidation.validateAsync(option, {
-      abortEarly: false
-    });
-  });
+  // aggregatedOptions.forEach(option => {
+  //   await addQuestionOptionValidation.validateAsync(option, {
+  //     abortEarly: false
+  //   });
+  // });
 
   await context.models.QuestionOption.bulkCreate(args.options, { returning: true})
   return question

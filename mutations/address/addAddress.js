@@ -6,8 +6,8 @@ module.exports = async (_, args, context) => {
   await addAddressValidation.validateAsync(args, {
     abortEarly: false
   });
-  const adress = await context.models.Adress.create({
+  const adress = await context.models.Address.create({
     ...args,
   });
-  return adress;
+  return address;
 };

@@ -7,8 +7,8 @@ const User = `
     userName: String
     phoneNumber: String!
     type: String!
-    adressId : Int
-    adress: Adress
+    addressId : Int
+    address: Address
     services: [Service]
     offers: [Offer]
     catalogId: Int
@@ -22,7 +22,7 @@ const User = `
   }
 
   extend type Mutation {
-    registerUser( firstName: String, lastName: String, email: String, userName: String, phoneNumber: String! , adressId : Int, type: String!,catalogId: Int): User!
+    registerUser( firstName: String, lastName: String, email: String, userName: String, phoneNumber: String! , addressId : Int, type: String!,catalogId: Int): User!
   }
 `
 
