@@ -10,15 +10,13 @@ const Question = `
 
   type QuestionOption {
     id: Int!
-    text: String!
-    maxPrice: Float!
-    minPrice: Float!
+    text: String!    
+    price: Int!
   }
 
   input inputQuestionOptions {
     text: String!
-    maxPrice: Float!
-    minPrice: Float!
+    price: Int!
   }
 
 
@@ -49,16 +47,14 @@ const Question = `
 
     addQuestionOption(
       text: String!
-      maxPrice: Float!
-      minPrice: Float!
+      price: Int!
       questionId: Int!
     ): QuestionOption!
 
     editQuestionOption(
       id: Int!
       text: String
-      maxPrice: Float
-      minPrice: Float
+      price: Int
       questionId: Int
     ): QuestionOption!
 

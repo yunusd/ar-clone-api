@@ -11,11 +11,8 @@ module.exports = {
       optionText: {
         type: Sequelize.STRING,
       },
-      minPrice: {
-        type: Sequelize.FLOAT,
-      },
-      maxPrice: {
-        type: Sequelize.FLOAT,
+      price: {
+        type: Sequelize.INTEGER,
       },
       createdAt: {
         allowNull: false,
