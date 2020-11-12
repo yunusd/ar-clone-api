@@ -8,6 +8,7 @@ const Category = `
     catalogId: Int
     services: [Service]
     faqs: [Faq]
+    questions: [Question]
   }
   
   extend type Query {

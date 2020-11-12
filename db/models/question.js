@@ -23,7 +23,7 @@ module.exports = (sequelize, DataTypes) => {
   Question.init({
     name: DataTypes.STRING,
     description: DataTypes.STRING,
-    type: DataTypes.ENUM("trueFalse", "singleChoice"),
+    type: DataTypes.ENUM("trueFalse", "singleChoice","dropDown"),
   }, {
     sequelize,
     timestamps: true,

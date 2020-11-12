@@ -16,7 +16,7 @@ module.exports = {
       },
       type: {
         type: Sequelize.ENUM(
-          'trueFalse', 'singleChoice'
+          'trueFalse', 'singleChoice','dropDown'
         ),
       },
       createdAt: {

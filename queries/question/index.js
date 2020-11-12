@@ -1,11 +1,11 @@
 const getQuestion = require('./getQuestion');
 const getQuestions = require('./getQuestions');
-const getQuestionByCategoryId = require('./getQuestionByCategoryId');
+const getQuestionsByCategoryId = require('./getQuestionsByCategoryId');
 
 module.exports = {
   Query: {
     getQuestion,
     getQuestions,
-    getQuestionByCategoryId,
+    getQuestionsByCategoryId,
   },
 };

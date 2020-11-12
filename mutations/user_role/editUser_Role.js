@@ -1,4 +1,5 @@
 const {editUser_RoleValidation} = require('../../validation/user_role')
+const { EmptyResultError } = require('sequelize');
 
 module.exports = async (_, args, context) => {
   await editUser_RoleValidation.validateAsync(args, {abortEarly: false});
