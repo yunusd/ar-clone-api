@@ -8,6 +8,9 @@ module.exports = async (...args) => {
       ,
       { model: context.models.User, as: "user" },
     ],
+    order: [
+      ['id', 'DESC'],
+  ],
   });
   return offers;
 };

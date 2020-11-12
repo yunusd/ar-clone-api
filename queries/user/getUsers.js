@@ -13,6 +13,9 @@ module.exports = async (...args) => {
       model: context.models.User_Category,
       as: "userServiceCategories"
     },
+    order: [
+      ['id', 'DESC'],
+  ],
   });
   return users;
 };

@@ -11,7 +11,10 @@ module.exports = async (...args) => {
     include: {
       model: context.models.Offer,
       as: "offers"
-    }
+    },
+    order: [
+      ['id', 'DESC'],
+  ],
   });
   return questions;
 };
