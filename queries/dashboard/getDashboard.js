@@ -25,8 +25,10 @@ module.exports = async (...args) => {
             as: "service"
         },
     });
-    // önceki gün içi sorgusu
-    const lastDayOfferCount = lodash.filter(offers, x => x.createdAt <= '').length;
+    const currentDay = new Date();
+    // önceki gün içi sorgusu    const lastDayOfferCount = lodash.filter(offers, x => x.createdAt <= '2020-11-06 01:35:15').length;
+
+    const lastDayOfferCount = lodash.filter(offers, x => x.createdAt <= currentDay.now() -1 ).length;
     // bu gün var olan saat sorgusu
     const todayOfferCount = lodash.filter(offers, x => x.createdAt <= '').length;
 

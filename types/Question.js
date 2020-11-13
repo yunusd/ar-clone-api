@@ -3,7 +3,7 @@ const Question = `
     id: Int!
     name: String!
     description: String!
-    type: String!
+    type: String
     categoryId: Int!
     options: [QuestionOption!]!
   }
@@ -30,7 +30,6 @@ const Question = `
     addQuestion(
       name: String!
       description: String!
-      type: String!
       categoryId: Int!
       options: [inputQuestionOptions]
     ): Question!
@@ -39,7 +38,6 @@ const Question = `
       id: Int!
       name: String
       description: String
-      type: Int
       categoryId: Int
     ): Question!
 
