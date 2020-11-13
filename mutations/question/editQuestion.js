@@ -49,7 +49,6 @@ module.exports = async (_, args, context) => {
 
     return question[1].dataValues;
   } catch (error) {
-    console.log(error)
     throw new EmptyResultError("Question not found!");
   }
 };

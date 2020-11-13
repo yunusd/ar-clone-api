@@ -18,7 +18,6 @@ const Question = `
     id: Int
     text: String!
     price: Int!
-    questionId: Int
   }
 
 
