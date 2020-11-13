@@ -1,6 +1,6 @@
 module.exports = async (...args) => {
   const [, params, context, ] = args;
-  const questions = await context.models.Service.findAll({
+  const services = await context.models.Service.findAll({
     where: {
       CategoryId: params.categoryId
     },
@@ -16,5 +16,5 @@ module.exports = async (...args) => {
       ['id', 'DESC'],
   ],
   });
-  return questions;
+  return services;
 };

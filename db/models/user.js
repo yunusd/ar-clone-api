@@ -8,6 +8,8 @@ module.exports = (sequelize, DataTypes) => {
       User.hasMany(models.User_Category,{foreignKey:'userId', as: 'userServiceCategories'});
       User.belongsTo(models.Address,{ foreignKey:'addressId', allowNull: true, as:'address'});
       User.belongsTo(models.Catalog,{foreignKey:'catalogId', allowNull: true, as:'userServiceCatalog'});
+      User.belongsTo(models.Status, { foreignKey: "statusId",allowNull:true,as :'status'});
+
     }
   }
   User.init(
