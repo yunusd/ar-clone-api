@@ -16,7 +16,6 @@ module.exports = (sequelize, DataTypes) => {
   }
   Service.init(
     {
-      name: DataTypes.STRING,
       posterPath: DataTypes.STRING,
       price: DataTypes.FLOAT,
     },

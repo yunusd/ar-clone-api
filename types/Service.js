@@ -1,7 +1,6 @@
 const Service = `
   type Service {
     id: Int!
-    name: String!
     posterPath: String!
     price: Float!
     categoryId: Int!
@@ -18,7 +17,6 @@ const Service = `
 
   extend type Mutation {
     addService(
-      name: String!
       posterPath: String!
       price: Float!
       categoryId: Int!
@@ -28,7 +26,6 @@ const Service = `
 
     editService(
       id: Int!
-      name: String
       posterPath: String
       price: Float
       categoryId: Int
