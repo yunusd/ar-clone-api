@@ -1,4 +1,5 @@
 const {editCategoryValidation} = require('../../validation/category')
+const { EmptyResultError } = require('sequelize');
 
 module.exports = async (_, args, context) => {
   await editCategoryValidation.validateAsync(args, {abortEarly: false});

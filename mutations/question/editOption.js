@@ -1,4 +1,5 @@
 const {editQuestionOptionValidation} = require('../../validation/questionOption')
+const { EmptyResultError } = require('sequelize');
 
 module.exports = async (_, args, context) => {
   await editQuestionOptionValidation.validateAsync(args, {abortEarly: false});

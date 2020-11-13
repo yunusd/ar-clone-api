@@ -15,8 +15,10 @@ const Question = `
   }
 
   input inputQuestionOptions {
+    id: Int
     text: String!
     price: Int!
+    questionId: Int
   }
 
 
@@ -39,6 +41,7 @@ const Question = `
       name: String
       description: String
       categoryId: Int
+      options : [inputQuestionOptions]
     ): Question!
 
     deleteQuestion(id: Int!): Question!
