@@ -1,6 +1,8 @@
 const Dashboard = require("../../types/Dashboard");
+const lodash = require('lodash');
 
 module.exports = async (...args) => {
+    const [, params, context, ] = args;
 
     // TODO : buraya bakılacak
     const users = await context.models.User.findAll({
@@ -25,12 +27,11 @@ module.exports = async (...args) => {
             as: "service"
         },
     });
-    const currentDay = new Date();
+    const currentDay = Date();
     // önceki gün içi sorgusu    const lastDayOfferCount = lodash.filter(offers, x => x.createdAt <= '2020-11-06 01:35:15').length;
-
-    const lastDayOfferCount = lodash.filter(offers, x => x.createdAt <= currentDay.now() -1 ).length;
+    const lastDayOfferCount = lodash.filter(offers, x => x.createdAt <= currentDay.getDate() -1 <= currentDay.getDate()).length;
     // bu gün var olan saat sorgusu
-    const todayOfferCount = lodash.filter(offers, x => x.createdAt <= '').length;
+    const todayOfferCount = lodash.filter(offers, x => x.createdAt >= currentDay.getDate()).length;
 
     const services = await context.models.Service.findAll({
         include: {
@@ -49,13 +50,13 @@ module.exports = async (...args) => {
     const todayServiceCount = lodash.filter(services, x => x.createdAt <= '').length;
 
     const dashboard = {
-        activeUsers = activeUsers,
-        offers = offers,
-        services = services,
-        lastDayOfferCount = lastDayOfferCount,
-        todayOfferCount = todayOfferCount,
-        lastDayServiceCount = lastDayServiceCount,
-        todayServiceCount = todayServiceCount
+        activeUsers : activeUsers,
+        offers : offers,
+        services : services,
+        lastDayOfferCount : lastDayOfferCount,
+        todayOfferCount : todayOfferCount,
+        lastDayServiceCount : lastDayServiceCount,
+        todayServiceCount : todayServiceCount
     };
 
     return dashboard;

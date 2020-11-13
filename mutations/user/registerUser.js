@@ -20,7 +20,7 @@ module.exports = async (_, args, context) => {
     });
     args.statusId = defaultStatus.id;
   } else {
-    args.statusId = defaultStatus.id
+    args.statusId = defaultStatus[1].id
   }
 
   const user = await context.models.User.create({

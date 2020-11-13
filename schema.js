@@ -17,6 +17,7 @@ const User_Category = require('./types/User_Category');
 const Role = require('./types/Role');
 const User_Role = require('./types/User_Role');
 const Status = require('./types/Status');
+const Dashboard = require('./types/Dashboard');
 
 // Queries
 const userQueries = require('./queries/user');
@@ -34,6 +35,7 @@ const user_categoryQueries = require('./queries/user_category');
 const roleQueries = require('./queries/role');
 const user_roleQueries = require('./queries/user_role');
 const statusQueries = require('./queries/status');
+const dashboardQueries = require('./queries/dashboard');
 
 // Mutations
 const userMutation = require('./mutations/user');
@@ -87,6 +89,7 @@ const resolvers = merge(
   roleQueries,
   user_roleQueries,
   statusQueries,
+  dashboardQueries,
   
   // mutations
   userMutation,
@@ -124,6 +127,7 @@ const schema = makeExecutableSchema({
     Role,
     User_Role,
     Status,
+    Dashboard
   ],
   resolvers,
 });
