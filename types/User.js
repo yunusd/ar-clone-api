@@ -6,7 +6,6 @@ const User = `
     email: String
     userName: String
     phoneNumber: String!
-    type: String!
     addressId : Int
     address: Address
     services: [Service]
@@ -14,6 +13,8 @@ const User = `
     catalogId: Int
     userServiceCatalog: [Catalog]
     userServiceCategories: [User_Category]
+    status: Status
+    roles: [User_Role]
   }
   
   extend type Query {
@@ -22,7 +23,7 @@ const User = `
   }
 
   extend type Mutation {
-    registerUser( firstName: String, lastName: String, email: String, userName: String, phoneNumber: String! , addressId : Int, type: String!,catalogId: Int): User!
+    registerUser( firstName: String, lastName: String, email: String, userName: String, phoneNumber: String! , addressId : Int): User!
   }
 `
 
