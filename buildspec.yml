@@ -1,0 +1,20 @@
+version: 0.1
+phases:
+  pre_build:
+    commands:
+      - echo prebuild first step CloudWatch Logs Created
+      - echo Installing source NPM dependencies...
+      - npm install 
+  build:
+    commands:
+      - echo Build started on `date`
+      - echo Compiling the dist folder
+      - npm run start
+  post_build:
+    commands:
+      - echo Build completed on `date`
+# Include only the files required for your application to  1run.
+artifacts:
+  files:
+    - '**/*'
+  base-directory: build_output
