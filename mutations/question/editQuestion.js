@@ -13,8 +13,27 @@ module.exports = async (_, args, context) => {
     abortEarly: false
   });
   try {
+
+    const question = await context.models.Question.findByPk(args.id, {
+      include: {
+        model: context.models.QuestionOption,
+        as: "options"
+      },
+    });
+
+
+
+
+
+
+
+
+
+
+
+
     args.type = args.options.length == 2 ? "trueFalse" : args.options.length > 2 && args.options.length < 5 ? "singleChoice" : "dropDown";
-    const question = await context.models.Question.update({
+    const updateDquestion = await context.models.Question.update({
       name: args.name,
       description: args.description,
       type: args.type,
@@ -27,24 +46,32 @@ module.exports = async (_, args, context) => {
       plain: true
     });
 
-    question[1].dataValues.options = [];
+    updateDquestion[1].dataValues.options = [];
     for (let index = 0; index < args.options.length; index++) {
       const option = args.options[index];
       await editQuestionOptionValidation.validateAsync(option, {
         abortEarly: false
       });
+
       if (option.id == null) {
         const newOption = await context.models.QuestionOption.create({
           text: option.text,
           price: option.price,
-          questionId: question[1].id
+          questionId: updateDquestion[1].id
         })
-        question.dataValues[1].options.push(newOption[1].dataValues)
+        updateDquestion.dataValues[1].options.push(newOption[1].dataValues)
       } else {
+        if (!question.options.find(option)) {
+          await context.models.QuestionOption.destroy({
+            where: {
+              id: args.id,
+            }
+          });
+        }
         const updatedOption = await context.models.QuestionOption.update({
           text: option.text,
           price: option.price,
-          questionId: question[1].id,
+          questionId: updateDquestion[1].id,
         }, {
           where: {
             id: option.id
@@ -52,7 +79,7 @@ module.exports = async (_, args, context) => {
           returning: true,
           plain: true
         });
-        question[1].dataValues.options.push(updatedOption[1].dataValues);
+        updateDquestion[1].dataValues.options.push(updatedOption[1].dataValues);
       }
 
     }
