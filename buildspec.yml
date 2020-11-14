@@ -4,15 +4,16 @@ phases:
     commands:
       - echo prebuild first step CloudWatch Logs Created
       - echo Installing source NPM dependencies...
-      - npm install
+      - echo node -v
   build:
     commands:
       - echo Build started on `date`
       - echo Compiling the dist folder
-      - npm run-script start
+      - echo node -v
   post_build:
     commands:
       - echo Build completed on `date`
+      - echo node -v
 # Include only the files required for your application to  1run.
 artifacts:
   files:
