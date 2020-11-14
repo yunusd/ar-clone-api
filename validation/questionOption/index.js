@@ -7,6 +7,7 @@ module.exports.addQuestionOptionValidation = Joi.object().keys({
 });
 
 module.exports.editQuestionOptionValidation = Joi.object().keys({
+  id: Joi.number().integer(),
   text: Joi.string().min(3).max(250).required(),
   price: Joi.number().integer().required(),
 });
