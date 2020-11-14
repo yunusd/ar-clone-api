@@ -33,18 +33,28 @@ module.exports = async (_, args, context) => {
       await editQuestionOptionValidation.validateAsync(option, {
         abortEarly: false
       });
-      const updatedOption = await context.models.QuestionOption.update({
-        text: option.text,
-        price: option.price,
-        questionId: question[1].id,
-      }, {
-        where: {
-          id: option.id
-        },
-        returning: true,
-        plain: true
-      });
-      question[1].dataValues.options.push(updatedOption[1].dataValues);
+      if (option.id == null) {
+        const newOption = await context.models.QuestionOption.create({
+          text: option.text,
+          price: option.price,
+          questionId: question[1].id
+        })
+        question.dataValues[1].options.push(newOption[1].dataValues)
+      } else {
+        const updatedOption = await context.models.QuestionOption.update({
+          text: option.text,
+          price: option.price,
+          questionId: question[1].id,
+        }, {
+          where: {
+            id: option.id
+          },
+          returning: true,
+          plain: true
+        });
+        question[1].dataValues.options.push(updatedOption[1].dataValues);
+      }
+
     }
 
     return question[1].dataValues;
