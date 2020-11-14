@@ -4,12 +4,12 @@ phases:
     commands:
       - echo prebuild first step CloudWatch Logs Created
       - echo Installing source NPM dependencies...
-      - npm install nodemon -g
+      - npm install
   build:
     commands:
       - echo Build started on `date`
       - echo Compiling the dist folder
-      - npm run start
+      - npm run-script start
   post_build:
     commands:
       - echo Build completed on `date`
