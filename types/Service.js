@@ -8,8 +8,15 @@ const Service = `
     addressId: Int
     address: Address
     offers: [Offer]
+    contents: [ServiceContent]
   }
   
+  input ServiceContentInput
+  {
+    questionId: Int!
+    questionOptionId: Int!
+  }
+
   extend type Query {
     getService(id: Int!): Service
     getServiceByCategoryId(categoryId: Int!): [Service!]!
@@ -22,6 +29,7 @@ const Service = `
       categoryId: Int!
       userId: Int!
       addressId : Int
+      contents: [ServiceContentInput]
     ): Service!
 
     editService(

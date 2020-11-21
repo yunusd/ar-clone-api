@@ -18,6 +18,7 @@ const Role = require('./types/Role');
 const User_Role = require('./types/User_Role');
 const Status = require('./types/Status');
 const Dashboard = require('./types/Dashboard');
+const ServiceContent = require('./types/Service_Content');
 
 // Queries
 const userQueries = require('./queries/user');
@@ -36,6 +37,7 @@ const roleQueries = require('./queries/role');
 const user_roleQueries = require('./queries/user_role');
 const statusQueries = require('./queries/status');
 const dashboardQueries = require('./queries/dashboard');
+const service_contentQueries = require('./queries/service_content');
 
 // Mutations
 const userMutation = require('./mutations/user');
@@ -53,6 +55,7 @@ const user_categoryMutation = require('./mutations/user_category');
 const roleMutation = require('./mutations/role');
 const statusMutation = require('./mutations/status');
 const user_roleMutation = require('./mutations/user_role');
+const service_contentMutation = require('./mutations/service_content');
 
 const Root = `
   type Query {
@@ -90,6 +93,7 @@ const resolvers = merge(
   user_roleQueries,
   statusQueries,
   dashboardQueries,
+  service_contentQueries,
   
   // mutations
   userMutation,
@@ -107,6 +111,7 @@ const resolvers = merge(
   roleMutation,
   user_roleMutation,
   statusMutation,
+  service_contentMutation,
 );
 
 const schema = makeExecutableSchema({
@@ -127,7 +132,8 @@ const schema = makeExecutableSchema({
     Role,
     User_Role,
     Status,
-    Dashboard
+    Dashboard,
+    ServiceContent
   ],
   resolvers,
 });

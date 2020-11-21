@@ -1,3 +1,4 @@
+const { array } = require('joi');
 const {
   registerUserValidation
 } = require('../../validation/user')
@@ -13,14 +14,15 @@ module.exports = async (_, args, context) => {
       name: "active"
     }
   });
-
-  if (defaultStatus == null) {
-    defaultStatus = await context.models.Status.create({
+  console.log(defaultStatus.dataValues.id)
+  if (defaultStatus.length == 0) {
+    inserStatus = await context.models.Status.create({
       name: "active"
     });
-    args.statusId = defaultStatus.id;
+    console.log(inserStatus[1].dataValues);
+    args.statusId = inserStatus.id;
   } else {
-    args.statusId = defaultStatus[1].id
+    args.statusId = defaultStatus.dataValues.id
   }
 
   const user = await context.models.User.create({

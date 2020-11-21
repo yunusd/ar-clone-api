@@ -1,5 +1,3 @@
-
-
 module.exports = async (...args) => {
   const [, params, context, ] = args;
   const category = await context.models.Category.findByPk(params.id, {
