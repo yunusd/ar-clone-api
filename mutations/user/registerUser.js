@@ -1,7 +1,8 @@
-const { array } = require('joi');
 const {
   registerUserValidation
-} = require('../../validation/user')
+} = require('../../validation/user');
+const registerUserCognito = require('../../aws/registerUserCognito');
+const deleteUserCognito = require('../../aws/deleteUserCognito');
 
 module.exports = async (_, args, context) => {
   await registerUserValidation.validateAsync(args, {
@@ -9,43 +10,46 @@ module.exports = async (_, args, context) => {
   });
 
   //TODO: active name değişecek
-  const defaultStatus = await context.models.Status.findAll({
+  const defaultStatus = await context.models.Status.findOne({
     where: {
       name: "active"
     }
   });
-  console.log(defaultStatus.dataValues.id)
-  if (defaultStatus.length == 0) {
-    inserStatus = await context.models.Status.create({
+  
+  console.log(defaultStatus.dataValues.id);
+  if (defaultStatus == null) {
+    insertStatus = await context.models.Status.create({
       name: "active"
     });
-    console.log(inserStatus[1].dataValues);
     args.statusId = inserStatus.id;
   } else {
-    args.statusId = defaultStatus.dataValues.id
+    args.statusId = defaultStatus.dataValues.id;
   }
 
   const user = await context.models.User.create({
     ...args
   });
 
-  const defaultRole = await context.models.Role.findAll({
+  const defaultRole = await context.models.Role.findOne({
     where: {
       name: "user"
     }
   });
-  if (defaultRole == null) {
-    defaultRole = [];
-    const role = await context.models.Role.create({
+
+  if (defaultRole === null) {
+    defaultRole = await context.models.Role.create({
       name: "user"
     });
-    defaultRole.push(role);
   }
   const defaultUser_Role = await context.models.User_Role.create({
     userId: user.id,
-    roleId: defaultRole[1].id
+    roleId: defaultRole.dataValues.id
   });
   user.role = [];
   user.role.push(defaultUser_Role);
+
+  // TODO : password eklendiğinde açılacak
+  // const cognitoRegister = registerUserCognito(args);
+  
   return user;
 };
