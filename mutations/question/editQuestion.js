@@ -9,6 +9,8 @@ const {
 } = require('sequelize');
 const lodash = require('lodash');
 
+//TODO: hatalar var bakılacak (cevapları güncelleme kontrol edilecek.)
+
 module.exports = async (_, args, context) => {
   await editQuestionValidation.validateAsync(args, {
     abortEarly: false

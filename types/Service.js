@@ -8,7 +8,7 @@ const Service = `
     addressId: Int
     address: Address
     offers: [Offer]
-    ServiceContent: [ServiceContent]
+    contents: [ServiceContent]
     faqs: [Faq]
   }
   

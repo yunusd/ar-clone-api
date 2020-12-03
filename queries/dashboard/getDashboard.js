@@ -8,7 +8,7 @@ module.exports = async (...args) => {
     const users = await context.models.User.findAll({
         include: {
             model: context.models.User_Role,
-            as: "roles"
+            as: "user_roles",include:{model:context.models.Role,as:"role"}
         },
         include: {
             model: context.models.Status,
