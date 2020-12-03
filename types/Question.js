@@ -5,7 +5,7 @@ const Question = `
     description: String!
     type: String
     categoryId: Int!
-    options: [QuestionOption!]!
+    options: [QuestionOption]
   }
 
   type QuestionOption {

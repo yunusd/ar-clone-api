@@ -26,7 +26,7 @@ module.exports = async function (args) {
                 pems[key_id] = pem;
             }
             //validate the token
-            var decodedJwt = jwt.decode(token, {
+            var decodedJwt = jwt.decode(args.token, {
                 complete: true
             });
             if (!decodedJwt) {
@@ -41,7 +41,7 @@ module.exports = async function (args) {
                 return;
             }
 
-            jwt.verify(token, pem, function (err, payload) {
+            jwt.verify(args.token, pem, function (err, payload) {
                 if (err) {
                     console.log("Invalid Token.");
                 } else {

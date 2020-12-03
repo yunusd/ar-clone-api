@@ -23,11 +23,6 @@ module.exports = {
       phoneNumber: {
         type: Sequelize.STRING
       },
-      userType: {
-        type: Sequelize.ENUM(
-          'admin', 'serviceProvider','receivingService'
-        ),
-      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

@@ -1,4 +1,7 @@
 const {
+  includes
+} = require('lodash');
+const {
   addQuestionValidation
 } = require('../../validation/question')
 const {
@@ -10,26 +13,21 @@ module.exports = async (_, args, context) => {
     abortEarly: false
   });
   args.type = args.options.length == 2 ? "trueFalse" : args.options.length > 2 && args.options.length < 5 ? "singleChoice" : "dropDown";
+  console.log(args.options)
   const question = await context.models.Question.create({
-    name:args.name,
-    description:args.description,
-    categoryId:args.categoryId,
-    type: args.type
+    name: args.name,
+    description: args.description,
+    categoryId: args.categoryId,
+    type: args.type,
+    options: args.options
+  }, {
+    include: {
+      model: context.models.QuestionOption,
+      as: "options"
+    }
+
   });
-  question.options = [];
-  for (let index = 0; index < args.options.length; index++) {
-    const option = args.options[index];
-    await addQuestionOptionValidation.validateAsync(option, {
-      abortEarly: false
-    });
-    const newOption = await context.models.QuestionOption.create({
-      text: option.text,
-      price: option.price,
-      questionId: question.id,
-    });
-    question.options.push(newOption);
-  }
+  await question.save();
   
-  console.log(question);
   return question
 };

@@ -15,7 +15,7 @@ module.exports = async (...args) => {
             as: "status"
         },
     });
-    const activeUsers = lodash.filter(users, x => x.status.name === 'active');
+    const activeUsers = lodash.filter(users, x => x.dataValues.status.name === 'active');
 
     const offers = await context.models.Offer.findAll({
         include: {
@@ -46,8 +46,8 @@ module.exports = async (...args) => {
             ['id', 'DESC'],
         ],
     });
-    const lastDayServiceCount = lodash.filter(services, x => x.createdAt <= '').length;
-    const todayServiceCount = lodash.filter(services, x => x.createdAt <= '').length;
+    const lastDayServiceCount = 0;//  lodash.filter(services, x => x.createdAt <= '').length;
+    const todayServiceCount = 0;//lodash.filter(services, x => x.createdAt <= '').length;
 
     const dashboard = {
         activeUsers : activeUsers,
