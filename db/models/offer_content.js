@@ -17,6 +17,8 @@ module.exports = (sequelize, DataTypes) => {
     photoUrl: DataTypes.STRING
   }, {
     sequelize,
+    timestamps: true,
+    paranoid: true,
     modelName: 'Offer_Content',
   });
   return Offer_Content;

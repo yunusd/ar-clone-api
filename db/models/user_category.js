@@ -12,10 +12,11 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       User_Category.belongsTo(models.User, {foreignKey:'userId',allowNull:false, as : 'user'}),
       User_Category.belongsTo(models.Category, {foreignKey: 'categoryId',allowNull:false, as : 'category'})
+      User_Category.belongsTo(models.Status, {foreignKey: 'statusId',allowNull:false, as : 'status'})
+      User_Category.hasMany(models.Document, {foreignKey: 'documentId',allowNull:false, as : 'documents'})
     }
   };
   User_Category.init({
-    name: DataTypes.STRING
   }, {
     sequelize,
     timestamps: true,
