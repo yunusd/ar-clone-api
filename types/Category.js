@@ -9,6 +9,7 @@ const Category = `
     services: [Service]
     faqs: [Faq]
     questions: [Question]
+    requiredDocuments: [RequiredDocument]
   }
   
   extend type Query {

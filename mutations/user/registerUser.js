@@ -3,9 +3,6 @@ const {
 } = require('../../validation/user');
 const registerUserCognito = require('../../aws/registerUserCognito');
 const deleteUserCognito = require('../../aws/deleteUserCognito');
-const {
-  includes
-} = require('../../types/Role');
 const bcrypt = require('bcrypt');
 const {
   has

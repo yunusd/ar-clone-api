@@ -21,6 +21,7 @@ const Dashboard = require('./types/Dashboard');
 const ServiceContent = require('./types/Service_Content');
 const OfferContent = require('./types/Offer_Content');
 const Document = require('./types/Document');
+const RequiredDocument = require('./types/RequiredDocument');
 
 // Queries
 const userQueries = require('./queries/user');
@@ -42,6 +43,7 @@ const dashboardQueries = require('./queries/dashboard');
 const service_contentQueries = require('./queries/service_content');
 const offer_contentQueries = require('./queries/offer_content');
 const documentQueries = require('./queries/document');
+const requiredDocumentQueries = require('./queries/requiredDocument');
 
 // Mutations
 const userMutation = require('./mutations/user');
@@ -62,6 +64,7 @@ const user_roleMutation = require('./mutations/user_role');
 const service_contentMutation = require('./mutations/service_content');
 const offer_contentMutation = require('./mutations/offer_content');
 const documentMutation = require('./mutations/document');
+const requiredDocumentMutation = require('./mutations/requiredDocument');
 
 const Root = `
   type Query {
@@ -102,6 +105,7 @@ const resolvers = merge(
   service_contentQueries,
   offer_contentQueries,
   documentQueries,
+  requiredDocumentQueries,
   
   // mutations
   userMutation,
@@ -122,6 +126,7 @@ const resolvers = merge(
   service_contentMutation,
   offer_contentMutation,
   documentMutation,
+  requiredDocumentMutation,
 );
 
 const schema = makeExecutableSchema({
@@ -145,7 +150,8 @@ const schema = makeExecutableSchema({
     Dashboard,
     ServiceContent,
     OfferContent,
-    Document
+    Document,
+    RequiredDocument,
   ],
   resolvers,
 });
