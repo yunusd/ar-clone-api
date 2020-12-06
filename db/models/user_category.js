@@ -14,6 +14,7 @@ module.exports = (sequelize, DataTypes) => {
       User_Category.belongsTo(models.Category, {foreignKey: 'categoryId',allowNull:false, as : 'category'})
       User_Category.belongsTo(models.Status, {foreignKey: 'statusId',allowNull:false, as : 'status'})
       User_Category.hasMany(models.Document, {foreignKey: 'user_categoryId',allowNull:false, as : 'documents'})
+      User_Category.hasMany(models.Rule, {foreignKey: 'user_categoryId',allowNull:false, as : 'rules'})
     }
   };
   User_Category.init({

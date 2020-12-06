@@ -22,6 +22,9 @@ const ServiceContent = require('./types/Service_Content');
 const OfferContent = require('./types/Offer_Content');
 const Document = require('./types/Document');
 const RequiredDocument = require('./types/RequiredDocument');
+const Rule = require('./types/Rule');
+const RuleContent = require('./types/RuleContent');
+const Calendar = require('./types/Calendar');
 
 // Queries
 const userQueries = require('./queries/user');
@@ -44,6 +47,9 @@ const service_contentQueries = require('./queries/service_content');
 const offer_contentQueries = require('./queries/offer_content');
 const documentQueries = require('./queries/document');
 const requiredDocumentQueries = require('./queries/requiredDocument');
+const ruleQueries = require('./queries/rule');
+const ruleContentQueries = require('./queries/ruleContent');
+const calendarQueries = require('./queries/calendar');
 
 // Mutations
 const userMutation = require('./mutations/user');
@@ -65,6 +71,9 @@ const service_contentMutation = require('./mutations/service_content');
 const offer_contentMutation = require('./mutations/offer_content');
 const documentMutation = require('./mutations/document');
 const requiredDocumentMutation = require('./mutations/requiredDocument');
+const ruleMutation = require('./mutations/rule');
+const ruleContentMutation = require('./mutations/ruleContent');
+const calendarMutation = require('./mutations/calendar');
 
 const Root = `
   type Query {
@@ -106,6 +115,9 @@ const resolvers = merge(
   offer_contentQueries,
   documentQueries,
   requiredDocumentQueries,
+  ruleQueries,
+  ruleContentQueries,
+  calendarQueries,
   
   // mutations
   userMutation,
@@ -127,6 +139,9 @@ const resolvers = merge(
   offer_contentMutation,
   documentMutation,
   requiredDocumentMutation,
+  ruleMutation,
+  ruleContentMutation,
+  calendarMutation,
 );
 
 const schema = makeExecutableSchema({
@@ -152,6 +167,9 @@ const schema = makeExecutableSchema({
     OfferContent,
     Document,
     RequiredDocument,
+    Rule,
+    RuleContent,
+    Calendar,
   ],
   resolvers,
 });
