@@ -25,6 +25,7 @@ const RequiredDocument = require('./types/RequiredDocument');
 const Rule = require('./types/Rule');
 const RuleContent = require('./types/RuleContent');
 const Calendar = require('./types/Calendar');
+const UserInfo = require('./types/UserInfo');
 
 // Queries
 const userQueries = require('./queries/user');
@@ -50,6 +51,7 @@ const requiredDocumentQueries = require('./queries/requiredDocument');
 const ruleQueries = require('./queries/rule');
 const ruleContentQueries = require('./queries/ruleContent');
 const calendarQueries = require('./queries/calendar');
+const userInfoQueries = require('./queries/userInfo');
 
 // Mutations
 const userMutation = require('./mutations/user');
@@ -118,6 +120,7 @@ const resolvers = merge(
   ruleQueries,
   ruleContentQueries,
   calendarQueries,
+  userInfoQueries,
   
   // mutations
   userMutation,
@@ -170,6 +173,7 @@ const schema = makeExecutableSchema({
     Rule,
     RuleContent,
     Calendar,
+    UserInfo,
   ],
   resolvers,
 });
