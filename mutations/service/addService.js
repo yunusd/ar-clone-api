@@ -13,7 +13,9 @@ module.exports = async (_, args, context) => {
     categoryId: args.categoryId,
     userId: args.userId,
     addressId: args.addressId,
-    contents: args.contents
+    contents: args.contents,
+    calendarId: args.calendarId,
+    description: args.description
   }, {
     include: {
       model: context.models.ServiceContent,

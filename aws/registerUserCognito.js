@@ -6,7 +6,7 @@ module.exports = async (args) => {
   var attributeList = [];
   attributeList.push(new AmazonCognitoIdentity.CognitoUserAttribute({Name:"name",Value:args.firstName}));
   attributeList.push(new AmazonCognitoIdentity.CognitoUserAttribute({Name:"given_name",Value:args.lastName}));
-  attributeList.push(new AmazonCognitoIdentity.CognitoUserAttribute({Name:"birthDate",Value:args.birthDate}));
+  attributeList.push(new AmazonCognitoIdentity.CognitoUserAttribute({Name:"birthdate",Value:args.birthDate}));
   attributeList.push(new AmazonCognitoIdentity.CognitoUserAttribute({Name:"address",Value:args.address}));
   attributeList.push(new AmazonCognitoIdentity.CognitoUserAttribute({Name:"email",Value:args.email}));
   attributeList.push(new AmazonCognitoIdentity.CognitoUserAttribute({Name:"phone_number",Value:args.phoneNumber}));

@@ -2,6 +2,7 @@ const Service = `
   type Service {
     id: Int!
     posterPath: String!
+    description: String!
     price: Float!
     categoryId: Int!
     userId: Int!
@@ -10,6 +11,8 @@ const Service = `
     offers: [Offer]
     contents: [ServiceContent]
     faqs: [Faq]
+    calendarId: Int
+    calendar: [Calendar]
   }
   
   input ServiceContentInput
@@ -25,6 +28,8 @@ const Service = `
 
   extend type Mutation {
     addService(
+      calendarId: Int
+      description: String!
       posterPath: String!
       price: Float!
       categoryId: Int!
@@ -35,11 +40,13 @@ const Service = `
 
     editService(
       id: Int!
+      description: String!
       posterPath: String
       price: Float
       categoryId: Int
       userId: Int!
       addressId : Int
+      calendarId: Int
     ): Service!
 
     deleteService(id: Int!): Service!
