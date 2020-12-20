@@ -62,3 +62,6 @@ typings/
 
 # vs code
 .devcontainer
+
+#buildspec.yml
+buildspec.yml

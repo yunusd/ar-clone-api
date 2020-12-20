@@ -14,7 +14,8 @@ module.exports = (sequelize, DataTypes) => {
   QuestionOption.init(
     {
       text: DataTypes.STRING,
-      price: DataTypes.INTEGER,
+      minPrice: DataTypes.INTEGER,
+      maxPrice: DataTypes.INTEGER,
     },
     {
       sequelize,

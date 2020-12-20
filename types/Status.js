@@ -1,5 +1,6 @@
 const Status = `
   type Status {
+    id: Int
     name: String!
   }
   

@@ -14,7 +14,8 @@ const User = `
     userServiceCatalog: [Catalog]
     userServiceCategories: [User_Category]
     status: Status
-    roles: [User_Role]
+    statusId: Int
+    user_roles: [User_Role]
   }
   
   extend type Query {
@@ -23,7 +24,7 @@ const User = `
   }
 
   extend type Mutation {
-    registerUser( firstName: String, lastName: String, email: String, userName: String, phoneNumber: String! , addressId : Int): User!
+    registerUser( firstName: String, lastName: String, email: String, userName: String, phoneNumber: String! , addressId : Int,password: String!): User!
   }
 `
 

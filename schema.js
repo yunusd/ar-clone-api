@@ -18,6 +18,14 @@ const Role = require('./types/Role');
 const User_Role = require('./types/User_Role');
 const Status = require('./types/Status');
 const Dashboard = require('./types/Dashboard');
+const ServiceContent = require('./types/Service_Content');
+const OfferContent = require('./types/Offer_Content');
+const Document = require('./types/Document');
+const RequiredDocument = require('./types/RequiredDocument');
+const Rule = require('./types/Rule');
+const RuleContent = require('./types/RuleContent');
+const Calendar = require('./types/Calendar');
+const UserInfo = require('./types/UserInfo');
 
 // Queries
 const userQueries = require('./queries/user');
@@ -36,6 +44,14 @@ const roleQueries = require('./queries/role');
 const user_roleQueries = require('./queries/user_role');
 const statusQueries = require('./queries/status');
 const dashboardQueries = require('./queries/dashboard');
+const service_contentQueries = require('./queries/service_content');
+const offer_contentQueries = require('./queries/offer_content');
+const documentQueries = require('./queries/document');
+const requiredDocumentQueries = require('./queries/requiredDocument');
+const ruleQueries = require('./queries/rule');
+const ruleContentQueries = require('./queries/ruleContent');
+const calendarQueries = require('./queries/calendar');
+const userInfoQueries = require('./queries/userInfo');
 
 // Mutations
 const userMutation = require('./mutations/user');
@@ -53,6 +69,13 @@ const user_categoryMutation = require('./mutations/user_category');
 const roleMutation = require('./mutations/role');
 const statusMutation = require('./mutations/status');
 const user_roleMutation = require('./mutations/user_role');
+const service_contentMutation = require('./mutations/service_content');
+const offer_contentMutation = require('./mutations/offer_content');
+const documentMutation = require('./mutations/document');
+const requiredDocumentMutation = require('./mutations/requiredDocument');
+const ruleMutation = require('./mutations/rule');
+const ruleContentMutation = require('./mutations/ruleContent');
+const calendarMutation = require('./mutations/calendar');
 
 const Root = `
   type Query {
@@ -90,6 +113,14 @@ const resolvers = merge(
   user_roleQueries,
   statusQueries,
   dashboardQueries,
+  service_contentQueries,
+  offer_contentQueries,
+  documentQueries,
+  requiredDocumentQueries,
+  ruleQueries,
+  ruleContentQueries,
+  calendarQueries,
+  userInfoQueries,
   
   // mutations
   userMutation,
@@ -107,6 +138,13 @@ const resolvers = merge(
   roleMutation,
   user_roleMutation,
   statusMutation,
+  service_contentMutation,
+  offer_contentMutation,
+  documentMutation,
+  requiredDocumentMutation,
+  ruleMutation,
+  ruleContentMutation,
+  calendarMutation,
 );
 
 const schema = makeExecutableSchema({
@@ -127,7 +165,15 @@ const schema = makeExecutableSchema({
     Role,
     User_Role,
     Status,
-    Dashboard
+    Dashboard,
+    ServiceContent,
+    OfferContent,
+    Document,
+    RequiredDocument,
+    Rule,
+    RuleContent,
+    Calendar,
+    UserInfo,
   ],
   resolvers,
 });

@@ -5,7 +5,11 @@ const {
 module.exports = (sequelize, DataTypes) => {
   class Status extends Model {
 
-    static associate(models) {}
+    static associate(models) {
+      Status.hasMany(models.User, {foreignKey:'statusId' , as: "users" })
+
+
+    }
   };
   Status.init({
     name: DataTypes.STRING

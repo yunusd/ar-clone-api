@@ -1,7 +1,7 @@
 const Role = `
   type Role {
-    id: Int!
-    name: String!
+    id: Int
+    name: String
   }
   
   extend type Query {

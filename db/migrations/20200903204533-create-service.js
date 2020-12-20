@@ -7,6 +7,7 @@ module.exports = {
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER,
+        description: Sequelize.STRING
       },
       posterPath: {
         type: Sequelize.STRING,

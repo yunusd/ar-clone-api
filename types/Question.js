@@ -5,19 +5,21 @@ const Question = `
     description: String!
     type: String
     categoryId: Int!
-    options: [QuestionOption!]!
+    options: [QuestionOption]
   }
 
   type QuestionOption {
     id: Int!
     text: String!    
-    price: Int!
+    minPrice: Int!
+    maxPrice: Int!
   }
 
   input inputQuestionOptions {
     id: Int
     text: String!
-    price: Int!
+    minPrice: Int!
+    maxPrice: Int!
   }
 
 
@@ -47,14 +49,16 @@ const Question = `
 
     addQuestionOption(
       text: String!
-      price: Int!
+      minPrice: Int
+      maxPrice: Int
       questionId: Int!
     ): QuestionOption!
 
     editQuestionOption(
       id: Int!
       text: String
-      price: Int
+      minPrice: Int
+      maxPrice: Int
       questionId: Int
     ): QuestionOption!
 

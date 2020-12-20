@@ -1,10 +1,13 @@
 const User_Category = `
   type User_Category {
-    id: Int!
-    userId: Int!
+    id: Int
+    userId: Int
     user: User
     category: Category
-    categoryId: Int!
+    categoryId: Int
+    statusId: Int
+    status: Status
+    documents: [Document]
   }
   
   extend type Query {
@@ -12,8 +15,8 @@ const User_Category = `
   }
 
   extend type Mutation {
-    addUser_Category( userId: Int!,categoryId:Int!): User_Category!
-    editUser_Category(id:Int!, userId: Int!,categoryId:Int!): User_Category!
+    addUser_Category( userId: Int,categoryId:Int): User_Category!
+    editUser_Category(id:Int!, userId: Int,categoryId:Int,statusId : Int): User_Category!
     deleteUser_Category( id:Int! ): User_Category!
   }
 `
