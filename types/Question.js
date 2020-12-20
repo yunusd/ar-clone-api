@@ -17,9 +17,9 @@ const Question = `
 
   input inputQuestionOptions {
     id: Int
-    text: String!
-    minPrice: Int!
-    maxPrice: Int!
+    text: String
+    minPrice: Int
+    maxPrice: Int
   }
 
 

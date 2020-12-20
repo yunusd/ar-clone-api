@@ -60,17 +60,20 @@ module.exports = async (_, args, context) => {
       as: "status"
     }]
   });
+  args.isUser=1;
+  args.isAdmin=0;
 
+  let cognitoUser;
   const saltRounds = 10;
   await bcrypt.hash(args.password, saltRounds, function (err, hash) {
     args.password = hash;
-    // const cognitoRegister = registerUserCognito(args);
-
-    // TODO : password hashlendikten sonra aws cognitoya gönderilecek.
+    const cognitoRegister = registerUserCognito(args);
+    cognitoUser = cognitoRegister;
   });
 
-  // TODO : password eklendiğinde açılacak
-  // const cognitoRegister = registerUserCognito(args);
+  if (cognitoUser) {
+    throw Error;
+  }
 
   return user;
 };

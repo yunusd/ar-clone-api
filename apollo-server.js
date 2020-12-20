@@ -4,7 +4,10 @@ const schema = require('./schema');
 
 const server = new ApolloServer({
   schema,
-  context: {models},
+  context: ({req}) => ({
+    user: req.user,
+    models
+   }),
 });
 
 module.exports = server;

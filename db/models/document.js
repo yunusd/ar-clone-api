@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       Document.belongsTo(models.User_Category, {
         foreignKey: 'user_categoryId',
-        allowNull: false,
+        allowNull: true,
         as: "user_category"
       })
     }

@@ -8,7 +8,7 @@ const State = `
   
   extend type Query {
     getState(id: Int!): State!
-    getStatesByCountryId: [State!]!
+    getStatesByCountryId(countryId: Int!): [State!]!
   }
 
   extend type Mutation {

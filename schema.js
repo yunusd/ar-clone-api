@@ -26,6 +26,7 @@ const Rule = require('./types/Rule');
 const RuleContent = require('./types/RuleContent');
 const Calendar = require('./types/Calendar');
 const UserInfo = require('./types/UserInfo');
+const File = require('./types/File');
 
 // Queries
 const userQueries = require('./queries/user');
@@ -76,6 +77,7 @@ const requiredDocumentMutation = require('./mutations/requiredDocument');
 const ruleMutation = require('./mutations/rule');
 const ruleContentMutation = require('./mutations/ruleContent');
 const calendarMutation = require('./mutations/calendar');
+const fileMutation = require('./mutations/file');
 
 const Root = `
   type Query {
@@ -145,6 +147,7 @@ const resolvers = merge(
   ruleMutation,
   ruleContentMutation,
   calendarMutation,
+  fileMutation,
 );
 
 const schema = makeExecutableSchema({
@@ -174,6 +177,9 @@ const schema = makeExecutableSchema({
     RuleContent,
     Calendar,
     UserInfo,
+    File,
+    `scalar Upload`,
+
   ],
   resolvers,
 });

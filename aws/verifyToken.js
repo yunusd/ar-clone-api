@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken');
 module.exports = async function (args) {
 
     const verifyToken = request({
-        url: `https://cognito-idp.eu-central-1.amazonaws.com/eu-central-1_eYPJLZjAO/.well-known/jwks.json`,
+        url: `https://cognito-idp.eu-central-1.amazonaws.com/eu-central-1_Z6stW5ra1/.well-known/jwks.json`,
         json: true
     }, function (error, response, body) {
         if (!error && response.statusCode === 200) {
@@ -29,10 +29,10 @@ module.exports = async function (args) {
             var decodedJwt = jwt.decode(args.token, {
                 complete: true
             });
-            if (!decodedJwt) {
-                console.log("Not a valid JWT token");
-                return;
-            }
+            // if (!decodedJwt) {
+            //     console.log("Not a valid JWT token");
+            //     return;
+            // }
 
             var kid = decodedJwt.header.kid;
             var pem = pems[kid];
