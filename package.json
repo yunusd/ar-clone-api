@@ -2,11 +2,15 @@
   "name": "ar-clone-api",
   "version": "0.0.0",
   "private": true,
+  "engines": {
+    "node": "12.13.0"
+  },
   "scripts": {
     "start": "nodemon ./bin/www"
   },
   "dependencies": {
     "amazon-cognito-identity-js": "^4.5.5",
+    "nodemon": "^2.0.4",
     "apollo-server-express": "^2.18.2",
     "aws-sdk": "^2.797.0",
     "bcrypt": "^5.0.0",
@@ -30,7 +34,6 @@
   "devDependencies": {
     "eslint": "^7.7.0",
     "eslint-config-airbnb-base": "^14.2.0",
-    "nodemon": "^2.0.4",
     "sequelize-cli": "^6.2.0"
   }
 }
