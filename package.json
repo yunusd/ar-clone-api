@@ -10,7 +10,6 @@
   },
   "dependencies": {
     "amazon-cognito-identity-js": "^4.5.5",
-    "nodemon": "^2.0.4",
     "apollo-server-express": "^2.18.2",
     "aws-sdk": "^2.797.0",
     "bcrypt": "^5.0.0",
@@ -27,6 +26,7 @@
     "lodash": "^4.17.20",
     "morgan": "~1.9.1",
     "node-fetch": "^2.6.1",
+    "nodemon": "^2.0.4",
     "passport": "^0.4.1",
     "passport-accesstoken": "^0.1.0",
     "passport-http-bearer": "^1.0.1",
