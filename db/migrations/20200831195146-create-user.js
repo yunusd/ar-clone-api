@@ -14,6 +14,9 @@ module.exports = {
       lastName: {
         type: Sequelize.STRING
       },
+      posterPath: {
+        type: Sequelize.STRING
+      },
       email: {
         type: Sequelize.STRING
       },

@@ -2,6 +2,7 @@ const User = `
   type User {
     id: Int!
     firstName: String
+    posterPath: String
     lastName: String
     email: String
     userName: String
@@ -24,7 +25,7 @@ const User = `
   }
 
   extend type Mutation {
-    registerUser( firstName: String, lastName: String, email: String, userName: String, phoneNumber: String! , addressId : Int,password: String!): User!
+    registerUser( firstName: String, lastName: String, email: String, userName: String, phoneNumber: String! , addressId : Int,password: String!,posterPath: String): User!
   }
 `
 
