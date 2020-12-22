@@ -7,9 +7,12 @@ module.exports = {
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
-      },
+      },    
       price: {
         type: Sequelize.FLOAT
+      },
+      isWinnderOffer: {
+        type: Sequelize.BOOLEAN
       },
       createdAt: {
         allowNull: false,

@@ -26,6 +26,7 @@ module.exports = (sequelize, DataTypes) => {
 
   Offer.init({
     price: DataTypes.FLOAT,
+    isWinnderOffer : DataTypes.BOOLEAN
   }, {
     sequelize,
     timestamps: true,

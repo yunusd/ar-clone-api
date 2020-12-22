@@ -4,8 +4,9 @@ const Offer = `
     price: Float!
     serviceId: Int!
     userId: Int!
-    user: User!
-    service: Service!
+    user: User
+    service: Service
+    isWinnderOffer : Boolean
   }
   
   extend type Query {
@@ -15,7 +16,7 @@ const Offer = `
 
   extend type Mutation {
     addOffer(price: Float!, userId: Int!, serviceId: Int!): Offer!
-    editOffer(id: Int!, price: Float, userId: Int, serviceId: Int): Offer
+    editOffer(id: Int!, price: Float, userId: Int, isWinnderOffer : Boolean ,serviceId: Int): Offer
     deleteOffer(id: Int!): Offer!
   }
 `
