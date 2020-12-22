@@ -10,13 +10,7 @@ var debug = require('debug')('ar-clone-api:server');
 var http = require('http');
 const apolloServer = require('../apollo-server');
 
-const {
-  POSTGRES_USERNAME,
-  POSTGRES_PASSWORD,
-  POSTGRES_HOSTNAME,
-  POSTGRES_PORT,
-  POSTGRES_DB,
-} = require('../config/index')
+const config = require('../config')
 /**
  * Authenticate db connection
  */
@@ -38,7 +32,7 @@ app.set('port', port);
  * Apollo
  */
 
-apolloServer.applyMiddleware({app, path: '/api'})
+apolloServer.applyMiddleware({app, path: '/api', cors: config.corsOptions})
 
 /**
  * Create HTTP server.
