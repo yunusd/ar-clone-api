@@ -23,12 +23,11 @@ module.exports = async (_, args, context) => {
 
     const uploadParams = {
         Bucket: 'armut-clone-s3-common',
-        Key: newGuid,
+        Key: newGuid+ file.filename.substring(file.filename.indexOf('.')),
         Body: fileStream
     };
     const result = await s3.upload(uploadParams).promise()
 
-    console.log(result.Location);
     const resultFile= {
         location: result.Location
     }

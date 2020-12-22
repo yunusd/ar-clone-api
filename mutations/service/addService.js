@@ -1,3 +1,4 @@
+const makeOffer = require('../../autoOffer/makeOffer');
 const {
   addServiceValidation
 } = require('../../validation/service')
@@ -22,16 +23,9 @@ module.exports = async (_, args, context) => {
       as: "contents"
     }
   });
-  // service.contents = [];
 
-  // for (let index = 0; index < args.contents.length; index++) {
-  //   const inputContent = args.contents[index];
-  //   const insertContent = await context.ServiceContent.create({
-  //     questionId: inputContent.questionId,
-  //     questionOptionId: inputContent.questionOptionId
-  //   });
-  //   service.contents.push(insertContent);
-  // }
+    if (service != null)
+      await makeOffer(service.id);  
 
   return service;
 };

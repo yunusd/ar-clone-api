@@ -11,6 +11,15 @@ module.exports = {
       name: {
         type: Sequelize.STRING
       },
+      makeOfferprice: {
+        type: Sequelize.INTEGER
+      },
+      minServicePrice: {
+        type: Sequelize.INTEGER
+      },
+      maxServicePrice: {
+        type: Sequelize.INTEGER
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
