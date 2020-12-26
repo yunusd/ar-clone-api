@@ -1,9 +1,10 @@
 
 module.exports = async (...args) => {
-    const [, , context, ] = args;
+    const [, params, context, ] = args;
+    console.log(params);
     const states = await context.models.State.findAll(
       {
-          where: { countryId: args.countryId },
+          where: { countryId: params.countryId },
           include: { model: context.models.City, as: "cities" },        
       }
     );

@@ -12,8 +12,8 @@ const State = `
   }
 
   extend type Mutation {
-    addState(name: String!): State!
-    editState(name: String!, id: Int!): State!
+    addState(name: String!,countryId:Int): State!
+    editState(name: String, id: Int!,countryId:Int): State!  
     deleteState(id: Int!): State!
   }
 `
