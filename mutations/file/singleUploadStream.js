@@ -13,23 +13,18 @@ const s3 = new AWS.S3({
 module.exports = async (_, args, context) => {
 
     const newGuid = guid();
-    const file = await args.file
-    const {
-        createReadStream,
-        filename,
-        mimetype
-    } = file
-    const fileStream = createReadStream()
+    const {createReadStream, ...rest} = await args.file.file
 
     const uploadParams = {
         Bucket: 'armut-clone-s3-common',
-        Key: newGuid+ file.filename.substring(file.filename.indexOf('.')),
-        Body: fileStream
+        Key: newGuid+ rest.filename.substring(rest.filename.indexOf('.')),
+        Body: createReadStream()
     };
     const result = await s3.upload(uploadParams).promise()
 
     const resultFile= {
-        location: result.Location
+        location: result.Location,
+        ...rest
     }
     return resultFile;
 };

@@ -4,6 +4,7 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const passport = require('passport');
 const cors = require('cors');
+const { graphqlUploadExpress } = require("graphql-upload");
 
 const config = require('./config/index')
 
@@ -17,6 +18,7 @@ app.use(express.urlencoded({
 }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(graphqlUploadExpress({ maxFileSize: 1000000000, maxFiles: 10 }));
 app.use(passport.initialize());
 app.use(passport.session());
 
