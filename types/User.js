@@ -21,7 +21,7 @@ const User = `
   
   extend type Query {
     getUser(id: Int!): User
-    getUsers: [User!]!
+    getUsers(cityId : Int, countryId : Int, stateId : Int, catalogId: Int, statusId: Int, limit: Int, offset:Int): [User!]!
   }
 
   extend type Mutation {
