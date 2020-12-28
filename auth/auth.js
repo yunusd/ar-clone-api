@@ -4,13 +4,17 @@ const verifyToken = require('../aws/verifyToken');
 
 passport.use(new BearerStrategy(
 
-    function (token, done) {
+    async function (token, done) {
         if (!token) {
             return done(null, false)
         }
         if (token) {
-// TODO : token doğru ise serilize edilecek. yada db den çekilecek.
-            return done(null,verifyToken({token}))            
+            const isVerify = await verifyToken({token});
+            if (!isVerify) {
+                return done(null,false)
+            }
+            return done(null,isVerify);            
+                 
         }
         return done(null, {
             username: 'test',
