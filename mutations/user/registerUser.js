@@ -31,7 +31,7 @@ module.exports = async (_, args, context) => {
   }
   const defaultRole = await context.models.Role.findOne({
     where: {
-      name: "useraqwe"
+      name: "user"
     }
   });
   if (defaultRole === null) {
@@ -67,6 +67,7 @@ module.exports = async (_, args, context) => {
   const saltRounds = 10;
   await bcrypt.hash(args.password, saltRounds, function (err, hash) {
     args.password = hash;
+    console.log(args)
     const cognitoRegister = registerUserCognito(args);
     cognitoUser = cognitoRegister;
   });

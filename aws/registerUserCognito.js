@@ -9,10 +9,10 @@ module.exports = async (args) => {
   attributeList.push(new AmazonCognitoIdentity.CognitoUserAttribute({Name:"birthdate",Value:args.birthDate}));
   attributeList.push(new AmazonCognitoIdentity.CognitoUserAttribute({Name:"address",Value:args.address}));
   attributeList.push(new AmazonCognitoIdentity.CognitoUserAttribute({Name:"email",Value:args.email}));
-  attributeList.push(new AmazonCognitoIdentity.CognitoUserAttribute({Name:"phone_number",Value:args.phoneNumber}));
+  attributeList.push(new AmazonCognitoIdentity.CognitoUserAttribute({Name:"phone_number",Value:"+"+args.phoneNumber}));
   attributeList.push(new AmazonCognitoIdentity.CognitoUserAttribute({Name:"nickname",Value:args.userName}));
-  attributeList.push(new AmazonCognitoIdentity.CognitoUserAttribute({Name:"isAdmin",Value:args.isAdmin}));
-  attributeList.push(new AmazonCognitoIdentity.CognitoUserAttribute({Name:"isUser",Value:args.isUser}));
+  attributeList.push(new AmazonCognitoIdentity.CognitoUserAttribute({Name:"custom:isAdmin",Value:args.isAdmin.toString()}));
+  attributeList.push(new AmazonCognitoIdentity.CognitoUserAttribute({Name:"custom:isUser",Value:args.isUser.toString()}));
 
   var user = userPool().signUp(args.email, args.password, attributeList, null, function(err, result){
       if (err) {

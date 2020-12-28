@@ -1,10 +1,11 @@
 const request = require('request');
 const jwkToPem = require('jwk-to-pem');
 const jwt = require('jsonwebtoken');
-const axios = require('axios').default
+const axios = require('axios').default;
+const { cognitoOptions } = require('../config');
 module.exports = async function (args) {
     try {
-        const response = await axios.get("https://cognito-idp.eu-central-1.amazonaws.com/eu-central-1_Z6stW5ra1/.well-known/jwks.json");
+        const response = await axios.get(cognitoOptions.jsonVerifyEndpoint);
         //LOGIC
         if (response.status !== 200) return Error('error');
         pems = {};
@@ -38,29 +39,19 @@ module.exports = async function (args) {
             console.log('Invalid token');
             return;
         }
-
         return jwt.verify(args.token, pem, async function (err, payload) {
-            if (err) {
-                console.log("Invalid Token.");
-            } else {
-                console.log("Valid Token.");
-                // console.log(payload);
-
-                const COGNITO_URL = `https://cognito-idp.eu-central-1.amazonaws.com/eu-central-1_Z6stW5ra1`;
-                const {
-                    data
-                } = await axios.post(COGNITO_URL, {
-                    AccessToken: args.token
-                }, {
+            if (err) return false;
+            const COGNITO_URL = cognitoOptions.cognitoUrl;
+            const {data} = await axios.post(COGNITO_URL,
+                {AccessToken: args.token},
+                {
                     headers: {
                         "Content-Type": "application/x-amz-json-1.1",
                         "X-Amz-Target": "AWSCognitoIdentityProviderService.GetUser"
                     }
-                });
-                //LOGIC
-                return data;
-
-            }
+                }
+            );
+            return data;
         });
     } catch (error) {
         console.log(error)
