@@ -15,7 +15,7 @@ const Category = `
   
   extend type Query {
     getCategory(id: Int!): Category
-    getCategories: [Category!]!
+    getCategories(catalogId: Int): [Category!]!
   }
 
   extend type Mutation {

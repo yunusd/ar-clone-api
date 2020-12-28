@@ -25,7 +25,7 @@ const Question = `
 
   extend type Query {
     getQuestion(id: Int!): Question!
-    getQuestions: [Question]
+    getQuestions(categoryId : Int): [Question]
     getQuestionsByCategoryId(categoryId: Int!): [Question!]!
   }
 
