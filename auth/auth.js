@@ -10,9 +10,7 @@ passport.use(new BearerStrategy(
         }
         if (token) {
             const isVerify = await verifyToken({token});
-            if (!isVerify) {
-                return done(null,false)
-            }
+            // console.log(isVerify)
             return done(null,isVerify);            
                  
         }
