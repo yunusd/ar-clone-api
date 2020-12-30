@@ -27,6 +27,7 @@ const RuleContent = require('./types/RuleContent');
 const Calendar = require('./types/Calendar');
 const UserInfo = require('./types/UserInfo');
 const File = require('./types/File');
+const Comment = require('./types/Comment');
 
 // Queries
 const userQueries = require('./queries/user');
@@ -53,6 +54,7 @@ const ruleQueries = require('./queries/rule');
 const ruleContentQueries = require('./queries/ruleContent');
 const calendarQueries = require('./queries/calendar');
 const userInfoQueries = require('./queries/userInfo');
+const commentQueries = require('./queries/comment');
 
 // Mutations
 const userMutation = require('./mutations/user');
@@ -78,6 +80,7 @@ const ruleMutation = require('./mutations/rule');
 const ruleContentMutation = require('./mutations/ruleContent');
 const calendarMutation = require('./mutations/calendar');
 const fileMutation = require('./mutations/file');
+const commentMutation = require('./mutations/comment');
 
 const Root = `
   type Query {
@@ -123,6 +126,7 @@ const resolvers = merge(
   ruleContentQueries,
   calendarQueries,
   userInfoQueries,
+  commentQueries,
   
   // mutations
   userMutation,
@@ -148,6 +152,7 @@ const resolvers = merge(
   ruleContentMutation,
   calendarMutation,
   fileMutation,
+  commentMutation,
 );
 
 const schema = makeExecutableSchema({
@@ -178,6 +183,7 @@ const schema = makeExecutableSchema({
     Calendar,
     UserInfo,
     File,
+    Comment,
     `scalar Upload`,
 
   ],

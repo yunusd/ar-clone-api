@@ -4,14 +4,22 @@ const verifyToken = require('../aws/verifyToken');
 const models = require('../db/models');
 
 passport.use(new BearerStrategy(async (token, done) => {
-        if (!token) return done(null, false)
+    if (!token) return done(null, false)
 
-        const payload = await verifyToken({token})
-        if (!payload) return done(null,false)
-        
-        const email = payload.UserAttributes.filter(obj => obj.Name.toLowerCase() === "email")[0].Value;
-        const user = await models.User.findOne({where: {email}})
-        
-        return done(null, user)
-    }
-));
+    const payload = await verifyToken({
+        token
+    })
+    if (!payload) return done(null, false)
+
+    const email = payload.UserAttributes.filter(obj => obj.Name.toLowerCase() === "email")[0].Value;
+    const user = await models.User.findOne({
+        where: {
+            email
+        },
+        include: {
+            model: models.User_Category,
+            as: "userServiceCategories"
+        }
+    })
+    return done(null, user.dataValues)
+}));
