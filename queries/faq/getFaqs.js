@@ -1,3 +1,4 @@
+const lodash = require('lodash')
 module.exports = async (...args) => {
   const [, params, context, ] = args;
   let faqs = await context.models.Faq.findAll();
