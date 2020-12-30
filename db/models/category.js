@@ -10,6 +10,7 @@ module.exports = (sequelize, DataTypes) => {
       }),
         Category.hasMany(models.Service, {foreignKey:'categoryId', as: "services" });
       Category.hasMany(models.Question, {foreignKey:'categoryId', as: "questions" });
+      Category.hasMany(models.RequiredDocument, {foreignKey:'categoryId', as: "requiredDocuments" });
     }
   }
   Category.init(

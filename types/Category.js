@@ -12,6 +12,10 @@ const Category = `
     questions: [Question]
     requiredDocuments: [RequiredDocument]
   }
+  input requiredDocumentInput {
+    name: String
+    description : String
+  }
   
   extend type Query {
     getCategory(id: Int!): Category
@@ -26,6 +30,7 @@ const Category = `
       maxPrice: Float!
       isPriceRange: Boolean!
       catalogId: Int!
+      requiredDocuments: [requiredDocumentInput]
     ): Category!
 
     editCategory(
