@@ -3,11 +3,12 @@ const Faq = `
     id: Int!
     question: String!
     answer: String!
+    categoryId: Int!
   }
   
   extend type Query {
     getFaq(id: Int!): Faq!
-    getFaqsByCategoryId: [Faq!]!
+    getFaqs(categoryId: Int): [Faq!]!
   }
 
   extend type Mutation {

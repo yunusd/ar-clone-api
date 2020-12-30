@@ -1,9 +1,9 @@
 const getFaq = require('./getFaq');
-const getFaqsByCategoryId = require('./getFaqsByCategoryId');
+const getFaqs = require('./getFaqs');
 
 module.exports = {
   Query: {
     getFaq,
-    getFaqsByCategoryId,
+    getFaqs,
   },
 };
