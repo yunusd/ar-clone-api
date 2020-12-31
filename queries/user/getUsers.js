@@ -50,6 +50,14 @@ module.exports = async (...args) => {
     limit: params.limit
   });
 
+  if (params.isServing != null) {
+    users = lodash.filter(users, function (x) {
+      if (x.dataValues.catalogId != null && params.isServing == true) {
+        return x;
+      }
+    });
+  }
+
   if (params.statusId != null) {
     users = lodash.filter(users, function (x) {
       if (x.dataValues.statusId != null) {
