@@ -1,13 +1,7 @@
 const makeOffer = require('../../autoOffer/makeOffer');
-const {
-  addServiceValidation
-} = require('../../validation/service')
 
 module.exports = async (_, args, context) => {
-  await addServiceValidation.validateAsync(args, {
-    abortEarly: false
-  });
-
+ 
   const service = await context.models.Service.create({
     posterPath: args.posterPath,
     price: args.price,
@@ -24,8 +18,8 @@ module.exports = async (_, args, context) => {
     }
   });
 
-    if (service != null)
-      await makeOffer(service.id);  
+  if (service != null)
+    await makeOffer(service.id);
 
   return service;
 };

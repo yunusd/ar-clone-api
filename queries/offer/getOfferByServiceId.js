@@ -5,7 +5,6 @@ module.exports = async (...args) => {
     where: { serviceId: params.serviceId },
     include: [
       { model: context.models.Service, as: "service" },
-      ,
       { model: context.models.User, as: "user" },
     ],
     order: [

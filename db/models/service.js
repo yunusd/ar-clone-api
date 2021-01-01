@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
         Service.belongsTo(models.User, { foreignKey: "userId" , allowNull:false, as:'user' }),
         Service.belongsTo(models.Calendar,{foreignKey: 'calendarId', as:'calendar'});
         Service.hasMany(models.Offer,{foreignKey: 'serviceId', as:'offers'});
-        Service.hasMany(models.ServiceContent,{foreignKey: 'serviceId', as:'serviceContents'});
+        Service.hasMany(models.ServiceContent,{foreignKey: 'serviceId', as:'contents'});
     }
   }
   Service.init(
