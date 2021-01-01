@@ -5,7 +5,7 @@ const logger = require('morgan');
 const passport = require('passport');
 const cors = require('cors');
 const { graphqlUploadExpress } = require("graphql-upload");
-
+const authRouter = require('./routes/auth');
 const config = require('./config/index')
 
 const app = express();
@@ -24,6 +24,7 @@ app.use(passport.session());
 
 require("./auth/auth");
 
+app.use('/', authRouter);
 app.use('/api', passport.authenticate('bearer', {
     session: false
 }));
