@@ -23,6 +23,7 @@ const Service = `
 
   extend type Query {
     getService(id: Int!): Service
+    getServices(categoryId: Int): [Service]
     getServiceByCategoryId(categoryId: Int!): [Service!]!
   }
 
