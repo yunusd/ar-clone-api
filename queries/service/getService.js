@@ -15,7 +15,7 @@ module.exports = async (...args) => {
     }, 
     include: {
       model: context.models.ServiceContent,
-      as: "serviceContents"
+      as: "contents"
     }
   });
   return service;
