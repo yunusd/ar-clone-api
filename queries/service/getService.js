@@ -16,6 +16,10 @@ module.exports = async (...args) => {
     include: {
       model: context.models.ServiceContent,
       as: "contents"
+    },
+    include: {
+      model: context.models.User,
+      as: "user"
     }
   });
   return service;

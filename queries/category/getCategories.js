@@ -13,6 +13,7 @@ module.exports = async (...args) => {
     },
     include: {
       model: context.models.RequiredDocument,
+      foreingkey: "categoryId" ,
       as: "requiredDocuments"
     },
     include: {

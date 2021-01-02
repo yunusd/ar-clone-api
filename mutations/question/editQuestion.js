@@ -9,15 +9,12 @@ const {
 } = require('sequelize');
 const lodash = require('lodash');
 
-//TODO: hatalar var bakılacak (cevapları güncelleme kontrol edilecek.)
 
 module.exports = async (_, args, context) => {
-  await editQuestionValidation.validateAsync(args, {
-    abortEarly: false
-  });
+
   try {
 
-    const question = await context.models.Question.findByPk(args.id, {
+    const findQuestion = await context.models.Question.findByPk(args.id, {
       include: {
         model: context.models.QuestionOption,
         as: "options"
@@ -26,10 +23,7 @@ module.exports = async (_, args, context) => {
 
     args.type = args.options.length == 2 ? "trueFalse" : args.options.length > 2 && args.options.length < 5 ? "singleChoice" : "dropDown";
     const updatedQuestion = await context.models.Question.update({
-      name: args.name,
-      description: args.description,
-      type: args.type,
-      categoryId: args.categoryId
+      ...args
     }, {
       where: {
         id: args.id
@@ -37,53 +31,85 @@ module.exports = async (_, args, context) => {
       returning: true,
       plain: true
     });
-
-
-    updatedQuestion[1].dataValues.options = [];
-
-    for (let index = 0; index < args.options.length; index++) {
-      const inputOption = args.options[index];
-      await editQuestionOptionValidation.validateAsync(inputOption, {
-        abortEarly: false
-      });
-      if (inputOption.id == null) {
-        const newOption = await context.models.QuestionOption.create({
-          text: inputOption.text,
-          price: inputOption.price,
-          questionId: updatedQuestion[1].dataValues.id
-        })
-        updatedQuestion[1].dataValues.options.push(newOption.dataValues[1])
-      } else {
-        const updatedOption = await context.models.QuestionOption.update({
-          text: inputOption.text,
-          price: inputOption.price,
-          questionId: updatedQuestion[1].dataValues.id,
-        }, {
-          where: {
-            id: inputOption.id
-          },
-          returning: true,
-          plain: true
-        });
-        updatedQuestion[1].dataValues.options.push(updatedOption[1].dataValues);
+    // gelen options yok ise db içersindeki options silinmesi
+    if (args.options.length < 1) {
+      if (findQuestion.dataValues.options.length > 0) {
+        for (let index = 0; index < findQuestion.dataValues.options.length; index++) {
+          const element = findQuestion.dataValues.options[index];
+          await context.models.QuestionOption.destroy({
+            where: {
+              id: element.dataValues.id
+            }
+          });
+        }
       }
     }
 
-    for (let index = 0; index < question.options.length; index++) {
-      const haveOption = question.options[index];
-      const anyRemoveOption = lodash.find(args.options, x => x.id == haveOption.id) 
-      if (anyRemoveOption == null) {
-        const deletedOption = await context.models.QuestionOption.destroy({
-          where: {
-            id: haveOption.id,
+    if (findQuestion.dataValues.options.length > 0) {
+      if (args.options.length > 0) {
+        let removeList = lodash.filter(findQuestion.dataValues.options, function (option) {
+          return args.options.some(function (y) {
+            return option.dataValues.id == y.id
+          }) == true ? null : option;
+        });
+        let updateList = lodash.filter(args.options, function (option) {          
+          if (option.id != null) {            
+            return findQuestion.dataValues.options.some(function (x) {
+              return x.dataValues.id == option.id
+            })
           }
         });
-      }
 
+        if (removeList.length > 0) {
+          for (let index = 0; index < removeList.length; index++) {
+            const element = removeList[index];
+            await context.models.QuestionOption.destroy({
+              where: {
+                id: element.dataValues.id
+              }
+            });
+          }
+        }
+        if (updateList.length > 0) {
+          for (let index = 0; index < updateList.length; index++) {
+            const element = updateList[index];
+            await context.models.QuestionOption.update({
+              ...element
+            }, {
+              where: {
+                id: element.id
+              },
+              returning: true,
+              plain: true
+            });
+          }
+        }
+      }
+    }
+    if (args.options.length > 0) {
+      let inputOptions = lodash.filter(args.options, function (x) {
+        return x.id == null;
+      });
+      if (inputOptions.length > 0) {
+        for (let index = 0; index < inputOptions.length; index++) {
+          let element = inputOptions[index];
+          element.questionId = args.id;
+          await context.models.QuestionOption.create({
+            ...element
+          });
+        }
+      }
     }
 
+    const question = await context.models.Question.findByPk(args.id, {
+      include: {
+        model: context.models.QuestionOption,
+        as: "options"
+      },
+    });
 
-    return updatedQuestion[1].dataValues;
+    return question.dataValues;
+
   } catch (error) {
     console.log(error)
     throw new EmptyResultError("Question not found!");
