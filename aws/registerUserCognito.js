@@ -16,8 +16,8 @@ module.exports = async (args) => {
 
   var user = userPool().signUp(args.email, args.password, attributeList, null, function(err, result){
       if (err) {
-          console.log(err);
-          return;
+        console.error(err)
+        return Error(err)
       }
       cognitoUser = result.user;
       console.log('user name is ' + cognitoUser.getUsername());
