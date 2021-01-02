@@ -13,6 +13,7 @@ const Category = `
     requiredDocuments: [RequiredDocument]
   }
   input requiredDocumentInput {
+    id : Int
     name: String
     description : String
   }
@@ -41,6 +42,7 @@ const Category = `
       maxPrice: Float
       isPriceRange: Boolean
       catalogId: Int
+      requiredDocuments: [requiredDocumentInput]
     ): Category!
 
     deleteCategory(id: Int!): Category!
