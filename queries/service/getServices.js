@@ -15,6 +15,10 @@ module.exports = async (...args) => {
     include: {
       model: context.models.Faq,
       as: "faqs"
+    },
+    include: {
+      model: context.models.User,
+      as: "user"
     }, 
     include: {
       model: context.models.ServiceContent,

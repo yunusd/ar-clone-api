@@ -20,6 +20,10 @@ module.exports = async (...args) => {
       model: context.models.ServiceContent,
       as: "contents"
     },
+    include: {
+      model: context.models.User,
+      as: "user"
+    },
     order: [
       ['id', 'DESC'],
   ],
