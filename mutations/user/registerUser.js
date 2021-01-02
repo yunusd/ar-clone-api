@@ -62,15 +62,15 @@ module.exports = async (_, args, context) => {
   });
   args.isUser=1;
   args.isAdmin=0;
-
-  let cognitoUser;
-  const saltRounds = 10;
-  await bcrypt.hash(args.password, saltRounds, function (err, hash) {
-    args.password = hash;
-    console.log(args)
-    const cognitoRegister = registerUserCognito(args);
-    cognitoUser = cognitoRegister;
-  });
+  const cognitoRegister = registerUserCognito(args);
+  // let cognitoUser;
+  // const saltRounds = 10;
+  // await bcrypt.hash(args.password, saltRounds, function (err, hash) {
+  //   args.password = hash;
+  //   console.log(args)
+  //   const cognitoRegister = registerUserCognito(args);
+  //   cognitoUser = cognitoRegister;
+  // });
 
   if (cognitoUser) {
     throw Error;
