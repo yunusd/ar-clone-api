@@ -3,6 +3,7 @@ const {
 } = require('sequelize');
 const lodash = require('lodash');
 const { func } = require('joi');
+const { zip } = require('lodash');
 
 module.exports = async (_, args, context) => {
   try {
@@ -30,7 +31,11 @@ module.exports = async (_, args, context) => {
         for (let index = 0; index < findCategory.dataValues.requiredDocuments.length; index++) {
           const element = findCategory.dataValues.requiredDocuments[index];
           console.log(element)
-          await context.models.RequiredDocument.destroy(element);
+          await context.models.RequiredDocument.destroy({
+            where: {
+              id: element.dataValues.id
+            }
+          });
         }
       }
     }
@@ -43,14 +48,35 @@ module.exports = async (_, args, context) => {
              return reqDoc.dataValues.id == y.id
             }) == true ? null : reqDoc;
         });
+        let updateList = lodash.filter(args.requiredDocuments, function (y) {          
+          if (y.id != null) {            
+            return findCategory.dataValues.requiredDocuments.some(function (x) {
+              return x.dataValues.id == y.id
+            })
+          }
+        });
+
         if (removeList.length > 0) {
-          console.log("test")
           for (let index = 0; index < removeList.length; index++) {
             const element = removeList[index];
             await context.models.RequiredDocument.destroy({
               where: {
                 id: element.dataValues.id
               }
+            });
+          }
+        }
+        if (updateList.length > 0) {
+          for (let index = 0; index < updateList.length; index++) {
+            const element = updateList[index];
+            await context.models.RequiredDocument.update({
+              ...element
+            }, {
+              where: {
+                id: element.id
+              },
+              returning: true,
+              plain: true
             });
           }
         }
@@ -65,7 +91,7 @@ module.exports = async (_, args, context) => {
         for (let index = 0; index < inputReqDoc.length; index++) {
           let element = inputReqDoc[index];
           element.categoryId = args.id;
-          var test = await context.models.RequiredDocument.create({
+          await context.models.RequiredDocument.create({
             ...element
           });
         }
