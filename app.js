@@ -29,5 +29,28 @@ app.use('/api', passport.authenticate('bearer', {
     session: false
 }));
 
+app.use((err, req, res, next) => {
+    if (err) {
+      if (err.status == null) {
+        logger.error(err.stack, 'Internal unexpected error from');
+        res.status(500);
+        res.json({
+          message: err.message,
+          type: err.code,
+          stack: err.stack,
+        });
+      } else {
+        res.status(err.status);
+        res.json({
+          message: err.message,
+          type: err.code,
+          stack: err.stack,
+        });
+      }
+    } else {
+      next();
+    }
+  });
+  
 
 module.exports = app;

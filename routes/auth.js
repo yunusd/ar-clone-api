@@ -10,17 +10,13 @@ var router = express.Router();
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-  res.send('unauthorized');
+  res.status(401).json('unauthorized');
 });
 
 router.post('/registerUser', async (req, res, next) => {
-  try {
-    await registerUserValidation.validateAsync(req.body, {
-      abortEarly: false
-    });
-  } catch (error) {
-    res.send(error).json()
-  }
+  await registerUserValidation.validateAsync(req.body, {
+    abortEarly: false
+  });
   let args = {...req.body};
 
   args.user_roles = [];
@@ -75,17 +71,20 @@ router.post('/registerUser', async (req, res, next) => {
 
   let cognitoUser;
   const saltRounds = 10;
-  await bcrypt.hash(args.password, saltRounds, function (err, hash) {
-    args.password = hash;
-    const cognitoRegister = registerUserCognito(args);
-    cognitoUser = cognitoRegister;
-  });
-
-  if (cognitoUser) {
-    throw Error;
+  try {
+    await bcrypt.hash(args.password, saltRounds, async (err, hash) => {
+      if(err) throw Error(err)
+      args.password = hash;
+      const cognitoRegister = registerUserCognito(args);
+      cognitoUser = cognitoRegister;
+    });
+  } catch (error) {
+    res.status(500).json({
+      error: error
+    });
   }
 
-  res.send(user).json();
+  res.json(user);
 });
 
 module.exports = router;
