@@ -2,10 +2,7 @@ const user = require("../../db/models/user");
 
 module.exports = async (...args) => {
     const [, params, context, ] = args;
-    const users = await context.models.User.findAll({
-        where: {
-            userName: context.user.userName
-        },
+    const users = await context.models.User.findByPk(context.user.id,{
         include: [{
             model: context.models.Address,
             as: "address"

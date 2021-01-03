@@ -14,16 +14,19 @@ module.exports = async (...args) => {
     include: {
       model: context.models.User_Category,
       as: "userServiceCategories"
-    },    
+    },
     include: {
       model: context.models.Status,
       as: "status"
     },
     include: {
       model: context.models.User_Role,
-      as: "user_roles", include: {model:context.models.Role,as: "role"}
+      as: "user_roles",
+      include: {
+        model: context.models.Role,
+        as: "role"
+      }
     },
   });
-  console.log(users)
   return users;
 };
