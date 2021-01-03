@@ -8,6 +8,9 @@ const Category = `
     maxPrice: Float
     isPriceRange: Boolean
     catalogId: Int
+    providerUsers : Int
+    commentCount : Int
+    avaregeRating : Int
     services: [Service]
     faqs: [Faq]
     questions: [Question]
