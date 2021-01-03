@@ -14,12 +14,16 @@ module.exports = async (_, args, context) => {
 
   try {
 
-    const findQuestion = await context.models.Question.findByPk(args.id, {
+    let findQuestion = await context.models.Question.findByPk(args.id, {
       include: {
         model: context.models.QuestionOption,
         as: "options"
       },
     });
+    if (!findQuestion) {
+      throw new EmptyResultError("Question not found!");
+    }
+    findQuestion = JSON.parse(JSON.stringify(findQuestion, null, 4));
 
     args.type = args.options.length == 2 ? "trueFalse" : args.options.length > 2 && args.options.length < 5 ? "singleChoice" : "dropDown";
     const updatedQuestion = await context.models.Question.update({
@@ -33,29 +37,29 @@ module.exports = async (_, args, context) => {
     });
     // gelen options yok ise db içersindeki options silinmesi
     if (args.options.length < 1) {
-      if (findQuestion.dataValues.options.length > 0) {
-        for (let index = 0; index < findQuestion.dataValues.options.length; index++) {
-          const element = findQuestion.dataValues.options[index];
+      if (findQuestion.options.length > 0) {
+        for (let index = 0; index < findQuestion.options.length; index++) {
+          const element = findQuestion.options[index];
           await context.models.QuestionOption.destroy({
             where: {
-              id: element.dataValues.id
+              id: element.id
             }
           });
         }
       }
     }
 
-    if (findQuestion.dataValues.options.length > 0) {
+    if (findQuestion.options.length > 0) {
       if (args.options.length > 0) {
-        let removeList = lodash.filter(findQuestion.dataValues.options, function (option) {
+        let removeList = lodash.filter(findQuestion.options, function (option) {
           return args.options.some(function (y) {
-            return option.dataValues.id == y.id
+            return option.id == y.id
           }) == true ? null : option;
         });
         let updateList = lodash.filter(args.options, function (option) {          
           if (option.id != null) {            
-            return findQuestion.dataValues.options.some(function (x) {
-              return x.dataValues.id == option.id
+            return findQuestion.options.some(function (x) {
+              return x.id == option.id
             })
           }
         });
@@ -65,7 +69,7 @@ module.exports = async (_, args, context) => {
             const element = removeList[index];
             await context.models.QuestionOption.destroy({
               where: {
-                id: element.dataValues.id
+                id: element.id
               }
             });
           }

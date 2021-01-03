@@ -21,5 +21,5 @@ passport.use(new BearerStrategy(async (token, done) => {
             as: "userServiceCategories"
         }
     })
-    return done(null, user.dataValues)
+    return done(null,JSON.parse(JSON.stringify(user, null, 4)))
 }));

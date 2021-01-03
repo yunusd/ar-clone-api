@@ -7,6 +7,8 @@ const Comment = `
     userId: Int
     user: User
     commentOwner: User
+    serviceId: Int
+    service : Service
 }
   
   extend type Query {
@@ -15,8 +17,8 @@ const Comment = `
   }
 
   extend type Mutation {
-    addComment(content: String!,userId: Int!, commentOwnerId: Int!,point: Float): Comment!
-    editComment(content: String!,userId: Int!, commentOwnerId: Int!,point: Float, id: Int!): Comment!
+    addComment(content: String!,userId: Int!, commentOwnerId: Int!,point: Float,serviceId: Int): Comment!
+    editComment(content: String!,userId: Int!, commentOwnerId: Int!,point: Float, id: Int!,serviceId: Int): Comment!
     deleteComment(id: Int!): Comment!
   }
 `
