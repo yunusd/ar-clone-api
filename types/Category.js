@@ -2,6 +2,7 @@ const Category = `
   type Category {
     id: Int
     name: String
+    description: String
     posterPath: String
     minPrice: Float
     maxPrice: Float
@@ -26,6 +27,7 @@ const Category = `
   extend type Mutation {
     addCategory(
       posterPath: String
+      description: String
       name: String!
       minPrice: Float!
       maxPrice: Float!
@@ -38,6 +40,7 @@ const Category = `
       id: Int!
       posterPath: String
       name: String
+      description: String
       minPrice: Float
       maxPrice: Float
       isPriceRange: Boolean
