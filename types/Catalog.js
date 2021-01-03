@@ -3,6 +3,7 @@ const Catalog = `
     id: Int!
     name: String!
     posterPath: String
+    description: String
     categories: [Category]
   }
   
@@ -12,8 +13,8 @@ const Catalog = `
   }
 
   extend type Mutation {
-    addCatalog(name: String!,posterPath: String): Catalog!
-    editCatalog(name: String, posterPath: String, id: Int!): Catalog!
+    addCatalog(name: String!,posterPath: String,description: String): Catalog!
+    editCatalog(name: String, posterPath: String, id: Int!,description: String): Catalog!
     deleteCatalog(id: Int!): Catalog!
   }
 `
