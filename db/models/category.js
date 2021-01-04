@@ -16,7 +16,8 @@ module.exports = (sequelize, DataTypes) => {
   }
   Category.init(
     {
-      name: DataTypes.STRING,
+      name: DataTypes.STRING,     
+      description: DataTypes.STRING,
       posterPath: DataTypes.STRING,
       minPrice: DataTypes.FLOAT,
       maxPrice: DataTypes.FLOAT,

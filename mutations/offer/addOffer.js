@@ -1,3 +1,6 @@
+const { QueryError } = require('sequelize');
+const { AccessDeniedError } = require('sequelize');
+
 const {
   addOfferValidation
 } = require('../../validation/offer')
@@ -7,29 +10,33 @@ module.exports = async (_, args, context) => {
     abortEarly: false
   });
 
-  // TODO : permission için contexten gelen izin kontrol edilmeli.
 
-  const getService = await context.models.Service.findByPk(args.serviceId ,{
+  const user = context.user;
+  let getService = await context.models.Service.findByPk(args.serviceId, {
     include: {
       model: context.models.Offer,
       as: "offers"
     }
   });
+  getService = JSON.parse(JSON.stringify(getService, null, 4));
 
-  function isAnyOffer(element,index,array) {
-    return element.userId == args.userId;
+  if (user.user_categories.some(function (user_category) {
+    return user_category.categoryId == getService.categoryId && user_category.status.name == "active"
+  }) ) {
+    return AccessDeniedError("Unauthorized user");
   }
-  function isAnyWinnerOffer(element,index,array) {
-    return element.isWinnerOffer == true;
+
+
+  if (getService.offers.some(function (offer) {
+      return offer.isWinnerOffer == true;
+    })) {
+    return QueryError("Service have winner offer");
   }
-  
-  if (getService.offers.some(isAnyWinnerOffer)) {
-    return Error;
-    // TODO : servisde kazanan bir offer mevcut yeni offer create edilemez.
-  }
-  if (!getService.offers.some(isAnyOffer)) {
-    return Error;
-    // TODO : eğer gelen offer isteği sahininin başka bir offer ı var ise hata atılacak.
+
+  if (getService.offers.some(function (offer) {
+      return offer.userId == user.id;
+    })) {
+      return QueryError("User allready have offer");
   }
   const offer = await context.models.Offer.create({
     ...args

@@ -10,6 +10,7 @@ module.exports = (sequelize, DataTypes) => {
   Catalog.init(
     {
       name: DataTypes.STRING,
+      description: DataTypes.STRING,
       posterPath: DataTypes.STRING,
     },
     {
