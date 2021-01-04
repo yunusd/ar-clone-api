@@ -24,10 +24,6 @@ const User = `
     getCurrentUser: User
     getUsers(cityId : Int, countryId : Int, stateId : Int, catalogId: Int, statusId: Int, limit: Int, offset:Int,isServing : Boolean): [User!]!
   }
-
-  extend type Mutation {
-    registerUser( firstName: String, lastName: String, email: String, userName: String, phoneNumber: String! , addressId : Int,password: String!,posterPath: String): User!
-  }
 `
 
 module.exports = User;

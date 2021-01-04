@@ -72,12 +72,8 @@ router.post('/registerUser', async (req, res, next) => {
   let cognitoUser;
   const saltRounds = 10;
   try {
-    await bcrypt.hash(args.password, saltRounds, async (err, hash) => {
-      if(err) throw Error(err)
-      args.password = hash;
-      const cognitoRegister = registerUserCognito(args);
-      cognitoUser = cognitoRegister;
-    });
+    const cognitoRegister = registerUserCognito(args);
+    cognitoUser = cognitoRegister;
   } catch (error) {
     res.status(500).json({
       error: error

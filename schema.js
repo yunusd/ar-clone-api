@@ -57,7 +57,7 @@ const userInfoQueries = require('./queries/userInfo');
 const commentQueries = require('./queries/comment');
 
 // Mutations
-const userMutation = require('./mutations/user');
+// const userMutation = require('./mutations/user');
 const catalogMutation = require('./mutations/catalog');
 const categoryMutation = require('./mutations/category');
 const offerMutation = require('./mutations/offer');
@@ -129,7 +129,7 @@ const resolvers = merge(
   commentQueries,
   
   // mutations
-  userMutation,
+  // userMutation,
   catalogMutation,
   categoryMutation,
   offerMutation,
