@@ -1,8 +1,13 @@
+const {
+    required
+} = require("joi");
 const user = require("../../db/models/user");
+
+const lodash = require("lodash");
 
 module.exports = async (...args) => {
     const [, params, context, ] = args;
-    const users = await context.models.User.findByPk(context.user.id, {
+    let user = await context.models.User.findByPk(context.user.id, {
         include: [{
                 model: context.models.Address,
                 as: "address"
@@ -14,8 +19,7 @@ module.exports = async (...args) => {
             {
                 model: context.models.User_Category,
                 as: "userServiceCategories",
-                include: [                    
-                    {
+                include: [{
                         model: context.models.Status,
                         as: "status"
                     },
@@ -32,14 +36,25 @@ module.exports = async (...args) => {
             {
                 model: context.models.User_Role,
                 as: "user_roles",
-                include:[
-                    {
+                include: [{
                     model: context.models.Role,
                     as: "role"
                 }]
             },
+            {
+                model: context.models.Offer,
+                as: "offers",
+            }
         ]
     }, );
+    user = JSON.parse(JSON.stringify(user, null, 4));
 
-    return users;
+    if (user.offers.length > 0) {
+        user.winnerOffers = lodash.filter(user.offers, function (offer) {
+            return offer.isWinnerOffer == true;
+        })
+
+    }
+
+    return user;
 };

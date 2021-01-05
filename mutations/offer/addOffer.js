@@ -16,9 +16,32 @@ module.exports = async (_, args, context) => {
     include: {
       model: context.models.Offer,
       as: "offers"
+    },
+    include:{
+      model: context.models.ServiceContent,
+      as: "contents",
+      include:[
+        {
+          model: context.models.QuestionOption,
+          as: "questionOption"
+        }
+      ]
     }
   });
   getService = JSON.parse(JSON.stringify(getService, null, 4));
+
+  let minPrice =0;
+  let maxPrice = 0;
+  if (getService.contents.length > 0 ) {
+    for (let index = 0; index < getService.contents.length; index++) {
+      const content = getService.contents[index];
+      minPrice += content.QuestionOption.minPrice;
+      maxPrice += content.QuestionOption.maxPrice;
+    }
+  }
+  if (args.price == null || args.price < minPrice || args.price > maxPrice) {
+    return QueryError("Offer must be between service price range");
+  }
 
   if (user.user_categories.some(function (user_category) {
     return user_category.categoryId == getService.categoryId && user_category.status.name == "active"

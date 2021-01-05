@@ -17,6 +17,7 @@ const User = `
     status: Status
     statusId: Int
     user_roles: [User_Role]
+    winnerOffers : [Offer]
   }
   
   input UserRoleInput{
