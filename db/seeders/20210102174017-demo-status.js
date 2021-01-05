@@ -20,7 +20,19 @@ module.exports = {
         name: "suspend",
         createdAt: new Date(),
         updatedAt: new Date(),
-      }
+      },
+      {
+        id:10003,
+        name: "pending",
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        id:10004,
+        name: "approved",
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      }      
     ]);
   },
 
