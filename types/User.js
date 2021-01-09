@@ -18,6 +18,7 @@ const User = `
     statusId: Int
     user_roles: [User_Role]
     winnerOffers : [Offer]
+    profit : Float
   }
   
   input UserRoleInput{

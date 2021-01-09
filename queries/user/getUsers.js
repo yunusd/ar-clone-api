@@ -51,6 +51,10 @@ module.exports = async (...args) => {
           as: "role"
         }
       },
+      {
+        model: context.models.Offer,
+        as: "offers",
+      }
     ],
     order: [
       ['id', 'DESC'],
@@ -59,10 +63,24 @@ module.exports = async (...args) => {
     offset: params.offset,
     limit: params.limit
   });
-
+  users = JSON.parse(JSON.stringify(users, null, 4));
+  if (users != null ) {
+    for (let index = 0; index < users.length; index++) {
+      const user = users[index];      
+      user.profit = 0;
+      if (user.offers.length > 0) {
+          user.winnerOffers = lodash.filter(user.offers, function (offer) {
+              if (offer.isWinnerOffer == true) {
+                  user.profit += offer.price
+                  return offer;
+              }
+          })
+      }
+    }
+  }
   if (params.isServing != null) {
     users = lodash.filter(users, function (x) {
-      if (x.dataValues.catalogId != null && params.isServing == true) {
+      if (x.catalogId != null && params.isServing == true) {
         return x;
       }
     });
@@ -70,37 +88,37 @@ module.exports = async (...args) => {
 
   if (params.statusId != null) {
     users = lodash.filter(users, function (x) {
-      if (x.dataValues.statusId != null) {
-        return x.dataValues.statusId == params.statusId;
+      if (x.statusId != null) {
+        return x.statusId == params.statusId;
       }
     });
   }
   if (params.catalogId != null) {
     users = lodash.filter(users, function (x) {
-      if (x.dataValues.catalogId != null) {
-        return x.dataValues.catalogId == params.catalogId;
+      if (x.catalogId != null) {
+        return x.catalogId == params.catalogId;
       }
     });
   }
   if (params.cityId != null) {
     users = lodash.filter(users, function (x) {
-      if (x.dataValues.address != null && x.dataValues.address.dataValues != null) {
-        return x.dataValues.address.dataValues.cityId == params.cityId;
+      if (x.address != null ) {
+        return x.address.cityId == params.cityId;
       }
     });
 
   }
   if (params.countryId != null) {
     users = lodash.filter(users, function (x) {
-      if (x.dataValues.address != null && x.dataValues.address.dataValues != null) {
-        return x.dataValues.address.countryId == params.countryId
+      if (x.address != nul) {
+        return x.address.countryId == params.countryId
       }
     });
   }
   if (params.stateId != null) {
     users = lodash.filter(users, function (x) {
-      if (x.dataValues.address != null && x.dataValues.address.dataValues != null) {
-        return x.dataValues.address.stateId == params.stateId
+      if (x.address != null ) {
+        return x.address.stateId == params.stateId
       }
     });
   }

@@ -48,12 +48,14 @@ module.exports = async (...args) => {
         ]
     }, );
     user = JSON.parse(JSON.stringify(user, null, 4));
-
+    user.profit = 0;
     if (user.offers.length > 0) {
         user.winnerOffers = lodash.filter(user.offers, function (offer) {
-            return offer.isWinnerOffer == true;
+            if (offer.isWinnerOffer == true) {
+                user.profit += offer.price
+                return offer;
+            }
         })
-
     }
 
     return user;
