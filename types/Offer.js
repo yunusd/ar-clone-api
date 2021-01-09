@@ -7,6 +7,7 @@ const Offer = `
     user: User
     service: Service
     isWinnerOffer : Boolean
+    contents: [Offer_Content]
   }
   
   extend type Query {

@@ -6,6 +6,7 @@ module.exports = async (...args) => {
     include: [
       { model: context.models.Service, as: "service" },
       { model: context.models.User, as: "user" },
+      { model: context.models.Offer_Content, as: "contents" },
     ],
     order: [
       ['id', 'DESC'],

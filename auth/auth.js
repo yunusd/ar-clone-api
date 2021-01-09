@@ -16,10 +16,20 @@ passport.use(new BearerStrategy(async (token, done) => {
         where: {
             email
         },
-        include: {
+        include: [{
             model: models.User_Category,
             as: "userServiceCategories"
-        }
+        }, {
+            model: models.Status,
+            as: "status"
+        }, {
+            model: models.User_Role,
+            as: "user_roles",
+            include: [{
+                model: models.Role,
+                as: "role"
+            }]
+        }, ]
     })
-    return done(null,JSON.parse(JSON.stringify(user, null, 4)))
+    return done(null, JSON.parse(JSON.stringify(user, null, 4)))
 }));
