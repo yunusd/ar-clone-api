@@ -30,6 +30,7 @@ const User = `
   extend type Query {
     getUser(id: Int!): User
     getCurrentUser: User
+    getUsersStatistics: UsersStatistics
     getUsers(cityId : Int, countryId : Int, stateId : Int, catalogId: Int, statusId: Int, limit: Int, offset:Int,isServing : Boolean): [User!]!
   }
 

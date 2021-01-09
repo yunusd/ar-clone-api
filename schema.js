@@ -28,6 +28,7 @@ const Calendar = require('./types/Calendar');
 const UserInfo = require('./types/UserInfo');
 const File = require('./types/File');
 const Comment = require('./types/Comment');
+const UsersStatistics = require('./types/UsersStatistics');
 
 // Queries
 const userQueries = require('./queries/user');
@@ -184,6 +185,7 @@ const schema = makeExecutableSchema({
     UserInfo,
     File,
     Comment,
+    UsersStatistics,
     `scalar Upload`,
 
   ],
