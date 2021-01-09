@@ -6,6 +6,7 @@ module.exports = async (_, args, context) => {
     minPrice: args.minPrice,
     maxPrice: args.maxPrice,
     isPriceRange: args.isPriceRange,
+    description: args.description,
     requiredDocuments: args.requiredDocuments
   }, {
     include: {
