@@ -9,7 +9,7 @@ const bcrypt = require('bcrypt');
 var router = express.Router();
 
 /* GET users listing. */
-router.get('/', function(req, res, next) {
+router.get('/', function (req, res, next) {
   res.status(401).json('unauthorized');
 });
 
@@ -17,24 +17,14 @@ router.post('/registerUser', async (req, res, next) => {
   await registerUserValidation.validateAsync(req.body, {
     abortEarly: false
   });
-  let args = {...req.body};
+  let args = {
+    ...req.body
+  };
 
   args.user_roles = [];
 
-  //TODO: active name değişecek
-  const defaultStatus = await db.Status.findOne({
-    where: {
-      name: "active"
-    }
-  });
-  if (defaultStatus == null) {
-    insertStatus = await db.Status.create({
-      name: "active"
-    });
-    args.statusId = inserStatus.id;
-  } else {
-    args.statusId = defaultStatus.dataValues.id;
-  }
+  args.status = "active";
+
   const defaultRole = await db.Role.findOne({
     where: {
       name: "user"
@@ -61,13 +51,10 @@ router.post('/registerUser', async (req, res, next) => {
     include: [{
       model: db.User_Role,
       as: "user_roles"
-    }, {
-      model: db.Status,
-      as: "status"
     }]
   });
-  args.isUser=1;
-  args.isAdmin=0;
+  args.isUser = 1;
+  args.isAdmin = 0;
 
   let cognitoUser;
   const saltRounds = 10;

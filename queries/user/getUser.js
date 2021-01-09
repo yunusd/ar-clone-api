@@ -20,10 +20,6 @@ module.exports = async (...args) => {
             as: "category"
           },
           {
-            model: context.models.Status,
-            as: "status"
-          },
-          {
             model: context.models.Document,
             as: "documents"
           },
@@ -40,10 +36,6 @@ module.exports = async (...args) => {
             }
           },
         ]
-      },
-      {
-        model: context.models.Status,
-        as: "status"
       },
       {
         model: context.models.User_Role,

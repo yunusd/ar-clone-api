@@ -21,18 +21,12 @@ module.exports = async (...args) => {
                 model: context.models.Role,
                 as: "role"
             }
-        },
-        include: {
-            model: context.models.Status,
-            as: "status"
-        },
+        }
     });
     users = JSON.parse(JSON.stringify(users, null, 4));
 
-    let activeUsers = lodash.filter(users, function (x) {
-        if (x.status != null) {
-            return x.status.name != "active";
-        }
+    let activeUsers = lodash.filter(users, function (x) {      
+            return x.status == "active";        
     });
 
 

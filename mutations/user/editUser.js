@@ -7,15 +7,11 @@ const {
 
 module.exports = async (_, args, context) => {
 
-    var user = await context.models.User.findByPk(args.id, {
-        include: {
-            model: context.models.Status,
-            as: "status"
-        }
-    })
+    var user = await context.models.User.findByPk(args.id)
+
     user = JSON.parse(JSON.stringify(user, null, 4));
 
-    if (user.statusId != args.statusId) {
+    if (user.status != args.status) {
         if (!context.user.user_roles.some(function (user_role) {
                 return user_role.role.name == "admin"
             })) {

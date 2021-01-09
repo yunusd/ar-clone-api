@@ -10,7 +10,6 @@ module.exports = (sequelize, DataTypes) => {
       User.hasMany(models.Comment,{foreignKey:'userId', as: 'comments'});
       User.belongsTo(models.Address,{ foreignKey:'addressId', allowNull: true, as:'address'});
       User.belongsTo(models.Catalog,{foreignKey:'catalogId', allowNull: true, as:'userServiceCatalog'});
-      User.belongsTo(models.Status, { foreignKey: "statusId",allowNull:false,as :'status'});
 
     }
   }
@@ -21,7 +20,8 @@ module.exports = (sequelize, DataTypes) => {
       userName: DataTypes.STRING,
       phoneNumber: DataTypes.STRING,
       email: DataTypes.STRING,
-      posterPath: DataTypes.STRING
+      posterPath: DataTypes.STRING,
+      status: DataTypes.ENUM("active","blocked","suspend"),
     },
     {
       sequelize,

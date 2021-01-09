@@ -19,19 +19,12 @@ module.exports = async (...args) => {
             {
                 model: context.models.User_Category,
                 as: "userServiceCategories",
-                include: [{
-                        model: context.models.Status,
-                        as: "status"
-                    },
+                include: [
                     {
                         model: context.models.Document,
                         as: "documents"
                     }
                 ]
-            },
-            {
-                model: context.models.Status,
-                as: "status"
             },
             {
                 model: context.models.User_Role,

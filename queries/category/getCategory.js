@@ -27,15 +27,11 @@ module.exports = async (...args) => {
   });
   category = JSON.parse(JSON.stringify(category, null, 4));
 
-  let status = await context.models.Status.findOne({
-    where: {
-      name: "active"
-    }
-  })
+
   let providerUsers = await context.models.User_Category.findAll({
     where: {
       categoryId: category.id,
-      statusId : status.dataValues.id
+      status : "active"
     }
   });
 

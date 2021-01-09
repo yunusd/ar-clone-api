@@ -28,19 +28,12 @@ module.exports = async (...args) => {
       {
         model: context.models.User_Category,
         as: "userServiceCategories",
-        include: [{
-            model: context.models.Status,
-            as: "status"
-          },
+        include: [
           {
             model: context.models.Document,
             as: "documents"
           }
         ]
-      },
-      {
-        model: context.models.Status,
-        as: "status"
       },
       {
         model: context.models.User_Role,
@@ -97,11 +90,9 @@ module.exports = async (...args) => {
     });
   }
 
-  if (params.statusId != null) {
-    users = lodash.filter(users, function (x) {
-      if (x.statusId != null) {
-        return x.statusId == params.statusId;
-      }
+  if (params.status != null) {
+    users = lodash.filter(users, function (x) {     
+        return x.status == params.status;      
     });
   }
   if (params.catalogId != null) {

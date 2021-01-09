@@ -19,10 +19,8 @@ passport.use(new BearerStrategy(async (token, done) => {
         include: [{
             model: models.User_Category,
             as: "userServiceCategories"
-        }, {
-            model: models.Status,
-            as: "status"
-        }, {
+        },
+        {
             model: models.User_Role,
             as: "user_roles",
             include: [{

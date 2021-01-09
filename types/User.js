@@ -14,8 +14,7 @@ const User = `
     catalogId: Int
     userServiceCatalog: [Catalog]
     userServiceCategories: [User_Category]
-    status: Status
-    statusId: Int
+    status: String
     user_roles: [User_Role]
     winnerOffers : [Offer]
     profit : Float
@@ -33,7 +32,7 @@ const User = `
     getUser(id: Int!): User
     getCurrentUser: User
     getUsersStatistics: UsersStatistics
-    getUsers(cityId : Int, countryId : Int, stateId : Int, catalogId: Int, statusId: Int, limit: Int, offset:Int,isServing : Boolean): [User!]!
+    getUsers(cityId : Int, countryId : Int, stateId : Int, catalogId: Int, limit: Int, offset:Int,isServing : Boolean): [User!]!
   }
 
   extend type Mutation {
@@ -43,7 +42,7 @@ const User = `
       posterPath: String
       lastName: String
       addressId : Int
-      statusId: Int
+      status : String
     ): User
   
   }

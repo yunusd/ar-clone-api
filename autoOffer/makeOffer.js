@@ -24,15 +24,9 @@ module.exports = async (args) => {
 
         let user_categories = await models.User_Category.findAll({
             where: {
-                categoryId: service.categoryId
-            },
-            include: {
-                model: models.Status,
-                as: "status",
-                where: {
-                    name: "active"
-                }
-            },
+                categoryId: service.categoryId,
+                status : "active"
+            },           
             include: {
                 model: models.Rule,
                 as: "rules",

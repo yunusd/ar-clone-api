@@ -3,7 +3,7 @@ const UserInfo = `
     id: Int
     name: String
     address: Address
-    status: Status
+    status: String
     user_roles: [User_Role]
     serviceCount : Int
     offerCount: Int

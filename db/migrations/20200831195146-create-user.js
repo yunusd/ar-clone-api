@@ -26,6 +26,11 @@ module.exports = {
       phoneNumber: {
         type: Sequelize.STRING
       },
+      status: {
+        type: Sequelize.ENUM(
+          'active','blocked','suspend'
+        ),
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

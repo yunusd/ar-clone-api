@@ -5,8 +5,7 @@ const User_Category = `
     user: User
     category: Category
     categoryId: Int
-    statusId: Int
-    status: Status
+    status: String
     documents: [Document]
   }
   
@@ -16,7 +15,7 @@ const User_Category = `
 
   extend type Mutation {
     addUser_Category( userId: Int,categoryId:Int): User_Category!
-    editUser_Category(id:Int!, userId: Int,categoryId:Int,statusId : Int): User_Category!
+    editUser_Category(id:Int!, userId: Int,categoryId:Int,status: String): User_Category!
     deleteUser_Category( id:Int! ): User_Category!
   }
 `

@@ -24,10 +24,6 @@ module.exports = async (_, args, context) => {
                 model: context.models.Category,
                 as: "category"
             },
-            {
-                model: context.models.Status,
-                as: "status"
-            },
         ]
     });
 
@@ -36,7 +32,7 @@ module.exports = async (_, args, context) => {
     if (!getUser_Categories.some(function (x) {
             return x.rules.some(function (y) {
                 return y.id == args.ruleId;
-            }) && x.status.name == "active"
+            }) && x.status == "active"
         })) {
         throw AccessDeniedError("Current user cannot add any rule content !")
     }

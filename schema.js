@@ -16,7 +16,6 @@ const State = require('./types/State');
 const User_Category = require('./types/User_Category');
 const Role = require('./types/Role');
 const User_Role = require('./types/User_Role');
-const Status = require('./types/Status');
 const Dashboard = require('./types/Dashboard');
 const ServiceContent = require('./types/Service_Content');
 const OfferContent = require('./types/Offer_Content');
@@ -45,7 +44,6 @@ const stateQueries = require('./queries/state');
 const user_categoryQueries = require('./queries/user_category');
 const roleQueries = require('./queries/role');
 const user_roleQueries = require('./queries/user_role');
-const statusQueries = require('./queries/status');
 const dashboardQueries = require('./queries/dashboard');
 const service_contentQueries = require('./queries/service_content');
 const offer_contentQueries = require('./queries/offer_content');
@@ -71,7 +69,6 @@ const stateMutation = require('./mutations/state');
 const countryMutation = require('./mutations/country');
 const user_categoryMutation = require('./mutations/user_category');
 const roleMutation = require('./mutations/role');
-const statusMutation = require('./mutations/status');
 const user_roleMutation = require('./mutations/user_role');
 const service_contentMutation = require('./mutations/service_content');
 const offer_contentMutation = require('./mutations/offer_content');
@@ -117,7 +114,6 @@ const resolvers = merge(
   user_categoryQueries,
   roleQueries,
   user_roleQueries,
-  statusQueries,
   dashboardQueries,
   service_contentQueries,
   offer_contentQueries,
@@ -144,7 +140,6 @@ const resolvers = merge(
   user_categoryMutation,
   roleMutation,
   user_roleMutation,
-  statusMutation,
   service_contentMutation,
   offer_contentMutation,
   documentMutation,
@@ -173,7 +168,6 @@ const schema = makeExecutableSchema({
     User_Category,
     Role,
     User_Role,
-    Status,
     Dashboard,
     ServiceContent,
     OfferContent,

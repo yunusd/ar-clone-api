@@ -8,14 +8,10 @@ module.exports = async (_, args, context) => {
     // TODO : User subsribe olup olmadığı kontrol edilecek.
     // TODO : UI tarafında eğer ihtiyaç var ise user_Category documanları da insert edilecek.
 
-    let user = await context.models.User.findByPk(context.userId, {
-        include: {
-            model: context.models.Status,
-            as: "status"
-        }
-    });
+    let user = await context.models.User.findByPk(context.user.userId );
     user = JSON.parse(JSON.stringify(user, null, 4));
-    if (user.status.name != "active") {
+
+    if (user.status != "active") {
         return new AccessDeniedError("User must be active!");
     }
 
@@ -39,24 +35,10 @@ module.exports = async (_, args, context) => {
     });
     category = JSON.parse(JSON.stringify(category, null, 4));
 
-    if (category.requiredDocuments.length > 0) {
-        let getDefaultStatus = await context.models.Status.findOne({
-            where: {
-                name: "pending"
-            }
-        });
-        getDefaultStatus = JSON.parse(JSON.stringify(getDefaultStatus, null, 4));
-
-        args.statusId = getDefaultStatus.id;
+    if (category.requiredDocuments.length > 0) {        
+        args.status = "verifying";
     } else {
-        let getDefaultStatus = await context.models.Status.findOne({
-            where: {
-                name: "approved"
-            }
-        });
-        getDefaultStatus = JSON.parse(JSON.stringify(getDefaultStatus, null, 4));
-
-        args.statusId = getDefaultStatus.id;
+        args.status = "approved";
     }
 
     const user_category = await context.models.User_Category.create({

@@ -49,7 +49,7 @@ module.exports = async (_, args, context) => {
   }
 
   if (user.user_categories.some(function (user_category) {
-    return user_category.categoryId == getService.categoryId && user_category.status.name == "active"
+    return user_category.categoryId == getService.categoryId && user_category.status == "active"
   }) ) {
     return AccessDeniedError("Unauthorized user");
   }
