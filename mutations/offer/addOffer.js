@@ -30,17 +30,22 @@ module.exports = async (_, args, context) => {
   });
   getService = JSON.parse(JSON.stringify(getService, null, 4));
 
-  let minPrice =0;
-  let maxPrice = 0;
-  if (getService.contents.length > 0 ) {
-    for (let index = 0; index < getService.contents.length; index++) {
-      const content = getService.contents[index];
-      minPrice += content.QuestionOption.minPrice;
-      maxPrice += content.QuestionOption.maxPrice;
+  let getCategory = await context.models.Category.findByPk(args.categoryId);
+  getCategory = JSON.parse(JSON.stringify(getCategory, null, 4));
+
+  if (getCategory.isPriceRange == true) {
+    let minPrice =0;
+    let maxPrice = 0;
+    if (getService.contents.length > 0 ) {
+      for (let index = 0; index < getService.contents.length; index++) {
+        const content = getService.contents[index];
+        minPrice += content.QuestionOption.minPrice;
+        maxPrice += content.QuestionOption.maxPrice;
+      }
     }
-  }
-  if (args.price == null || args.price < minPrice || args.price > maxPrice) {
-    return QueryError("Offer must be between service price range");
+    if (args.price == null || args.price < minPrice || args.price > maxPrice) {
+      return QueryError("Offer must be between service price range");
+    }
   }
 
   if (user.user_categories.some(function (user_category) {
