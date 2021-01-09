@@ -19,6 +19,8 @@ const User = `
     user_roles: [User_Role]
     winnerOffers : [Offer]
     profit : Float
+    rating : Float
+    comments: [Comment]
   }
   
   input UserRoleInput{

@@ -28,8 +28,7 @@ module.exports = async (...args) => {
       {
         model: context.models.User_Category,
         as: "userServiceCategories",
-        include: [          
-          {
+        include: [{
             model: context.models.Status,
             as: "status"
           },
@@ -54,7 +53,11 @@ module.exports = async (...args) => {
       {
         model: context.models.Offer,
         as: "offers",
-      }
+      },
+      {
+        model: context.models.Comment,
+        as: "comments",
+      },
     ],
     order: [
       ['id', 'DESC'],
@@ -64,17 +67,25 @@ module.exports = async (...args) => {
     limit: params.limit
   });
   users = JSON.parse(JSON.stringify(users, null, 4));
-  if (users != null ) {
+  if (users != null) {
     for (let index = 0; index < users.length; index++) {
-      const user = users[index];      
+      const user = users[index];
       user.profit = 0;
       if (user.offers.length > 0) {
-          user.winnerOffers = lodash.filter(user.offers, function (offer) {
-              if (offer.isWinnerOffer == true) {
-                  user.profit += offer.price
-                  return offer;
-              }
-          })
+        user.winnerOffers = lodash.filter(user.offers, function (offer) {
+          if (offer.isWinnerOffer == true) {
+            user.profit += offer.price
+            return offer;
+          }
+        })
+      }
+      let userTotalRating = 0;
+      if (user.comments.length > 0) {
+        for (let index = 0; index < user.comments.length; index++) {
+          const comment = user.comments[index];
+          userTotalRating += comment.point;
+        }
+        user.rating = userTotalRating / user.comments.length;
       }
     }
   }
@@ -102,7 +113,7 @@ module.exports = async (...args) => {
   }
   if (params.cityId != null) {
     users = lodash.filter(users, function (x) {
-      if (x.address != null ) {
+      if (x.address != null) {
         return x.address.cityId == params.cityId;
       }
     });
@@ -117,7 +128,7 @@ module.exports = async (...args) => {
   }
   if (params.stateId != null) {
     users = lodash.filter(users, function (x) {
-      if (x.address != null ) {
+      if (x.address != null) {
         return x.address.stateId == params.stateId
       }
     });
