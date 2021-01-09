@@ -33,8 +33,9 @@ module.exports = async (...args) => {
       }
     });
   }
-
-
+  services = lodash.filter(services.dataValues, function (service) {
+    return service.dataValues.userId != context.user.id;
+  });
 
   return services;
 };

@@ -12,6 +12,7 @@ const Offer = `
   
   extend type Query {
     getOffer(id: Int!): Offer!
+    getOffersByUserId(userId: Int!): [Offer]
     getOfferByServiceId(serviceId: Int!): [Offer!]!
   }
 

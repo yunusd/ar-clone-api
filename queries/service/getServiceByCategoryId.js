@@ -1,6 +1,8 @@
+const lodash = require('lodash');
+
 module.exports = async (...args) => {
   const [, params, context, ] = args;
-  const services = await context.models.Service.findAll({
+  let services = await context.models.Service.findAll({
     where: {
       categoryId: params.categoryId
     },
@@ -11,11 +13,11 @@ module.exports = async (...args) => {
     include: {
       model: context.models.Offer,
       as: "offers"
-    }, 
+    },
     include: {
       model: context.models.Faq,
       as: "faqs"
-    }, 
+    },
     include: {
       model: context.models.ServiceContent,
       as: "contents"
@@ -26,7 +28,13 @@ module.exports = async (...args) => {
     },
     order: [
       ['id', 'DESC'],
-  ],
+    ],
   });
+  services = JSON.parse(JSON.stringify(services, null, 4));
+
+  services = lodash.filter(services, function (service) {
+    return service.userId != context.user.id;
+  });
+
   return services;
 };

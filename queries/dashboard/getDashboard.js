@@ -1,6 +1,3 @@
-const {
-    date
-} = require('joi');
 const lodash = require('lodash');
 const {
     AccessDeniedError
