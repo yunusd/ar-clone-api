@@ -1,8 +1,16 @@
-const Dashboard = require("../../types/Dashboard");
 const lodash = require('lodash');
+const {
+    AccessDeniedError
+} = require('sequelize');
 
 module.exports = async (...args) => {
     const [, params, context, ] = args;
+
+    if (!context.user.user_roles.some(function (user_role) {
+            return user_role.role.name == "admin";
+        })) {
+        throw AccessDeniedError("Current user must be admin!")
+    }
 
     // TODO : buraya bakılacak
     const users = await context.models.User.findAll({

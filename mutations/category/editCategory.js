@@ -2,8 +2,7 @@ const {
   EmptyResultError
 } = require('sequelize');
 const lodash = require('lodash');
-const { func } = require('joi');
-const { zip } = require('lodash');
+
 
 module.exports = async (_, args, context) => {
   try {
@@ -26,7 +25,7 @@ module.exports = async (_, args, context) => {
       plain: true
     });
     // gelen requireddocument yok ise db içersindeki requireddocumentların silinmesi
-    if (args.requiredDocuments.length < 1) {
+    if (args.requiredDocuments == null || args.requiredDocuments.length < 1) {
       if (findCategory.dataValues.requiredDocuments.length > 0) {
         for (let index = 0; index < findCategory.dataValues.requiredDocuments.length; index++) {
           const element = findCategory.dataValues.requiredDocuments[index];
@@ -83,7 +82,7 @@ module.exports = async (_, args, context) => {
       }
     }
 
-    if (args.requiredDocuments.length > 0) {
+    if (args.requiredDocuments != null && args.requiredDocuments.length > 0) {
       let inputReqDoc = lodash.filter(args.requiredDocuments, function (x) {
         return x.id == null;
       });
