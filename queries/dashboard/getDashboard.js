@@ -1,3 +1,6 @@
+const {
+    date
+} = require('joi');
 const lodash = require('lodash');
 const {
     AccessDeniedError
@@ -6,14 +9,14 @@ const {
 module.exports = async (...args) => {
     const [, params, context, ] = args;
 
-    if (!context.user.user_roles.some(function (user_role) {
-            return user_role.role.name == "admin";
-        })) {
-        throw AccessDeniedError("Current user must be admin!")
-    }
+    // if (!context.user.user_roles.some(function (user_role) {
+    //         return user_role.role.name == "admin";
+    //     })) {
+    //     throw new AccessDeniedError("Current user must be admin!")
+    // }
 
     // TODO : buraya bakılacak
-    const users = await context.models.User.findAll({
+    let users = await context.models.User.findAll({
         include: {
             model: context.models.User_Role,
             as: "user_roles",
@@ -27,14 +30,16 @@ module.exports = async (...args) => {
             as: "status"
         },
     });
-    const activeUsers = lodash.filter(users, function (x) {
-        if (x.dataValues.status != null) {
-            return x.dataValues.status.name != "active";
+    users = JSON.parse(JSON.stringify(users, null, 4));
+
+    let activeUsers = lodash.filter(users, function (x) {
+        if (x.status != null) {
+            return x.status.name != "active";
         }
     });
 
 
-    const offers = await context.models.Offer.findAll({
+    let offers = await context.models.Offer.findAll({
         include: {
             model: context.models.User,
             as: "user"
@@ -44,20 +49,25 @@ module.exports = async (...args) => {
             as: "service"
         },
     });
-    const currentDay = new Date();
-    //TODO son güne ait zamanlı sorgular atılacak.
-    // console.log(currentDay.getHours() - 22);
-    // önceki gün içi sorgusu    const lastDayOfferCount = lodash.filter(offers, x => x.createdAt <= '2020-11-06 01:35:15').length;
-    // const lastDayOfferCount = lodash.filter(offers, x => x.createdAt <= currentDay.getDate() - 1 <= currentDay.getDate()).length;
-    // const lastDayOfferCount = lodash.filter(offers, function (x) {
-    //     return x.dataValues.createdAt <= currentDay.getDate() -1 <= currentDay.getDate() 
-    // }).length;
-    // bu gün var olan saat sorgusu
-    // const todayOfferCount = lodash.filter(offers, x => x.createdAt >= currentDay.getDate()).length;
-    const todayOfferCount = 0;
-    const lastDayOfferCount = 0;
+    offers = JSON.parse(JSON.stringify(offers, null, 4));
 
-    const services = await context.models.Service.findAll({
+    const currentDay = new Date();
+    let oneDayMs = 86400000;
+    let todayOfferCount =0;
+    let lastDayOfferCount =0;
+
+    if (offers.length > 0) {
+        for (let index = 0; index < offers.length; index++) {
+            const offer = offers[index];
+            if (new Date(offer.createdAt) >= new Date(currentDay - oneDayMs)) {
+                todayOfferCount ++;
+            }
+            if (new Date(offer.createdAt) >= new Date(currentDay - (oneDayMs * 2)) && new Date(offer.createdAt) <= new Date(currentDay) - new Date(oneDayMs)) {
+                lastDayOfferCount ++;
+            }
+        }
+    }
+    let services = await context.models.Service.findAll({
         include: {
             model: context.models.Address,
             as: "address"
@@ -70,8 +80,23 @@ module.exports = async (...args) => {
             ['id', 'DESC'],
         ],
     });
-    const lastDayServiceCount = 0; //  lodash.filter(services, x => x.createdAt <= '').length;
-    const todayServiceCount = 0; //lodash.filter(services, x => x.createdAt <= '').length;
+    services = JSON.parse(JSON.stringify(services, null, 4));
+
+    let lastDayServiceCount = 0; 
+    let todayServiceCount = 0;
+
+    if (services.length > 0) {
+        for (let index = 0; index < services.length; index++) {
+            const service = services[index];
+            if (new Date(service.createdAt) >= new Date(currentDay - oneDayMs)) {
+                todayServiceCount ++;
+            }
+            if (new Date(service.createdAt) >= new Date(currentDay - (oneDayMs * 2)) && new Date(service.createdAt) <= new Date(currentDay) - new Date(oneDayMs)) {
+                lastDayServiceCount ++;
+            }
+        }
+    }
+   
 
     const dashboard = {
         activeUsers: activeUsers,
