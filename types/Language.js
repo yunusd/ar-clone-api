@@ -11,7 +11,7 @@ extend type Query {
   }
   
 extend type Mutation {
-    editWord(word: String!, tr: String,kz: String,ru: String): Language
+    editWord(id:Int!,word: String!,lang: String): Words
 }
 `;
 module.exports = Language;
