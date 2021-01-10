@@ -28,6 +28,8 @@ const UserInfo = require('./types/UserInfo');
 const File = require('./types/File');
 const Comment = require('./types/Comment');
 const UsersStatistics = require('./types/UsersStatistics');
+const Language = require('./types/Language');
+const Words = require('./types/Words');
 
 // Queries
 const userQueries = require('./queries/user');
@@ -54,6 +56,7 @@ const ruleContentQueries = require('./queries/ruleContent');
 const calendarQueries = require('./queries/calendar');
 const userInfoQueries = require('./queries/userInfo');
 const commentQueries = require('./queries/comment');
+const languageQueries = require('./queries/language');
 
 // Mutations
 const userMutation = require('./mutations/user');
@@ -79,6 +82,7 @@ const ruleContentMutation = require('./mutations/ruleContent');
 const calendarMutation = require('./mutations/calendar');
 const fileMutation = require('./mutations/file');
 const commentMutation = require('./mutations/comment');
+const languageMutation = require('./mutations/language');
 
 const Root = `
   type Query {
@@ -124,6 +128,7 @@ const resolvers = merge(
   calendarQueries,
   userInfoQueries,
   commentQueries,
+  languageQueries,
   
   // mutations
   userMutation,
@@ -149,6 +154,7 @@ const resolvers = merge(
   calendarMutation,
   fileMutation,
   commentMutation,
+  languageMutation,
 );
 
 const schema = makeExecutableSchema({
@@ -180,6 +186,8 @@ const schema = makeExecutableSchema({
     File,
     Comment,
     UsersStatistics,
+    Language,
+    Words,
     `scalar Upload`,
 
   ],
