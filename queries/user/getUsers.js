@@ -1,5 +1,4 @@
 const lodash = require('lodash');
-const user = require('../../db/models/user');
 
 module.exports = async (...args) => {
   const [, params, context, ] = args;

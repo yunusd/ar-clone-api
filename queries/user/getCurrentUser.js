@@ -1,7 +1,3 @@
-const {
-    required
-} = require("joi");
-const user = require("../../db/models/user");
 
 const lodash = require("lodash");
 

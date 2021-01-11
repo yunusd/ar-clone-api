@@ -31,8 +31,8 @@ const User = `
   extend type Query {
     getUser(id: Int!): User
     getCurrentUser: User
-    getUsersStatistics(cityId : Int, countryId : Int, stateId : Int, catalogId: Int,isServing : Boolean): UsersStatistics
-    getUsers(cityId : Int, countryId : Int, stateId : Int, catalogId: Int, limit: Int, offset:Int,isServing : Boolean): [User!]!
+    getUsersStatistics(cityId : Int, countryId : Int, stateId : Int, catalogId: Int,isServing : Boolean,status: String): UsersStatistics
+    getUsers(cityId : Int, countryId : Int, stateId : Int, catalogId: Int, limit: Int, offset:Int,isServing : Boolean,status: String): [User!]!
   }
 
   extend type Mutation {

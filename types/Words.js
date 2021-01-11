@@ -1,6 +1,6 @@
 const Words = `
   type Words {
-    
+    id: Int
     key : String
     value : String
 

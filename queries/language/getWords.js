@@ -18,6 +18,7 @@ module.exports = async (...args) => {
         case "tr":
             getWords.forEach(x => {
                 words.push({
+                    id: x.id,
                     key: x.word,
                     value: x.tr
                 })
@@ -26,6 +27,7 @@ module.exports = async (...args) => {
         case "ru":
             getWords.forEach(x => {
                 words.push( {
+                    id: x.id,
                     key: x.word,
                     value: x.ru
                 })
@@ -34,6 +36,7 @@ module.exports = async (...args) => {
         case "kz":
             getWords.forEach(x => {
                 words.push({
+                    id: x.id,
                     key: x.word,
                     value: x.kz
                 })
