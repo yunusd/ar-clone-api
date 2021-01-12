@@ -15,6 +15,27 @@ module.exports = {
         roleId: 10001,
         createdAt: new Date(),
         updatedAt: new Date(),
+      },
+      {
+        id: 10002,
+        userId: 10002,
+        roleId: 10000,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        id: 10003,
+        userId: 10003,
+        roleId: 10000,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        id: 10004,
+        userId: 10004,
+        roleId: 10000,
+        createdAt: new Date(),
+        updatedAt: new Date(),
       }
     ]);
   },
