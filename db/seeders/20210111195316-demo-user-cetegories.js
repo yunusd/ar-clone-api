@@ -5,7 +5,7 @@ module.exports = {
     return queryInterface.bulkInsert("User_Categories", [{
         id: 10000,
         userId: 10001,
-        categoryId: 10000,
+        categoryId: 10001,
         status: "approved",
         createdAt: new Date(),
         updatedAt: new Date(),

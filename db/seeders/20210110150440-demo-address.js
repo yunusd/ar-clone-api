@@ -4,7 +4,6 @@ module.exports = {
   up: async (queryInterface) => {
     return queryInterface.bulkInsert("Addresses", [{
         id: 10000,
-        name: "Test Address - 1",
         countryId: 10000,
         stateId: 10000,
         cityId: 10000,
@@ -17,7 +16,6 @@ module.exports = {
       },
       {
         id: 10001,
-        name: "Test Address - 2",
         countryId: 10000,
         stateId: 10001,
         cityId: 10001,
