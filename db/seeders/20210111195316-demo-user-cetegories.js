@@ -26,6 +26,22 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date(),
       },
+      {
+        id: 10003,
+        userId: 10002,
+        categoryId: 10002,
+        status: "approved",
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        id: 10004,
+        userId: 10003,
+        categoryId: 10002,
+        status: "approved",
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
     ]);
   },
 
