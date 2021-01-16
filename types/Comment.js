@@ -11,11 +11,14 @@ const Comment = `
     serviceId: Int
     service : Service
 }
-  
+  type AllComment {
+    count: Int
+    comments: [Comment]    
+  }
   extend type Query {
     getComment(id: Int!): Comment!
-    getCommentsByUserId(userId: Int!): [Comment!]!
-    getCommentsCategoryId(categoryId: Int!,limit: Int, offset:Int): [Comment!]!
+    getCommentsByUserId(userId: Int!,limit: Int, offset:Int): AllComment
+    getCommentsCategoryId(categoryId: Int!,limit: Int, offset:Int): AllComment!
   }
 
   extend type Mutation {

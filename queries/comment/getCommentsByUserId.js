@@ -1,6 +1,6 @@
 module.exports = async (...args) => {
     const [, params, context, ] = args;
-    const comments = await context.models.Comment.findAll({
+    let comments = await context.models.Comment.findAll({
         include: [{
                 model: context.models.User,
                 foreignKey: "commentOwnerId",
@@ -15,6 +15,22 @@ module.exports = async (...args) => {
         where: {
             userId: params.userId
         }
+    }, {
+        offset: params.offset,
+        limit: params.limit
     });
-    return comments;
+    let count = await context.models.Comment.count({
+        where: {
+            userId: params.userId
+        }
+    });
+
+    comments = JSON.parse(JSON.stringify(comments, null, 4));
+
+    let commentAll = {
+        count: count,
+        comments: comments
+    }
+
+    return commentAll;
 };
