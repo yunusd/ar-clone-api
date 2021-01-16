@@ -44,19 +44,23 @@ module.exports = async (...args) => {
  
   comments = JSON.parse(JSON.stringify(comments, null, 4));
 
-  comments = lodash.filter(comments,function (comment) {
-   return comment.service.categoryId == category.id 
-  })
-  category.providerUsers = providerUsers.dataValues.length;
-  category.commentCount = comments.length;
-  category.avaregeRating = 0;
+    if (comments != null) {      
+      comments = lodash.filter(comments,function (comment) {
+        return comment.service.categoryId == category.id 
+      })
+    }
+    category.providerUsers = providerUsers.dataValues.length != 0 ? providerUsers.dataValues.length : 0;
+    category.commentCount = comments.length != null ? comments.length : 0;
+    category.avaregeRating = 0;
 
-  for (let index = 0; index < comments.length; index++) {
-    const element = comments[index];
-    category.avaregeRating += element.point;
-  }
-  if (comments.length > 0) {
-    category.avaregeRating = category.avaregeRating / comments.length
+  if (comments != null) {    
+    for (let index = 0; index < comments.length; index++) {
+      const element = comments[index];
+      category.avaregeRating += element.point;
+    }
+    if (comments.length > 0) {
+      category.avaregeRating = category.avaregeRating / comments.length
+    }
   }
 
   return category;
