@@ -34,6 +34,7 @@ module.exports = async (...args) => {
       status : "approved"
     }
   });
+  providerUsers = JSON.parse(JSON.stringify(providerUsers, null, 4));
 
   let comments = await context.models.Comment.findAll({
     include: {
@@ -49,8 +50,8 @@ module.exports = async (...args) => {
         return comment.service.categoryId == category.id 
       })
     }
-    category.providerUsers = providerUsers.dataValues.length != 0 ? providerUsers.dataValues.length : 0;
-    category.commentCount = comments.length != null ? comments.length : 0;
+    category.providerUsers = providerUsers != 0 ? providerUsers.length : 0;
+    category.commentCount = comments != null ? comments.length : 0;
     category.avaregeRating = 0;
 
   if (comments != null) {    
