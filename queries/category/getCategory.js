@@ -31,7 +31,7 @@ module.exports = async (...args) => {
   let providerUsers = await context.models.User_Category.findAll({
     where: {
       categoryId: category.id,
-      status : "active"
+      status : "approved"
     }
   });
 
