@@ -28,10 +28,10 @@ module.exports = async function (args) {
         var decodedJwt = jwt.decode(args.token, {
             complete: true
         });
-        // if (!decodedJwt) {
-        //     console.log("Not a valid JWT token");
-        //     return;
-        // }
+        if (!decodedJwt) {
+            console.log("Not a valid JWT token");
+            return;
+        }
 
         var kid = decodedJwt.header.kid;
         var pem = pems[kid];
@@ -51,6 +51,9 @@ module.exports = async function (args) {
                     }
                 }
             );
+            if (!data) {
+                return;
+            }
             return data;
         });
     } catch (error) {
