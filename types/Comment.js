@@ -6,6 +6,7 @@ const Comment = `
     point: Float
     userId: Int
     user: User
+    createdAt : Date
     commentOwner: User
     serviceId: Int
     service : Service

@@ -189,6 +189,7 @@ const schema = makeExecutableSchema({
     Language,
     Words,
     `scalar Upload`,
+    `scalar Date`,
 
   ],
   resolvers,
