@@ -14,6 +14,7 @@ const Comment = `
   extend type Query {
     getComment(id: Int!): Comment!
     getCommentsByUserId(userId: Int!): [Comment!]!
+    getCommentsCategoryId(categoryId: Int!,limit: Int, offset:Int): [Comment!]!
   }
 
   extend type Mutation {
