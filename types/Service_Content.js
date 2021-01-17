@@ -5,6 +5,8 @@ const ServiceContent = `
     questionOptionId: Int!
     question : Question
     questionOption: QuestionOption
+    photoUrl: String
+
   }
   
   extend type Query {
@@ -15,12 +17,14 @@ const ServiceContent = `
     addServiceContent(
         questionId: Int!
         questionOptionId: Int!
+        photoUrl: String
     ): ServiceContent!
 
     editServiceContent(
       id: Int!
       questionId: Int!
       questionOptionId: Int!
+      photoUrl: String
     ): ServiceContent!
 
     deleteServiceContent(id: Int!): ServiceContent!
