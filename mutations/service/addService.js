@@ -6,7 +6,7 @@ module.exports = async (_, args, context) => {
     posterPath: args.posterPath,
     price: args.price,
     categoryId: args.categoryId,
-    userId: args.userId,
+    userId: context.user.id,
     addressId: args.addressId,
     contents: args.contents,
     calendarId: args.calendarId,

@@ -1,6 +1,9 @@
+const createLanguage = require('../../helpers/generateLanguageObject');
+
+
 module.exports = async (_, args, context) => {
 
-  const category = await context.models.Category.create({
+  let category = await context.models.Category.create({
     name: args.name,
     posterPath: args.posterPath,
     minPrice: args.minPrice,
@@ -15,5 +18,12 @@ module.exports = async (_, args, context) => {
     }
   });
   await category.save();
+  category = JSON.parse(JSON.stringify(category, null, 4));
+
+  await createLanguage({
+    model: category,
+    categoryId: category.id
+  });
+
   return category;
 };

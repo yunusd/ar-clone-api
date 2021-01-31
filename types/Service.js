@@ -1,11 +1,11 @@
 const Service = `
   type Service {
-    id: Int!
-    posterPath: String!
-    description: String!
-    price: Float!
-    categoryId: Int!
-    userId: Int!
+    id: Int
+    posterPath: String
+    description: String
+    price: Float
+    categoryId: Int
+    userId: Int
     addressId: Int
     address: Address
     offers: [Offer]
@@ -18,7 +18,8 @@ const Service = `
   input ServiceContentInput
   {
     questionId: Int!
-    questionOptionId: Int!
+    questionOptionId: Int
+    photoUrl:String
   }
 
   extend type Query {
@@ -31,22 +32,22 @@ const Service = `
   extend type Mutation {
     addService(
       calendarId: Int
-      description: String!
-      posterPath: String!
+      description: String
+      posterPath: String
       price: Float!
-      categoryId: Int!
-      userId: Int!
+      categoryId: Int
+      userId: Int
       addressId : Int
       contents: [ServiceContentInput]
     ): Service!
 
     editService(
       id: Int!
-      description: String!
+      description: String
       posterPath: String
       price: Float
       categoryId: Int
-      userId: Int!
+      userId: Int
       addressId : Int
       calendarId: Int
     ): Service!

@@ -8,6 +8,11 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
+      type: {
+        type: Sequelize.ENUM(
+          'name', 'description','question','answer','text'
+        ),
+      },
       word: {
         type: Sequelize.STRING
       },

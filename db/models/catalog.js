@@ -4,6 +4,7 @@ module.exports = (sequelize, DataTypes) => {
   class Catalog extends Model {
     static associate(models) {
       Catalog.hasMany(models.Category, {foreignKey:'catalogId', as: "categories" });
+      Catalog.hasMany(models.Language, {foreignKey:'catalogId', as: "languages" });
     }
   }
 
