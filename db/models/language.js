@@ -21,6 +21,36 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: true,
         as: 'city'
       });
+      Language.belongsTo(models.Country, {
+        foreignKey: "countryId",
+        allowNull: true,
+        as: 'country'
+      });
+      Language.belongsTo(models.Faq, {
+        foreignKey: "faqId",
+        allowNull: true,
+        as: 'faq'
+      });
+      Language.belongsTo(models.Question, {
+        foreignKey: "questionId",
+        allowNull: true,
+        as: 'question'
+      });
+      Language.belongsTo(models.QuestionOption, {
+        foreignKey: "questionOptionId",
+        allowNull: true,
+        as: 'questionOption'
+      });
+      Language.belongsTo(models.RequiredDocument, {
+        foreignKey: "requiredDocumentId",
+        allowNull: true,
+        as: 'requiredDocument'
+      });
+      Language.belongsTo(models.State, {
+        foreignKey: "stateId",
+        allowNull: true,
+        as: 'state'
+      });
     }
   };
   Language.init({

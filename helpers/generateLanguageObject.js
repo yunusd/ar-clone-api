@@ -2,7 +2,7 @@
 const models = require('../db/models');
 
 module.exports = async function (args) {
-    console.log(args)
+
     try {
         let typeList = ["name", "description", "question", "answer", "text"];
         var objectProp = Object.entries(args.model);    
@@ -22,6 +22,7 @@ module.exports = async function (args) {
                     cityId: args.cityId != null ? args.cityId : null,
                     stateId: args.stateId != null ? args.stateId : null,
                     countryId: args.countryId != null ? args.countryId : null,
+                    requiredDocumentId : args.requiredDocumentId != null ? args.requiredDocumentId : null,
                 };
                 await models.Language.create(language);
             }

@@ -10,7 +10,15 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      RequiredDocument.belongsTo(models.Category, { foreignKey: "categoryId",allowNull:false,as :'category'});
+      RequiredDocument.belongsTo(models.Category, {
+        foreignKey: "categoryId",
+        allowNull: false,
+        as: 'category'
+      });
+      RequiredDocument.hasMany(models.Language, {
+        foreignKey: 'requiredDocumentId',
+        as: "languages"
+      });
     }
   };
   RequiredDocument.init({

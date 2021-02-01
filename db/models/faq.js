@@ -15,6 +15,10 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         as: 'category'
       });
+      Faq.hasMany(models.Language, {
+        foreignKey: 'faqId',
+        as: "languages"
+      });
     }
   };
   Faq.init({

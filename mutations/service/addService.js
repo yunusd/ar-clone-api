@@ -18,8 +18,8 @@ module.exports = async (_, args, context) => {
     }
   });
 
-  if (service != null)
-    await makeOffer(service.id);
+  // if (service != null)
+  //   await makeOffer(service.id);
 
   return service;
 };
