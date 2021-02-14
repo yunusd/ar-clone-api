@@ -7,8 +7,19 @@ const {
     POSTGRES_DB,
 } = process.env;
 
+var whitelist = ['http://taktack.proje-kutusu.com/', 'http://www.taktack.com/']
+
 const corsOptions = {
-    origin: NODE_ENV !== 'production' ? 'http://localhost:3000' : 'https://localhost',
+    origin: function (origin, callback) {
+        if(NODE_ENV !== 'production' || NODE_ENV !== 'test'){
+            callback(null, true)
+        }
+        if (whitelist.indexOf(origin) !== -1) {
+          callback(null, true)
+        } else {
+          callback(new Error('Not allowed by CORS'))
+        }
+    },
     credentials: true,
 }
 
