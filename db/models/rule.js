@@ -18,7 +18,10 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   Rule.init({
-    name: DataTypes.STRING
+    name: DataTypes.STRING,
+    makeOfferprice: DataTypes.INTEGER,
+    minServicePrice: DataTypes.INTEGER,
+    maxServicePrice: DataTypes.INTEGER
   }, {
     sequelize,
     timestamps: true,

@@ -14,6 +14,9 @@ module.exports = {
       lastName: {
         type: Sequelize.STRING
       },
+      posterPath: {
+        type: Sequelize.STRING
+      },
       email: {
         type: Sequelize.STRING
       },
@@ -22,6 +25,11 @@ module.exports = {
       },  
       phoneNumber: {
         type: Sequelize.STRING
+      },
+      status: {
+        type: Sequelize.ENUM(
+          'active','blocked','suspend'
+        ),
       },
       createdAt: {
         allowNull: false,

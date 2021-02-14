@@ -11,6 +11,12 @@ module.exports = {
       name: {
         type: Sequelize.STRING,
       },
+      description: {
+        type: Sequelize.STRING
+      },
+      posterPath: {
+        type: Sequelize.STRING,
+      },
       minPrice: {
         type: Sequelize.FLOAT,
       },

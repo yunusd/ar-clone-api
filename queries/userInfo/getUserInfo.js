@@ -14,10 +14,6 @@ module.exports = async (...args) => {
                 as: "user_categories"
             },
             {
-                model: context.models.Status,
-                as: "status"
-            },
-            {
                 model: context.models.User_Role,
                 as: "user_roles",
                 include: {

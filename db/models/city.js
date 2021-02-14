@@ -9,10 +9,14 @@ module.exports = (sequelize, DataTypes) => {
     {
       City.belongsTo(models.Country, {
         foreignKey: "countryId",allowNull: false, as :'country'
-      }),
+      });
       City.belongsTo(models.State, {
         foreignKey: "stateId", allowNull:true, as:'state'
-      })
+      });
+      City.hasMany(models.Language, {
+        foreignKey: 'cityId',
+        as: "languages"
+      });
     }
   };
   City.init({

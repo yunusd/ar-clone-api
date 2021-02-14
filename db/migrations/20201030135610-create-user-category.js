@@ -7,7 +7,12 @@ module.exports = {
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
-      },     
+      },
+      status: {
+        type: Sequelize.ENUM(
+          'approved','verifying','denied'
+        ),
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

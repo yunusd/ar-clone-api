@@ -7,9 +7,9 @@ module.exports = (sequelize, DataTypes) => {
       User.hasMany(models.Offer,{foreignKey:'userId', as: 'offers'});
       User.hasMany(models.User_Category,{foreignKey:'userId', as: 'userServiceCategories'});
       User.hasMany(models.User_Role,{foreignKey:'userId', as: 'user_roles'});
+      User.hasMany(models.Comment,{foreignKey:'userId', as: 'comments'});
       User.belongsTo(models.Address,{ foreignKey:'addressId', allowNull: true, as:'address'});
       User.belongsTo(models.Catalog,{foreignKey:'catalogId', allowNull: true, as:'userServiceCatalog'});
-      User.belongsTo(models.Status, { foreignKey: "statusId",allowNull:false,as :'status'});
 
     }
   }
@@ -19,7 +19,9 @@ module.exports = (sequelize, DataTypes) => {
       lastName: DataTypes.STRING,
       userName: DataTypes.STRING,
       phoneNumber: DataTypes.STRING,
-      email: DataTypes.STRING
+      email: DataTypes.STRING,
+      posterPath: DataTypes.STRING,
+      status: DataTypes.ENUM("active","blocked","suspend"),
     },
     {
       sequelize,
