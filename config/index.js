@@ -14,12 +14,12 @@ const corsOptions = {
 
 const cognitoOptions = NODE_ENV !== "production" ? {
     userPoolId: 'eu-central-1_osWFees3n',
-    clientId: '3ao279vadjbqu5uirggpqr575c',
+    clientId: '7iuj27tlivki4e589fvqg63uit',
     jsonVerifyEndpoint: "https://cognito-idp.eu-central-1.amazonaws.com/eu-central-1_osWFees3n/.well-known/jwks.json",
     cognitoUrl: "https://cognito-idp.eu-central-1.amazonaws.com/eu-central-1_osWFees3n"
 } : {
     userPoolId: 'eu-central-1_r5xN3j9T0',
-    clientId: '5f0p7g7nfpct6umc8869n2uejr',
+    clientId: '28de85j6d5kl7f7vuub0ko09bn',
     jsonVerifyEndpoint: "https://cognito-idp.eu-central-1.amazonaws.com/eu-central-1_r5xN3j9T0/.well-known/jwks.json",
     cognitoUrl: "https://cognito-idp.eu-central-1.amazonaws.com/eu-central-1_r5xN3j9T0"
 }
