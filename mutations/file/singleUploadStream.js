@@ -3,10 +3,11 @@ const AWS = require('aws-sdk');
 const {
     v4: guid
 } = require('uuid');
+const {s3Options} = require('../../config');
 
 const s3 = new AWS.S3({
-    accessKeyId: "AKIASANNZVKDOSST2IMI",
-    secretAccessKey: "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",
+    accessKeyId: s3Options.accessKeyId,
+    secretAccessKey: s3Options.secretAccessKey,
 });
 
 
@@ -16,7 +17,7 @@ module.exports = async (_, args, context) => {
     const {createReadStream, ...rest} = await args.file.file
 
     const uploadParams = {
-        Bucket: 'armut-clone-s3-common',
+        Bucket: s3Options.bucket,
         Key: newGuid+ rest.filename.substring(rest.filename.indexOf('.')),
         Body: createReadStream()
     };
