@@ -40,6 +40,7 @@
     "uuid": "^8.3.1"
   },
   "devDependencies": {
+    "morgan": "~1.9.1",
     "eslint": "^7.7.0",
     "eslint-config-airbnb-base": "^14.2.0",
     "sequelize-cli": "^6.2.0"
