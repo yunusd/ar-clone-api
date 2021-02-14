@@ -6,8 +6,18 @@ module.exports = (sequelize, DataTypes) => {
   class Country extends Model {
 
     static associate(models) {
-      Country.hasMany(models.City, {foreignKey:'countryId', as: "cities" })
-      Country.hasMany(models.State, {foreignKey:'countryId', as: "states" })
+      Country.hasMany(models.City, {
+        foreignKey: 'countryId',
+        as: "cities"
+      });
+      Country.hasMany(models.State, {
+        foreignKey: 'countryId',
+        as: "states"
+      });
+      Country.hasMany(models.Language, {
+        foreignKey: 'countryId',
+        as: "languages"
+      });
     }
   };
   Country.init({

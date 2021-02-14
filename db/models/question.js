@@ -18,6 +18,10 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         as: 'category'
       });
+      Question.hasMany(models.Language, {
+        foreignKey: 'questionId',
+        as: "languages"
+      });
     }
   }
   Question.init({

@@ -9,5 +9,5 @@ module.exports = async (...args) => {
       as: "options"
     }],
   });
-  return offers;
+  return questions;
 };

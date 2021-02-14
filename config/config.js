@@ -1,4 +1,6 @@
 // const fs = require('fs');
+require('dotenv').config();
+
 const {
   POSTGRES_USERNAME,
   POSTGRES_PASSWORD,

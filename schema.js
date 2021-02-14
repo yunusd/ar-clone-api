@@ -16,7 +16,6 @@ const State = require('./types/State');
 const User_Category = require('./types/User_Category');
 const Role = require('./types/Role');
 const User_Role = require('./types/User_Role');
-const Status = require('./types/Status');
 const Dashboard = require('./types/Dashboard');
 const ServiceContent = require('./types/Service_Content');
 const OfferContent = require('./types/Offer_Content');
@@ -26,6 +25,11 @@ const Rule = require('./types/Rule');
 const RuleContent = require('./types/RuleContent');
 const Calendar = require('./types/Calendar');
 const UserInfo = require('./types/UserInfo');
+const File = require('./types/File');
+const Comment = require('./types/Comment');
+const UsersStatistics = require('./types/UsersStatistics');
+const Language = require('./types/Language');
+const Words = require('./types/Words');
 
 // Queries
 const userQueries = require('./queries/user');
@@ -42,7 +46,6 @@ const stateQueries = require('./queries/state');
 const user_categoryQueries = require('./queries/user_category');
 const roleQueries = require('./queries/role');
 const user_roleQueries = require('./queries/user_role');
-const statusQueries = require('./queries/status');
 const dashboardQueries = require('./queries/dashboard');
 const service_contentQueries = require('./queries/service_content');
 const offer_contentQueries = require('./queries/offer_content');
@@ -52,6 +55,8 @@ const ruleQueries = require('./queries/rule');
 const ruleContentQueries = require('./queries/ruleContent');
 const calendarQueries = require('./queries/calendar');
 const userInfoQueries = require('./queries/userInfo');
+const commentQueries = require('./queries/comment');
+const languageQueries = require('./queries/language');
 
 // Mutations
 const userMutation = require('./mutations/user');
@@ -67,7 +72,6 @@ const stateMutation = require('./mutations/state');
 const countryMutation = require('./mutations/country');
 const user_categoryMutation = require('./mutations/user_category');
 const roleMutation = require('./mutations/role');
-const statusMutation = require('./mutations/status');
 const user_roleMutation = require('./mutations/user_role');
 const service_contentMutation = require('./mutations/service_content');
 const offer_contentMutation = require('./mutations/offer_content');
@@ -76,6 +80,9 @@ const requiredDocumentMutation = require('./mutations/requiredDocument');
 const ruleMutation = require('./mutations/rule');
 const ruleContentMutation = require('./mutations/ruleContent');
 const calendarMutation = require('./mutations/calendar');
+const fileMutation = require('./mutations/file');
+const commentMutation = require('./mutations/comment');
+const languageMutation = require('./mutations/language');
 
 const Root = `
   type Query {
@@ -111,7 +118,6 @@ const resolvers = merge(
   user_categoryQueries,
   roleQueries,
   user_roleQueries,
-  statusQueries,
   dashboardQueries,
   service_contentQueries,
   offer_contentQueries,
@@ -121,6 +127,8 @@ const resolvers = merge(
   ruleContentQueries,
   calendarQueries,
   userInfoQueries,
+  commentQueries,
+  languageQueries,
   
   // mutations
   userMutation,
@@ -137,7 +145,6 @@ const resolvers = merge(
   user_categoryMutation,
   roleMutation,
   user_roleMutation,
-  statusMutation,
   service_contentMutation,
   offer_contentMutation,
   documentMutation,
@@ -145,6 +152,9 @@ const resolvers = merge(
   ruleMutation,
   ruleContentMutation,
   calendarMutation,
+  fileMutation,
+  commentMutation,
+  languageMutation,
 );
 
 const schema = makeExecutableSchema({
@@ -164,7 +174,6 @@ const schema = makeExecutableSchema({
     User_Category,
     Role,
     User_Role,
-    Status,
     Dashboard,
     ServiceContent,
     OfferContent,
@@ -174,6 +183,14 @@ const schema = makeExecutableSchema({
     RuleContent,
     Calendar,
     UserInfo,
+    File,
+    Comment,
+    UsersStatistics,
+    Language,
+    Words,
+    `scalar Upload`,
+    `scalar Date`,
+
   ],
   resolvers,
 });

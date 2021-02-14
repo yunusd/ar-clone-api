@@ -17,15 +17,15 @@ const Question = `
 
   input inputQuestionOptions {
     id: Int
-    text: String!
-    minPrice: Int!
-    maxPrice: Int!
+    text: String
+    minPrice: Int
+    maxPrice: Int
   }
 
 
   extend type Query {
     getQuestion(id: Int!): Question!
-    getQuestions: [Question]
+    getQuestions(categoryId : Int): [Question]
     getQuestionsByCategoryId(categoryId: Int!): [Question!]!
   }
 
