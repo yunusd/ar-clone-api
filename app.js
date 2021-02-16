@@ -32,7 +32,7 @@ app.use('/api', passport.authenticate('bearer', {
 app.use((err, req, res, next) => {
     if (err) {
       if (err.status == null) {
-        logger.error(err.stack, 'Internal unexpected error from');
+        logger(err.stack, 'Internal unexpected error from');
         res.status(500);
         res.json({
           message: err.message,
