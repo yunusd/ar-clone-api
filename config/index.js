@@ -14,7 +14,7 @@ const corsOptions = {
         if(NODE_ENV !== 'production' || NODE_ENV !== 'test'){
             callback(null, true)
         }
-        if (whitelist.indexOf(origin) !== -1) {
+        else if (whitelist.indexOf(origin) !== -1) {
           callback(null, true)
         } else {
           callback(new Error('Not allowed by CORS'))
