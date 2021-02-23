@@ -26,8 +26,8 @@ module.exports = async (_, args, context) => {
   });
 
   if (category.requiredDocuments) {
-    for (let index = 0; index < catalog.requiredDocuments.length; index++) {
-      const reqDocument = catalog.requiredDocuments[index];
+    for (let index = 0; index < category.requiredDocuments.length; index++) {
+      const reqDocument = category.requiredDocuments[index];
       await createLanguage({
         model: reqDocument,
         requiredDocumentId: reqDocument.id
