@@ -27,10 +27,10 @@ module.exports = async (_, args, context) => {
       returning: true,
       plain: true
     });
-
+    updatedCategory = JSON.parse(JSON.stringify(updatedCategory[1], null, 4));
     await editLanguage({
-      model: JSON.parse(JSON.stringify(updatedCategory[1], null, 4)),
-      categoryId : args.id,
+      model: JSON.parse(JSON.stringify(updatedCategory, null, 4)),
+      categoryId : updatedCategory.id,
     });
 
     // gelen requireddocument yok ise db içersindeki requireddocumentların silinmesi

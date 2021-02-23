@@ -7,16 +7,17 @@ module.exports = async (_, args, context) => {
     let category = await context.models.Category.findByPk(args.id);
     category = JSON.parse(JSON.stringify(category, null, 4));
 
+    await deleteLang({
+      model: category,
+      categoryId: category.id
+    })
+    
     const deletedCategory = await context.models.Category.destroy({
       where: {
         id: args.id,
       }
     });
 
-    await deleteLang({
-      model: category,
-      categoryId: category.id
-    })
 
     return deletedCategory ? category : new EmptyResultError("Category not found!");;
   } catch (error) {
