@@ -30,7 +30,7 @@ module.exports = async (_, args, context) => {
 
     await editLanguage({
       model: JSON.parse(JSON.stringify(updatedCategory[1], null, 4)),
-      catalogId : args.id,
+      categoryId : args.id,
     });
 
     // gelen requireddocument yok ise db içersindeki requireddocumentların silinmesi
@@ -96,7 +96,7 @@ module.exports = async (_, args, context) => {
             });
             await editLanguage({
               model: JSON.parse(JSON.stringify(updatedRequiredDocument[1], null, 4)),
-              catalogId : element.dataValues.id,
+              requiredDocumentId : element.dataValues.id,
             });
           }
         }
