@@ -1,3 +1,4 @@
+const { LambdaFunctionConfiguration } = require('@aws-sdk/client-s3');
 const lodash = require('lodash');
 
 module.exports = async (...args) => {
@@ -59,6 +60,11 @@ module.exports = async (...args) => {
     limit: params.limit
   });
   users = JSON.parse(JSON.stringify(users, null, 4));
+
+  users = users.filter(function (user) {
+    return user.id != context.user.id;
+  })
+
   if (users != null) {
     for (let index = 0; index < users.length; index++) {
       const user = users[index];

@@ -15,7 +15,6 @@ module.exports = async (_, args, context) => {
     })
 
     user = JSON.parse(JSON.stringify(user, null, 4));
-
     if (args.status != null && user.status != args.status) {
         if (!context.user.user_roles.some(function (user_role) {
                 return user_role.role.name == "admin"
