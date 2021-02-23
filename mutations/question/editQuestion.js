@@ -50,7 +50,7 @@ module.exports = async (_, args, context) => {
           });          
           await deleteLang({
             model: JSON.parse(JSON.stringify(element, null, 4)),
-            questionOptionId: element.dataValues.id
+            questionOptionId: JSON.parse(JSON.stringify(element, null, 4)).id,
           })
         }
       }
@@ -81,7 +81,7 @@ module.exports = async (_, args, context) => {
             });
             await deleteLang({
               model: JSON.parse(JSON.stringify(element, null, 4)),
-              questionOptionId: element.dataValues.id
+              questionOptionId: JSON.parse(JSON.stringify(element, null, 4)).id,
             })
           }
         }
@@ -99,7 +99,7 @@ module.exports = async (_, args, context) => {
             });                    
             await editLanguage({
               model: JSON.parse(JSON.stringify(updateQuestionOption[1], null, 4)),
-              questionOptionId : element.dataValues.id,
+              questionOptionId : JSON.parse(JSON.stringify(element, null, 4)).id,
             });
           }
         }
