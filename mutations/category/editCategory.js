@@ -96,7 +96,7 @@ module.exports = async (_, args, context) => {
             });
             await editLanguage({
               model: JSON.parse(JSON.stringify(updatedRequiredDocument[1], null, 4)),
-              catalogId : element.dataValues.id,
+              requiredDocumentId : element.dataValues.id,
             });
           }
         }
