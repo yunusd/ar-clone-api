@@ -1,10 +1,11 @@
 const {
     EmptyResultError
 } = require('sequelize');
+const editLanguage = require('../../helpers/editLanguageObject');
 
 module.exports = async (_, args, context) => {
     try {
-        const requiredDocument = await context.models.RequiredDocument.update({
+        let requiredDocument = await context.models.RequiredDocument.update({
             ...args
         }, {
             where: {
@@ -13,7 +14,13 @@ module.exports = async (_, args, context) => {
             returning: true,
             plain: true
         });
-        return requiredDocument[1].dataValues;
+        requiredDocument = JSON.parse(JSON.stringify(requiredDocument[1], null, 4));
+
+        await editLanguage({
+          model: requiredDocument,
+          requiredDocumentId : requiredDocument.id,
+        });
+        return requiredDocument;
     } catch (error) {
         throw new EmptyResultError("Required Document not found!");
     }

@@ -1,9 +1,7 @@
-const {
-  editQuestionValidation
-} = require('../../validation/question')
-const {
-  editQuestionOptionValidation
-} = require('../../validation/questionOption')
+const editLanguage = require('../../helpers/editLanguageObject');
+const deleteLang = require('../../helpers/deleteLanguageObject');
+const createLanguage = require('../../helpers/generateLanguageObject');
+
 const {
   EmptyResultError
 } = require('sequelize');
@@ -35,6 +33,11 @@ module.exports = async (_, args, context) => {
       returning: true,
       plain: true
     });
+    var upQuestion = JSON.parse(JSON.stringify(updatedQuestion[1], null, 4));
+    await editLanguage({
+      model: upQuestion,
+      questionId : upQuestion.id,
+    });
     // gelen options yok ise db içersindeki options silinmesi
     if (args.options.length < 1) {
       if (findQuestion.options.length > 0) {
@@ -44,7 +47,11 @@ module.exports = async (_, args, context) => {
             where: {
               id: element.id
             }
-          });
+          });          
+          await deleteLang({
+            model: JSON.parse(JSON.stringify(element, null, 4)),
+            questionOptionId: element.dataValues.id
+          })
         }
       }
     }
@@ -72,12 +79,16 @@ module.exports = async (_, args, context) => {
                 id: element.id
               }
             });
+            await deleteLang({
+              model: JSON.parse(JSON.stringify(element, null, 4)),
+              questionOptionId: element.dataValues.id
+            })
           }
         }
         if (updateList.length > 0) {
           for (let index = 0; index < updateList.length; index++) {
             const element = updateList[index];
-            await context.models.QuestionOption.update({
+            var updateQuestionOption = await context.models.QuestionOption.update({
               ...element
             }, {
               where: {
@@ -85,6 +96,10 @@ module.exports = async (_, args, context) => {
               },
               returning: true,
               plain: true
+            });                    
+            await editLanguage({
+              model: JSON.parse(JSON.stringify(element, null, 4)),
+              questionOptionId : element.dataValues.id,
             });
           }
         }
@@ -98,8 +113,12 @@ module.exports = async (_, args, context) => {
         for (let index = 0; index < inputOptions.length; index++) {
           let element = inputOptions[index];
           element.questionId = args.id;
-          await context.models.QuestionOption.create({
+          var createdOption = await context.models.QuestionOption.create({
             ...element
+          });
+          await createLanguage({
+            model: JSON.parse(JSON.stringify(createdOption, null, 4)),
+            questionOptionId: createdOption.id
           });
         }
       }
