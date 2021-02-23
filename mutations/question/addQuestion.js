@@ -10,9 +10,7 @@ const {
 const createLanguage = require('../../helpers/generateLanguageObject');
 
 module.exports = async (_, args, context) => {
-  await addQuestionValidation.validateAsync(args, {
-    abortEarly: false
-  });
+
   args.type = args.options.length == 2 ? "trueFalse" : args.options.length > 2 && args.options.length < 5 ? "singleChoice" : "dropDown";
   console.log(args.options)
   let question = await context.models.Question.create({
@@ -42,7 +40,7 @@ module.exports = async (_, args, context) => {
       const questionOption = question.options[index];
       await createLanguage({
         model: questionOption,
-        questionOptionnId: questionOption.id
+        questionOptionId: questionOption.id
       });
     }
   }

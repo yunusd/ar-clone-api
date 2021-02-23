@@ -1,18 +1,24 @@
 const { EmptyResultError } = require('sequelize');
-const {editCityValidation} = require('../../validation/city')
+const editLanguage = require('../../helpers/editLanguageObject');
 
 module.exports = async (_, args, context) => {
-  await editCityValidation.validateAsync(args, {abortEarly: false});
 
   try {
-    const city = await context.models.City.update({ ...args }, {
+    let city = await context.models.City.update({ ...args }, {
       where: {
         id: args.id
       },
       returning: true,
       plain: true
     });
-    return city[1].dataValues;
+    city = JSON.parse(JSON.stringify(city[1], null, 4));
+
+    await editLanguage({
+      model: city,
+      cityId : city.id,
+    });
+
+    return city;
   } catch (error) {
     throw new EmptyResultError("City not found!");
   }

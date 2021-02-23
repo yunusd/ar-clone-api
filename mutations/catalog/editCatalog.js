@@ -1,18 +1,23 @@
-
+const editLanguage = require('../../helpers/editLanguageObject');
 const { EmptyResultError } = require('sequelize');
-const {editCatalogValidation} = require('../../validation/catalog')
 
 module.exports = async (_, args, context) => {
-  await editCatalogValidation.validateAsync(args, {abortEarly: false});
   try {
-    const catalog = await context.models.Catalog.update({ ...args }, {
+    let catalog = await context.models.Catalog.update({ ...args }, {
       where: {
         id: args.id
       },
       returning: true,
       plain: true
     });
-    return catalog[1].dataValues;
+
+     catalog = JSON.parse(JSON.stringify(catalog[1], null, 4));
+
+     await editLanguage({
+      model: catalog,
+      catalogId : catalog.id,
+    });
+    return catalog;
   } catch (error) {
     throw new EmptyResultError("Catalog not found!");
   }

@@ -2,6 +2,9 @@ const {
   EmptyResultError
 } = require('sequelize');
 const lodash = require('lodash');
+const editLanguage = require('../../helpers/editLanguageObject');
+const deleteLang = require('../../helpers/deleteLanguageObject');
+const createLanguage = require('../../helpers/generateLanguageObject');
 
 
 module.exports = async (_, args, context) => {
@@ -24,6 +27,12 @@ module.exports = async (_, args, context) => {
       returning: true,
       plain: true
     });
+
+    await editLanguage({
+      model: JSON.parse(JSON.stringify(updatedCategory[1], null, 4)),
+      catalogId : args.id,
+    });
+
     // gelen requireddocument yok ise db içersindeki requireddocumentların silinmesi
     if (args.requiredDocuments == null || args.requiredDocuments.length < 1) {
       if (findCategory.dataValues.requiredDocuments.length > 0) {
@@ -35,6 +44,10 @@ module.exports = async (_, args, context) => {
               id: element.dataValues.id
             }
           });
+          await deleteLang({
+            model: JSON.parse(JSON.stringify(element, null, 4)),
+            requiredDocumentId: element.dataValues.id
+          })
         }
       }
     }
@@ -62,13 +75,17 @@ module.exports = async (_, args, context) => {
               where: {
                 id: element.dataValues.id
               }
+            });            
+            await deleteLang({
+              model: JSON.parse(JSON.stringify(element, null, 4)),
+              requiredDocumentId: element.dataValues.id
             });
           }
         }
         if (updateList.length > 0) {
           for (let index = 0; index < updateList.length; index++) {
             const element = updateList[index];
-            await context.models.RequiredDocument.update({
+            var updatedRequiredDocument =  await context.models.RequiredDocument.update({
               ...element
             }, {
               where: {
@@ -76,6 +93,10 @@ module.exports = async (_, args, context) => {
               },
               returning: true,
               plain: true
+            });
+            await editLanguage({
+              model: JSON.parse(JSON.stringify(updatedRequiredDocument[1], null, 4)),
+              catalogId : element.dataValues.id,
             });
           }
         }
@@ -90,8 +111,13 @@ module.exports = async (_, args, context) => {
         for (let index = 0; index < inputReqDoc.length; index++) {
           let element = inputReqDoc[index];
           element.categoryId = args.id;
-          await context.models.RequiredDocument.create({
+          let reqDoc = await context.models.RequiredDocument.create({
             ...element
+          });
+          reqDoc = JSON.parse(JSON.stringify(reqDoc, null, 4)),
+          await createLanguage({
+            model: reqDoc,
+            requiredDocumentId: reqDoc.id
           });
         }
       }

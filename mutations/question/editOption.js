@@ -1,18 +1,25 @@
-const {editQuestionOptionValidation} = require('../../validation/questionOption')
 const { EmptyResultError } = require('sequelize');
+const editLanguage = require('../../helpers/editLanguageObject');
 
 module.exports = async (_, args, context) => {
   await editQuestionOptionValidation.validateAsync(args, {abortEarly: false});
 
   try {
-    const option = await context.models.QuestionOption.update({ ...args }, {
+    let option = await context.models.QuestionOption.update({ ...args }, {
       where: {
         id: args.id
       },
       returning: true,
       plain: true
     });
-    return option[1].dataValues;
+    option = JSON.parse(JSON.stringify(option[1], null, 4));
+
+    await editLanguage({
+      model: option,
+      questionOptionId : option.id,
+    });
+
+    return option;
   } catch (error) {
     throw new EmptyResultError("Option not found!");
   }

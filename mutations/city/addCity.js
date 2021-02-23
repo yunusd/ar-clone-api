@@ -1,12 +1,8 @@
-const {
-  addCityValidation
-} = require('../../validation/city')
+
 const createLanguage = require('../../helpers/generateLanguageObject');
 
 module.exports = async (_, args, context) => {
-  await addCityValidation.validateAsync(args, {
-    abortEarly: false
-  });
+
   let city = await context.models.City.create({
     ...args,
   });
