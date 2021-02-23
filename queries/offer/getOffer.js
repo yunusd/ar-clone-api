@@ -3,7 +3,7 @@ module.exports = async (...args) => {
   const offer = await context.models.Offer.findByPk(params.id, {
     include: [{
         model: context.models.Service,
-        as: "services"
+        as: "service"
       },
       {
         model: context.models.User,

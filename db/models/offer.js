@@ -19,7 +19,7 @@ module.exports = (sequelize, DataTypes) => {
         Offer.belongsTo(models.Service, {
           foreignKey: "serviceId",
           allowNull: false,
-          as: 'services'
+          as: 'service'
         });
     }
   }
