@@ -98,7 +98,7 @@ module.exports = async (_, args, context) => {
               plain: true
             });                    
             await editLanguage({
-              model: JSON.parse(JSON.stringify(element, null, 4)),
+              model: JSON.parse(JSON.stringify(updateQuestionOption[1], null, 4)),
               questionOptionId : element.dataValues.id,
             });
           }
