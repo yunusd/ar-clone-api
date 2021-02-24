@@ -3,7 +3,7 @@ const Words = `
     id: Int
     key : String
     value : String
-
+    lang: String
    }
  
 `
