@@ -20,7 +20,8 @@ module.exports = async (...args) => {
                 words.push({
                     id: x.id,
                     key: x.word,
-                    value: x.tr
+                    value: x.tr,
+                    lang: "tr",
                 })
             });
             break;
@@ -29,7 +30,8 @@ module.exports = async (...args) => {
                 words.push( {
                     id: x.id,
                     key: x.word,
-                    value: x.ru
+                    value: x.ru,
+                    lang: "ru",
                 })
             });
             break;
@@ -38,7 +40,8 @@ module.exports = async (...args) => {
                 words.push({
                     id: x.id,
                     key: x.word,
-                    value: x.kz
+                    value: x.kz,
+                    lang: "kz",
                 })
             });
             break;
